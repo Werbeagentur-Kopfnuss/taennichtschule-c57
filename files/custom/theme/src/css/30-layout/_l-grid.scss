@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Layout: Equal Columns Grid
+   Beschreibung: Grid-Layout mit gleich breiten Spalten sowie anpassbaren Gaps und Alignment.
+   Ebene (Layer): Layout
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@use "../00-settings/s-tokens-semantic" as *;
+
+@layer layout {
+    .equal-columns {
+        --equal-columns-gap-columns: var(--equal-columns-gap-default);
+        --equal-columns-gap-rows: var(--equal-columns-gap-default);
+
+        container-type: inline-size;
+        container-name: equal-columns;
+        display: grid;
+        gap: var(--equal-columns-gap-rows) var(--equal-columns-gap-columns);
+        align-items: var(--column-layout-alignment, start);
+
+        /* Gap setzen, wenn content-downloads enthalten sind */
+        &:has(.content-download) {
+            gap: var(--flow-grid-spacing-block) var(--equal-columns-gap-columns);
+        }
+
+        &.equal-columns--gap-lg {
+            --equal-columns-gap: var(--equal-columns-gap-lg);
+        }
+
+        &.equal-columns--alignment-center {
+            --column-layout-alignment: center;
+        }
+
+        &.equal-columns--alignment-bottom {
+            --column-layout-alignment: end;
+        }
+
+        &.equal-columns--alignment-stretch {
+            --column-layout-alignment: stretch;
+        }
+
+        &.equal-columns--only-content {
+            /* Wenn nur Content enthalten ist, wird ein Flow wie bei rsce-two-columns verwendet */
+            --equal-columns-gap-rows: var(--flow-spacing-block-default);
+        }
+
+        /* Sicherstellen, dass Headings im Grid linksbuendig ausgerichtet sind */
+        h2,
+        h3,
+        h4,
+        h5 {
+            text-align: left;
+        }
+    }
+
+    /* grid-auto-flow: column -> alles in einer Zeile.
+       grid-auto-columns: 1fr -> alle Spalten sind gleich breit.
+       Mobile first: auf kleinen Screens normaler Flow, auf groesseren Screens Grid mit gleich breiten Spalten. */
+    @container article-wrapper (width > #{$breakpoint-container-grid-1}) {
+        .equal-columns {
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(min(var(--grid-auto-fit-column-size-min, 250px), 100%), 1fr)
+            );
+        }
+    }
+
+    /* Container angeben, um container queries zu aktivieren */
+    .content-collection {
+        container-type: inline-size;
+        container-name: article-wrapper;
+        /* margin fuer erstes Kind nach Headings in content-collection setzen - Modul equal-columns */
+        & > :is(h2, h3, h4, h5, h6):first-child + * {
+            margin-block-start: var(--flow-spacing-block-default);
+        }
+    }
+
+    /* ================
+    Equal Columns mit fester Anzahl von 4 Spalten
+    ================ */
+    @container article-wrapper (width > #{$breakpoint-container-grid-1}) {
+        .equal-columns--columns-4 {
+            grid-template-columns: repeat(2, 1fr);
+
+            &.equal-columns--columns-center {
+                grid-template-columns: repeat(4, 1fr);
+                > * {
+                    grid-column: span 2;
+                }
+
+                /* Letzte Reihe hat nur 1 Item -> zentrieren */
+                & > *:nth-child(2n + 1):nth-last-child(1) {
+                    grid-column: 2 / span 2;
+                }
+            }
+        }
+    }
+
+    @container article-wrapper (width > #{$breakpoint-container-grid-2}) {
+        .equal-columns--columns-4 {
+            grid-template-columns: repeat(4, 1fr);
+
+            &.equal-columns--columns-center {
+                grid-template-columns: repeat(8, 1fr);
+                > * {
+                    grid-column: span 2;
+                }
+
+                /* Reset ab width > 46rem */
+                & > *:nth-child(2n + 1):nth-last-child(1) {
+                    grid-column: span 2;
+                }
+
+                /* Fall 1: Letzte Reihe hat nur 1 Item -> in die Mitte */
+                & > *:nth-child(4n + 1):nth-last-child(1) {
+                    grid-column: 4 / span 2;
+                }
+
+                /* Fall 2: Letzte Reihe hat 2 Items -> mittig */
+                & > *:nth-child(4n + 1):nth-last-child(2) {
+                    grid-column: 3 / span 2;
+                }
+                & > *:nth-child(4n + 2):nth-last-child(1) {
+                    grid-column: 5 / span 2;
+                }
+
+                /* Fall 3: Letzte Reihe hat 3 Items -> ebenfalls mittig */
+                & > *:nth-child(4n + 1):nth-last-child(3) {
+                    grid-column: 2 / span 2;
+                }
+                & > *:nth-child(4n + 2):nth-last-child(2) {
+                    grid-column: 4 / span 2;
+                }
+                & > *:nth-child(4n + 3):nth-last-child(1) {
+                    grid-column: 6 / span 2;
+                }
+            }
+        }
+    }
+
+    /* ================
+    Equal Columns mit fester Anzahl von 3 Spalten
+    ================ */
+    @container article-wrapper (width > #{$breakpoint-container-grid-1}) {
+        .equal-columns--columns-3 {
+            grid-template-columns: repeat(2, 1fr);
+
+            &.equal-columns--columns-center {
+                grid-template-columns: repeat(4, 1fr);
+                > * {
+                    grid-column: span 2;
+                }
+
+                /* Letzte Reihe mit weniger als 3 Items behandeln und zentrieren */
+                & > *:nth-child(2n + 1):nth-last-child(1) {
+                    grid-column: 2 / span 2;
+                }
+            }
+        }
+    }
+
+    @container article-wrapper (width > #{$breakpoint-container-grid-2}) {
+        .equal-columns--columns-3 {
+            grid-template-columns: repeat(3, 1fr);
+
+            &.equal-columns--columns-center {
+                grid-template-columns: repeat(6, 1fr);
+                > * {
+                    grid-column: span 2;
+                }
+
+                /* Reset ab width > 46rem */
+                & > *:nth-child(2n + 1):nth-last-child(1) {
+                    grid-column: span 2;
+                }
+
+                /* Fall 1: Letzte Reihe hat nur 1 Item -> in die Mitte */
+                & > *:nth-child(3n + 1):nth-last-child(1) {
+                    grid-column: 3 / span 2;
+                }
+
+                /* Fall 2: Letzte Reihe hat 2 Items -> mittig */
+                & > *:nth-child(3n + 1):nth-last-child(2) {
+                    grid-column: 2 / span 2;
+                }
+                & > *:nth-child(3n + 2):nth-last-child(1) {
+                    grid-column: 4 / span 2;
+                }
+            }
+        }
+    }
+
+    /* ================
+    Equal Columns mit fester Anzahl von 2 Spalten
+    ================ */
+    @container article-wrapper (width > #{$breakpoint-container-grid-1}) {
+        .equal-columns--columns-2 {
+            grid-template-columns: repeat(2, 1fr);
+
+            &.equal-columns--two-columns-left-wide {
+                grid-template-columns: 3fr 2fr;
+            }
+            &.equal-columns--two-columns-right-wide {
+                grid-template-columns: 2fr 3fr;
+            }
+
+            &.equal-columns--columns-center {
+                grid-template-columns: repeat(4, 1fr);
+                > * {
+                    grid-column: span 2;
+                }
+
+                /* Letzte Reihe mit weniger als 2 Items behandeln und zentrieren */
+                & > *:nth-child(2n + 1):nth-last-child(1) {
+                    grid-column: 2 / span 2;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,98 @@
+{% use "@Contao/component/_figure.html.twig" %}
+
+{% block rsce_page_teaser_standard %}
+
+    {#
+    RSCE-Element: Standard-Teaser für Seiten
+    Details: Bild, Überschrift, Teaser, Link
+    Depends on: _c-page-teaser-standard.css, _c-image-hover.css, -c_link-with-icon--vars.css, _b-cards.css
+    #}
+
+    {% if hasImageMetadata|default(false) %}
+        {% set metaImageAlt = imageAlt|default %}
+    {% elseif image|default %}
+        {% set figure = figure(image, {}) %}
+        {% set metaImageAlt = figure is not null ? figure.metadata.alt|insert_tag : '' %}
+    {% else %}
+        {% set metaImageAlt = '' %}
+    {% endif %}
+
+    {% set metaLinkAriaLabel = 'CUSTOM.rsce_page_teaser_standard_aria'|trans({}, 'contao_default') ~ (pagename|default) %}
+
+<a class="page-teaser__card card{% if hasBackgroundColor|default == true %} card--background{% endif %} {{ class }}"{% if cssID %} id="{{ cssID }}"{% endif %}
+   href="{{ url|default|insert_tag }}" aria-label="{{ metaLinkAriaLabel }}">
+
+    {% if image|default %}
+
+        <div class="card__image">
+            {% with { figure: figure(image, imageSize)} %}
+                {% block figure_component %}
+                    {% set figure_attributes = attrs()
+                        .addClass('image--hover')
+                        .mergeWith(figure_attributes|default) %}
+                    {% set img_attributes = attrs()
+                        .set('alt', metaImageAlt)
+                        .set('title', '')
+                        .mergeWith(img_attributes|default) %}
+                    {{ parent() }}
+                {% endblock %}
+            {% endwith %}
+        </div>
+
+    {% endif %}
+
+    <{{ headlineorder }} itemprop="name">{{ pagename }}</{{ headlineorder }}>
+
+    <div class="content-text block">
+
+        {% if teaser|default %}
+            {{ teaser|raw }}
+        {% endif %}
+
+        {% if hasLink|default == true and hasButton|default == true %}
+            {% if url|default %}
+                {% if hasLinkDescription|default == true %}
+                    <div class="text-icon text-icon--link">
+                        <span class="text-icon__text">{{ linkDescription }}</span>
+                        <span class="text-icon__icon svg-icon svg-icon--size-sm" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="11.5" class="text-icon__icon-bg"></circle>
+                                    <path d="M10 7l5 5-5 5" class="text-icon__icon-arrow" fill="none"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                            </span>
+                        <span class="visually-hidden">{{ metaLinkAriaLabel }}</span>
+                    </div>
+                {% else %}
+                    <div class="text-icon text-icon--link">
+                        <span class="text-icon__text">{{ 'CUSTOM.page_teaser_more'|trans({}, 'contao_default') }}</span>
+                        <span class="text-icon__icon svg-icon svg-icon--size-sm" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="11.5" class="text-icon__icon-bg"></circle>
+                                    <path d="M10 7l5 5-5 5" class="text-icon__icon-arrow" fill="none"
+                                          stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                                </svg>
+                            </span>
+                        <span class="visually-hidden">{{ metaLinkAriaLabel }}</span>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% elseif hasLink|default == true %}
+            {% if url|default %}
+                {% if hasLinkDescription|default == true %}
+                    <div class="">
+                        <span>{{ linkDescription }}</span>
+                    </div>
+                {% else %}
+                    <div class="">
+                        <span>{{ 'CUSTOM.page_teaser_more'|trans({}, 'contao_default') }}</span>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+    </div>
+
+    </a>
+
+{% endblock %}

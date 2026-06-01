@@ -1,0 +1,6 @@
+#!/bin/bash
+## Description: Clear and warm up Contao cache
+## Usage: cache-clear
+
+php vendor/bin/contao-console cache:clear --no-warmup
+php vendor/bin/contao-console cache:warmup

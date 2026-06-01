@@ -1,0 +1,160 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao gallery styles
+   Beschreibung: Angepasste Styles fuer Contao-Gallery-Content-Elemente.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+
+@use "../../00-settings/s-tokens-semantic" as *;
+
+@layer extensions {
+    .content-gallery ul {
+        --equal-columns-gap-columns: var(--equal-columns-gap-default);
+        --equal-columns-gap-rows: var(--equal-columns-gap-default);
+
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: var(--equal-columns-gap-rows, 1rem) var(--equal-columns-gap-columns, 1rem);
+        align-items: var(--column-layout-alignment, start);
+    }
+
+    @container article-wrapper (width > #{$breakpoint-container-grid-1}) {
+        .content-gallery ul {
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(min(var(--grid-auto-fit-column-size-min, 250px), 100%), 1fr)
+            );
+        }
+    }
+
+    /* ================
+    Equal Columns mit fester Anzahl von 4 Spalten
+    ================ */
+    @container article-wrapper (width > #{$breakpoint-container-grid-1}) {
+        .content-gallery--cols-4 ul {
+            grid-template-columns: repeat(2, 1fr);
+
+            &.content-gallery--columns-center {
+                grid-template-columns: repeat(4, 1fr);
+                > * {
+                    grid-column: span 2;
+                }
+
+                /* Letzte Reihe hat nur 1 Item -> zentrieren */
+                & > *:nth-child(2n + 1):nth-last-child(1) {
+                    grid-column: 2 / span 2;
+                }
+            }
+        }
+    }
+
+    @container article-wrapper (width > #{$breakpoint-container-grid-2}) {
+        .content-gallery--cols-4 ul {
+            grid-template-columns: repeat(4, 1fr);
+
+            &.content-gallery--columns-center {
+                grid-template-columns: repeat(8, 1fr);
+                > * {
+                    grid-column: span 2;
+                }
+
+                /* Fall 1: Letzte Reihe hat nur 1 Item -> in die Mitte */
+                & > *:nth-child(4n + 1):nth-last-child(1) {
+                    grid-column: 4 / span 2;
+                }
+
+                /* Fall 2: Letzte Reihe hat 2 Items -> mittig */
+                & > *:nth-child(4n + 1):nth-last-child(2) {
+                    grid-column: 3 / span 2;
+                }
+                & > *:nth-child(4n + 2):nth-last-child(1) {
+                    grid-column: 5 / span 2;
+                }
+
+                /* Fall 3: Letzte Reihe hat 3 Items -> ebenfalls mittig */
+                & > *:nth-child(4n + 1):nth-last-child(3) {
+                    grid-column: 2 / span 2;
+                }
+                & > *:nth-child(4n + 2):nth-last-child(2) {
+                    grid-column: 4 / span 2;
+                }
+                & > *:nth-child(4n + 3):nth-last-child(1) {
+                    grid-column: 6 / span 2;
+                }
+            }
+        }
+    }
+
+    /* ================
+    Equal Columns mit fester Anzahl von 3 Spalten
+    ================ */
+    @container article-wrapper (width > #{$breakpoint-container-grid-1}) {
+        .content-gallery--cols-3 ul {
+            grid-template-columns: repeat(2, 1fr);
+
+            &.content-gallery--columns-center {
+                grid-template-columns: repeat(4, 1fr);
+                > * {
+                    grid-column: span 2;
+                }
+
+                /* Letzte Reihe mit weniger als 3 Items behandeln und zentrieren */
+                & > *:nth-child(2n + 1):nth-last-child(1) {
+                    grid-column: 2 / span 2;
+                }
+            }
+        }
+    }
+
+    @container article-wrapper (width > #{$breakpoint-container-grid-2}) {
+        .content-gallery--cols-3 ul {
+            grid-template-columns: repeat(3, 1fr);
+
+            &.content-gallery--columns-center {
+                grid-template-columns: repeat(6, 1fr);
+                > * {
+                    grid-column: span 2;
+                }
+
+                & > *:nth-child(3n + 1):nth-last-child(1) {
+                    grid-column: 3 / span 2;
+                }
+
+                /* Letzte Reihe mit weniger als 3 Items behandeln und zentrieren */
+                & > *:nth-child(3n + 1):nth-last-child(2) {
+                    grid-column: 2 / span 2;
+                }
+                & > *:nth-child(3n + 2):nth-last-child(1) {
+                    grid-column: 4 / span 2;
+                }
+            }
+        }
+    }
+
+    /* ================
+    Equal Columns mit fester Anzahl von 2 Spalten
+    ================ */
+    @container article-wrapper (width > #{$breakpoint-container-grid-1}) {
+        .content-gallery--cols-2 ul {
+            grid-template-columns: repeat(2, 1fr);
+
+            &.content-gallery--columns-center {
+                grid-template-columns: repeat(4, 1fr);
+                > * {
+                    grid-column: span 2;
+                }
+
+                /* Letzte Reihe mit weniger als 2 Items behandeln und zentrieren */
+                & > *:nth-child(2n + 1):nth-last-child(1) {
+                    grid-column: 2 / span 2;
+                }
+            }
+        }
+    }
+}

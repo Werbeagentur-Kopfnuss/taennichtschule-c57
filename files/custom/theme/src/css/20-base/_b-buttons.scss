@@ -1,0 +1,108 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Button Base
+   Beschreibung: Basis-Styles fuer Buttons.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer base {
+    button {
+        all: unset; /* Alle Button-Styles zuruecksetzen */
+        background: none;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        font: inherit;
+        color: inherit;
+        line-height: inherit;
+        text-align: inherit;
+        text-decoration: none;
+        box-shadow: none;
+        border-radius: 0;
+        cursor: pointer;
+    }
+
+    .button {
+        --button-background: var(--button-background-primary);
+        --button-color: var(--button-color-primary);
+
+        padding-inline: var(--button-padding-inline);
+        padding-block: var(--button-padding-block);
+        background-color: var(--button-background);
+        color: var(--button-color);
+        border-radius: var(--border-radius-lg);
+        text-decoration: none;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        &.button--primary {
+            --button-background: var(--button-background-primary);
+            --button-color: var(--button-color-primary);
+            &:hover {
+                --button-color-hover: var(--button-color-primary-hover);
+                --button-background-hover: var(--button-background-primary-hover);
+            }
+        }
+        &.button--secondary {
+            --button-background: var(--button-background-secondary);
+            --button-color: var(--button-color-secondary);
+            &:hover {
+                --button-color-hover: var(--button-color-secondary-hover);
+                --button-background-hover: var(--button-background-secondary-hover);
+            }
+        }
+        &.button--accent {
+            --button-background: var(--button-background-accent);
+            --button-color: var(--button-color-accent);
+            &:hover {
+                --button-color-hover: var(--button-color-accent-hover);
+                --button-background-hover: var(--button-background-accent-hover);
+            }
+        }
+        &.button--reduced {
+            --button-background: var(--button-background-reduced);
+            --button-color: var(--button-color-reduced);
+            &:hover {
+                --button-color-hover: var(--button-color-reduced-hover);
+                --button-background-hover: var(--button-background-reduced-hover);
+            }
+        }
+        &.button--only-text-icon {
+            --button-background: transparent;
+            --button-color: var(--navigation-color-default);
+            &:hover {
+                --button-color-hover: var(--navigation-color-default-hover);
+                --button-background-hover: transparent;
+            }
+        }
+
+        /* Fallback fuer Standard */
+        &:hover {
+            background-color: var(--button-background-hover);
+            color: var(--button-color-hover);
+        }
+        &.button--center {
+            margin-inline: auto;
+        }
+    }
+
+    button.is-disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    /* Button im content-download Wrapper mit Klasse button--center zentrieren */
+    .content-download.button--center .button {
+        margin-inline: auto;
+    }
+
+    /* Focus-Styles */
+    :where(button, .button) {
+        outline: none;
+    }
+
+    :where(button, .button):focus-visible {
+        outline: 2px solid var(--focus-color-default);
+        outline-offset: 3px;
+    }
+}

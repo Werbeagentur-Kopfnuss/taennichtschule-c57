@@ -1,0 +1,30 @@
+{% block two_block_testimonial %}
+
+    {#
+        RSCE-Element: Rezension mit Autor
+        Details: Rezensionstext mit Angabe des Autors
+        Depends on:
+    #}
+    <div class="{{ class }}"{% if cssID %} id="{{ cssID }}"{% endif %}>
+        <section class="testimonial" aria-labelledby="testimonial-heading">
+            <h2 id="testimonial-heading" class="visually-hidden">
+                Elternstimme zur Friedrich-Engels-Schule
+            </h2>
+
+            <figure class="testimonial__figure">
+                <blockquote class="testimonial__text">
+                    <div class="testimonial__quote flow{% if hasTwoColumns %} testimonial__quote--two-columns{% endif %}">
+                        {{ text|raw }}
+                    </div>
+                </blockquote>
+
+                 {% if author|default('') %}
+                    <figcaption class="testimonial__author">
+                        <span class="testimonial__name">{{ author }}</span>
+                    </figcaption>
+                 {% endif %}
+            </figure>
+
+        </section>
+    </div>
+{% endblock %}

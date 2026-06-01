@@ -1,0 +1,115 @@
+{% use "@Contao/component/_figure.html.twig" %}
+
+{% block two_columns_text_image %}
+
+    {#
+        RSCE-Element: Zwei Spalten mit Text und Bild
+        Details: Überschrift, Text, Bild in beiden Spalten
+        Depends on: _l-grid.css, _c-image-hover.css
+    #}
+<div class="content-collection">
+    <div class="{{ class }} content-block"{% if cssID %} id="{{ cssID }}"{% endif %}>
+
+        {% if headlineRow %}
+            <{{ headlineOrder }} class="content-headline">
+                {{ headlineRow }}
+            </{{ headlineOrder }}>
+        {% endif %}
+
+        <div class="equal-columns equal-columns--only-content{% if hasHorizontalCenter %} equal-columns--alignment-center{% endif %}">
+            {# ----------------------------------
+               left column
+               ---------------------------------- #}
+            <div class="flow">
+
+                {# lightbox flag - if imageLeftLightBox|default is true then set metaImageLeftLightBox to 'true' otherwise 'false' #}
+                {% set metaImageLeftLightBox = imageLeftLightBox|default(false) %}
+
+                {# metadata for left image #}
+                {% if imageLeft|default %}
+                    {% if hasImageMetadataLeft|default(false) %}
+                        {% set metaImageAltLeft  = imageAltLeft|default %}
+                        {% set metaLinkAriaLabelLeft = 'CUSTOM.lightbox_aria'|trans({}, 'contao_default') ~ (metaImageAltLeft|default) %}
+                    {% else %}
+                        {% set leftFigure    = figure(imageLeft, {}) %}
+                        {% set metaImageAltLeft  = leftFigure.metadata.alt|insert_tag %}
+                        {% set metaLinkAriaLabelLeft = 'CUSTOM.lightbox_aria'|trans({}, 'contao_default') ~ (leftFigure.metadata.alt|insert_tag) %}
+                    {% endif %}
+                {% endif %}
+
+                {# image at top #}
+                {% if imageLeft|default and imageLeftPosition|default('top') == 'top' %}
+                    {% with {
+                        figure: figure(imageLeft, imageSizeLeft, { enableLightbox: metaImageLeftLightBox }),
+                        link_attributes: attrs(link_attributes|default({})).set('aria-label', metaLinkAriaLabelLeft|default),
+                        figure_attributes: attrs(figure_attributes|default({})).addClass('image--hover', metaImageLeftLightBox),
+                        img_attributes: attrs(img_attributes|default({})).set('alt', metaImageAltLeft|default)
+                    } %}
+                        {{ block('figure_component') }}
+                    {% endwith %}
+                {% endif %}
+
+                {{ textLeft|insert_tag|raw }}
+
+                {# image at bottom #}
+                {% if imageLeft|default and imageLeftPosition|default('top') == 'bottom' %}
+                    {% with {
+                        figure: figure(imageLeft, imageSizeLeft, { enableLightbox: metaImageLeftLightBox }),
+                        link_attributes: attrs(link_attributes|default({})).set('aria-label', metaLinkAriaLabelLeft|default),
+                        figure_attributes: attrs(figure_attributes|default({})).addClass('image--hover', metaImageLeftLightBox),
+                        img_attributes: attrs(img_attributes|default({})).set('alt', metaImageAltLeft|default)
+                    } %}
+                        {{ block('figure_component') }}
+                    {% endwith %}
+                {% endif %}
+            </div>
+
+            {# ----------------------------------
+               right column
+               ---------------------------------- #}
+            <div class="flow">
+
+                {% set metaImageRightLightBox = imageRightLightBox|default(false) %}
+
+                {# metadata for right image #}
+                {% if imageRight|default %}
+                    {% if hasImageMetadataRight|default(false) %}
+                        {% set metaImageAltRight  = imageAltRight|default %}
+                        {% set metaLinkAriaLabelRight = 'CUSTOM.lightbox_aria'|trans({}, 'contao_default') ~ (metaImageAltRight|default) %}
+                    {% else %}
+                        {% set rightFigure    = figure(imageRight, {}) %}
+                        {% set metaImageAltRight  = rightFigure.metadata.alt|insert_tag %}
+                        {% set metaLinkAriaLabelRight = 'CUSTOM.lightbox_aria'|trans({}, 'contao_default') ~ (rightFigure.metadata.alt|insert_tag) %}
+                    {% endif %}
+                {% endif %}
+
+                {# image at top #}
+                {% if imageRight|default and imageRightPosition|default('top') == 'top' %}
+                    {% with {
+                        figure:         figure(imageRight, imageSizeRight, { enableLightbox: metaImageRightLightBox }),
+                        link_attributes: attrs(link_attributes|default({})).set('aria-label', metaLinkAriaLabelRight|default),
+                        figure_attributes: attrs(figure_attributes|default({})).addClass('image--hover', metaImageRightLightBox),
+                        img_attributes: attrs(img_attributes|default({})).set('alt', metaImageAltRight|default)
+                    } %}
+                        {{ block('figure_component') }}
+                    {% endwith %}
+                {% endif %}
+
+                {{ textRight|insert_tag|raw }}
+
+                {# image at bottom #}
+                {% if imageRight|default and imageRightPosition|default('top') == 'bottom' %}
+                    {% with {
+                        figure:         figure(imageRight, imageSizeRight, { enableLightbox: metaImageRightLightBox }),
+                        link_attributes: attrs(link_attributes|default({})).set('aria-label', metaLinkAriaLabelRight|default),
+                        figure_attributes: attrs(figure_attributes|default({})).addClass('image--hover', metaImageRightLightBox),
+                        img_attributes: attrs(img_attributes|default({})).set('alt', metaImageAltRight|default)
+                    } %}
+                        {{ block('figure_component') }}
+                    {% endwith %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

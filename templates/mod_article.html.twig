@@ -1,0 +1,134 @@
+{% set widthClass = width_variant is not empty ? 'wrapper--width-' ~ width_variant : 'wrapper--width-standard' %}
+{% set backgroundClass = with_background_color is not empty ? 'background-color--' ~ with_background_color : '' %}
+{% set decorClass = with_background ? 'decor-section' : '' %}
+{% set decorClassInner = with_background ? 'decor-section__inner' : '' %}
+
+{% set wrapperAttributes = attrs(cssID)
+    .addClass([class, backgroundClass, decorClass, 'block'])
+    .addStyle(style|default)
+    .mergeWith(wrapperAttributes|default) %}
+
+ {% set wrapperInnerAttributes = attrs()
+     .addClass(['wrapper', 'content-block', decorClassInner, widthClass])
+     .mergeWith(wrapperInnerAttributes|default) %}
+
+{% if teaserOnly|default %}
+
+    {% block alias %}
+        <article{{ wrapperAttributes }}>
+            <div class="ce_text block">
+                <h2>{{ headline }}</h2>
+                <div class="teaser">
+                    {{ teaser|csp_inline_styles|raw }}
+                    <p class="more"><a href="{{ href }}" title="{{ readMore }}">{{ more }} <span
+                                    class="invisible">{{ headline }}</span></a></p>
+                </div>
+            </div>
+        </article>
+    {% endblock %}
+
+{% elseif noMarkup|default %}
+
+    {% block content %}
+        {{ elements|join|raw }}
+    {% endblock %}
+
+{% else %}
+
+    <section{{ wrapperAttributes }}>
+        {% block background %}
+            {% if with_background %}
+                <div class="decor" aria-hidden="true">
+                    <span class="shape shape--square shape--tl">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 564 611">
+                          <path d="M564,305v3c-1.18-.06-2.37.4-3.38,1.68l-38.79,43.17-42.02-46.27,41.93-46.53,39.37,43.83c.95,1.06,1.91,1.3,2.88,1.12Z" fill="#f1f1f1"/>
+                          <polygon points="222.32 286.36 180.26 240.15 222.19 193.67 264.09 240.05 222.32 286.36" fill="#f1f1f1"/>
+                          <polygon points="342 419.46 300.09 372.94 341.99 326.41 383.82 372.9 342 419.46" fill="#f1f1f1"/>
+                          <polygon points="342.02 286.49 300.06 240.11 341.92 193.57 383.77 240.05 342.02 286.49" fill="#f1f1f1"/>
+                          <polygon points="461.85 286.38 419.75 240.03 461.75 193.68 503.59 240.09 461.85 286.38" fill="#f1f1f1"/>
+                          <polygon points="102.39 419.18 60.46 372.93 102.27 326.47 144.25 372.95 102.39 419.18" fill="#f1f1f1"/>
+                          <polygon points="144.23 239.97 102.28 286.52 60.53 240.07 102.24 193.75 144.23 239.97" fill="#f1f1f1"/>
+                          <path d="M42.34,352.85L3.88,310.23c-1.49-.97-2.17-2.39-2.17-3.73s.68-2.76,2.17-3.74l38.43-42.65,42.01,46.26-41.98,46.47Z" fill="#f1f1f1"/>
+                          <polygon points="162.23 352.77 120.34 306.62 162.16 260.14 204.03 306.4 162.23 352.77" fill="#f1f1f1"/>
+                          <polygon points="222.27 419.3 180.25 372.88 222.12 326.42 263.99 372.91 222.27 419.3" fill="#f1f1f1"/>
+                          <polygon points="282.11 485.67 240.24 439.33 282.05 392.88 323.85 439.25 282.11 485.67" fill="#f1f1f1"/>
+                          <polygon points="443.67 439.21 401.93 485.77 360.03 439.25 401.88 392.92 443.67 439.21" fill="#f1f1f1"/>
+                          <polygon points="162.34 220.02 120.36 173.67 162.11 127.31 203.99 173.51 162.34 220.02" fill="#f1f1f1"/>
+                          <polygon points="402.04 352.78 360.05 306.61 401.9 260.13 443.7 306.42 402.04 352.78" fill="#f1f1f1"/>
+                          <polygon points="162.21 485.67 120.34 439.31 162.17 392.99 204.2 439.19 162.21 485.67" fill="#f1f1f1"/>
+                          <polygon points="402.01 219.96 360.03 173.78 401.89 127.29 443.67 173.5 402.01 219.96" fill="#f1f1f1"/>
+                          <polygon points="222.17 153.64 180.28 107.28 222.15 60.9 263.91 107.24 222.17 153.64" fill="#f1f1f1"/>
+                          <polygon points="461.78 419.38 419.83 372.9 461.77 326.45 503.59 372.9 461.78 419.38" fill="#f1f1f1"/>
+                          <polygon points="282.19 219.9 240.14 173.81 282.06 127.26 323.84 173.53 282.19 219.9" fill="#f1f1f1"/>
+                          <polygon points="282.18 352.78 240.23 306.55 282.03 260.11 323.81 306.41 282.18 352.78" fill="#f1f1f1"/>
+                          <path d="M383.68,107.22l-41.71,46.52-41.81-46.45,41.09-45.72c8.51,8.11,16.33,16.29,24,25.16l18.43,20.5Z" fill="#f1f1f1"/>
+                          <path d="M222.93,551.27c-10.87-10.28-20.47-20.88-30.27-31.9l-12.24-13.75,41.71-46.28,41.8,46.41-41,45.52Z" fill="#f1f1f1"/>
+                          <path d="M340.74,550.52l-40.63-44.7,41.84-46.48,41.71,46.14c-12.86,15.82-27.38,29.31-42.91,45.03Z" fill="#f1f1f1"/>
+                          <polygon points="282.03 87.27 241.09 41.86 281.31 1.53 322.39 42.63 282.03 87.27" fill="#f1f1f1"/>
+                          <polygon points="281.63 609.72 241.78 570.39 282.06 525.74 321.62 569.46 281.63 609.72" fill="#f1f1f1"/>
+                        </svg>
+                    </span>
+                    <span class="shape shape--circle shape--br">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 432">
+                          <path d="M229.57,0c-1.13,1.12-.52,1.61.15,1.63,1.26.03,1.89-.06,4.65.52L3.96,232.63c-1.63,1.63-2.1,2.48-3.94,2.14v-11.19c1.2.29,2.19.09,3.35-1.5L222.08,3.36c1.56-1.19,1.79-2.14,2.15-3.36h5.35Z" fill="#f1f1f1"/>
+                          <path d="M429.97,213.23l.02,10.77c-1.21.12-2.21.34-3.36,1.92l-202.72,202.72c-1.56,1.17-1.78,2.15-1.92,3.36h-11.57c.65-1.22.83-2.24,2.43-3.42l213.72-213.72c1.14-1.63,2.19-1.81,3.4-1.62Z" fill="#f1f1f1"/>
+                          <path d="M.06,201.61l-.05-9.61c1.4-.04,1.96-.51,3.36-1.91L191.04,2.4c4.1-.55,7.19-1.11,11.2-.09L3.94,200.66c-1.65,1.65-2.28,2.05-3.88.95Z" fill="#f1f1f1"/>
+                          <path d="M62.57,366.01c-3.17-.13-4.67-2.65-5.86-5.27L359.76,57.67c2.63,1.13,4.59,2.85,5.6,5.53L62.57,366.01Z" fill="#f1f1f1"/>
+                          <path d="M79.11,381.47c-2.85-.3-4.75-2.26-6.33-4.8L375.71,73.73c2.3,1.45,3.55,3.09,5.27,5.85L79.11,381.47Z" fill="#f1f1f1"/>
+                          <path d="M47.52,349.06c-2.79-.37-3.87-3-5.57-5.55L342.49,42.95c2.6,1.65,4.59,2.95,5.91,5.21L47.52,349.06Z" fill="#f1f1f1"/>
+                          <path d="M97.62,394.96c-3.38.04-5.29-1.9-6.91-4.22L389.78,91.66c2.32,1.63,3.63,3.71,4.54,6.58L97.62,394.96Z" fill="#f1f1f1"/>
+                          <path d="M33.8,330.77c-2.34-1.82-3.52-4.06-4.12-7.01L322.79,30.65c3.24.53,5.48,2.21,7.06,4.07L33.8,330.77Z" fill="#f1f1f1"/>
+                          <path d="M117.69,406.88c-3.63-.11-5.99-1.71-7.21-3.93L402.47,110.97c1.59,2.58,2.98,4.33,3.82,7.3L117.69,406.88Z" fill="#f1f1f1"/>
+                          <path d="M22.51,310.07c-2.49-1.28-2.99-4.3-3.78-7.35L301.69,19.75c3.19.46,5.55,1.38,7.59,3.54L22.51,310.07Z" fill="#f1f1f1"/>
+                          <path d="M416.18,140.38L139.37,417.2c-3.04-.94-5.56-1.47-7.71-3.42L412.51,132.93c2.24,2.32,2.56,3.99,3.67,7.45Z" fill="#f1f1f1"/>
+                          <path d="M12.87,287.7c-1.73-1.61-2.24-4.61-3.06-8.06L278.66,10.78l8.4,2.72L12.87,287.7Z" fill="#f1f1f1"/>
+                          <path d="M164.21,424.37c-3.64.25-6.44-.74-8.74-2.4L420.91,156.53c1.98,2.26,2.35,5.21,2.73,8.4L164.21,424.37Z" fill="#f1f1f1"/>
+                          <path d="M5.73,262.84c-1.73-2.7-1.98-5.53-1.99-9.13L252.71,4.73c3.85,0,6.74.58,9.22,1.9L5.73,262.84Z" fill="#f1f1f1"/>
+                          <path d="M191.69,428.89c-3.99.95-6.61.71-9.84-1.29l245.01-245.03c1.55,2.91,1.58,5.98,1.41,9.72l-236.58,236.6Z" fill="#f1f1f1"/>
+                          <path d="M6.29,166.26c.3-5.41,2.05-9.41,3.56-14.65L150.58,10.85l14.71-3.59L6.29,166.26Z" fill="#f1f1f1"/>
+                          <path d="M28.4,111.89c2.52-10.91,10.66-18.4,16.24-27.22l39.02-39.01c8.88-5.77,16.17-13.49,27.6-16.63L28.4,111.89Z" fill="#f1f1f1"/>
+                          <path d="M258.19,426.39c-5.09,1.57-8.59,2.07-13.38,2.25l182.85-182.86-1.99,13.1-167.49,167.51Z" fill="#f1f1f1"/>
+                          <path d="M410.16,306.42l-104.78,104.79c-5.6,1.99-9.57,5.49-16.61,5.55l126.95-126.97c.21,7.11-3.65,10.9-5.55,16.62Z" fill="#f1f1f1"/>
+                        </svg>
+                    </span>
+                </div>
+            {% endif %}
+        {% endblock %}
+        <div{{ wrapperInnerAttributes }}>
+            {% if printable %}
+                {% block syndication %}
+                    <!-- indexer::stop -->
+                    <div class="syndication">
+                        {% if printButton %}
+                            <a href="{{ print }}" class="print" title="{{ printTitle }}"
+                               onclick="window.print();return false"
+                               data-skip-search-index>{{ backend_icon('assets/contao/images/print.svg') }}</a>
+                        {% endif %}
+                        {% if facebookButton %}
+                            <a href="{{ path('contao_frontend_share', { p: 'facebook', u: encUrl }) }}" class="facebook"
+                               rel="nofollow" title="{{ facebookTitle }}"
+                               onclick="var w=window.open(this.href,'','width=640,height=380,modal=yes,left=100,top=50,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no');w.opener=null;return false">{{ backend_icon('assets/contao/images/facebook.svg') }}</a>
+                        {% endif %}
+                        {% if twitterButton %}
+                            <a href="{{ path('contao_frontend_share', { p: 'twitter', u: encUrl, t: encTitle }) }}"
+                               class="twitter" rel="nofollow" title="{{ twitterTitle }}"
+                               onclick="var w=window.open(this.href,'','width=640,height=380,modal=yes,left=100,top=50,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no');w.opener=null;return false">{{ backend_icon('assets/contao/images/twitter.svg') }}</a>
+                        {% endif %}
+                    </div>
+                    <!-- indexer::continue -->
+                {% endblock %}
+            {% endif %}
+
+            {{ block('content') }}
+
+            {% if backlink %}
+                {% block backlink %}
+                    <!-- indexer::stop -->
+                    <p class="back"><a href="{{ backlink }}" title="{{ back }}">{{ back }}</a></p>
+                    <!-- indexer::continue -->
+                {% endblock %}
+            {% endif %}
+        </div>
+    </section>
+
+{% endif %}

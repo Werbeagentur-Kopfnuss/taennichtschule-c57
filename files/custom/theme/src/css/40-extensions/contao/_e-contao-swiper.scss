@@ -1,0 +1,26 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Swiper Adjustments
+   Beschreibung: Angepasste Styles fuer die Swiper-Integration in Contao.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   Extension:
+   ========================================================================== */
+
+@layer extensions {
+    :root {
+        --swiper-navigation-size: 2rem !important;
+        /* --swiper-navigation-top-offset: 50%;
+        --swiper-navigation-sides-offset: 10px; */
+        --swiper-pagination-bullet-inactive-opacity: 0.5;
+        --swiper-pagination-bullet-size: 16px;
+        --swiper-pagination-bullet-width: 16px;
+        --swiper-pagination-bullet-height: 16px;
+        --swiper-pagination-bullet-inactive-color: #f5f5f5;
+        --swiper-pagination-bullet-horizontal-gap: 0.3rem;
+        --swiper-theme-color: #000 !important;
+        --swiper-navigation-color: var(--swiper-theme-color);
+    }
+}

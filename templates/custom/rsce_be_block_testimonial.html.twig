@@ -1,0 +1,10 @@
+{% block be_block_testimonial %}
+    <div class="{{ class }} backend_rsce_block_testimonial"{% if cssID %} id="{{ cssID }}"{% endif %}>
+
+        <div>
+            {{ text|raw }}
+        </div>
+        <span>{{ author }}</span>
+
+    </div>
+{% endblock %}

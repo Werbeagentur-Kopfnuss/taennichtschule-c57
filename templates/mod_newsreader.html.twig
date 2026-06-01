@@ -1,0 +1,31 @@
+{% extends "@Contao/mod_newsreader.html.twig" %}
+
+{% block content %}
+
+    {{ articles|raw }}
+
+    {% if referer|default %}
+        <!-- indexer::stop -->
+        <a class="back text-icon text-icon--link text-icon--link-highlighted" href="{{ referer }}" title="{{ back }}">
+            <span class="text-icon__text">{{ back }}</span>
+            <span class="text-icon__icon svg-icon svg-icon--size-sm" aria-hidden="true">
+                <svg viewBox="0 0 30 19" fill="none" focusable="false" aria-hidden="true">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M27.3537 10L17.945 17.7938L18.75 18.75L30 9.34875L18.75 0L17.9437 0.955L27.355 8.75H0V10H27.3537Z" fill="currentColor"></path>
+                </svg>
+            </span>
+            <span class="visually-hidden">{{ back }}</span>
+        </a>
+        <!-- indexer::continue -->
+    {% endif %}
+
+    {% if allowComments|default %}
+        <div class="ce_comments block">
+        <{{ hlc }}>{{ hlcText }}</{{ hlc }}>
+        {{ comments|join|raw }}
+        {{ pagination|default|raw }}
+        <{{ hlc }}>{{ addComment }}</{{ hlc }}>
+        {{ include('@Contao/mod_comment_form.html.twig', ignore_missing: true) }}
+        </div>
+    {% endif %}
+
+{% endblock %}

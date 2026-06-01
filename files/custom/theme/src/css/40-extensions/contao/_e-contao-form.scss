@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Form Module Styles
+   Beschreibung: Angepasste Styles fuer das Contao-Form-Module passend zum Layout.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+
+@layer extensions {
+    /* Grundlayout Formular */
+    .formbody {
+        display: grid;
+        gap: var(--flow-grid-spacing-block, 1.25rem);
+        align-content: start;
+        .invisible {
+            clip: rect(0 0 0 0);
+            clip-path: inset(50%);
+            height: 1px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+        }
+        fieldset {
+            border: 0;
+            padding: 0;
+            margin: 0;
+        }
+        fieldset > legend {
+            padding: 0;
+        }
+
+        .widget > * + *,
+        fieldset > * + * {
+            margin-block-start: var(--flow-spacing-block-sm);
+        }
+
+        input.text,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: var(--border-radius-default);
+            border: 1px solid var(--border-color-light);
+            background: var(--form-field-background-color-default);
+            padding-inline: var(--form-field-padding-inline);
+            padding-block: var(--form-field-padding-block);
+            font-size: 1rem;
+            line-height: 1.4;
+            outline: none;
+        }
+        textarea {
+            min-height: 16rem;
+            resize: vertical;
+        }
+
+        span.mandatory {
+            color: var(--form-mandatory-color);
+        }
+
+        input.text:focus,
+        textarea:focus {
+            border-color: var(--focus-color-default);
+        }
+
+        label,
+        legend span:not(.invisible) {
+            display: inline-block;
+        }
+
+        .checkbox_container legend,
+        label {
+            font-weight: var(--fw-500);
+        }
+
+        .checkbox_container label {
+            font-weight: inherit;
+        }
+
+        .checkbox_container span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio_container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1em;
+            span {
+                flex: 0 0 auto;
+            }
+            label {
+                font-weight: inherit;
+            }
+        }
+
+        /* & > .widget-submit {
+            margin-block-start: var(--elements-gap-block);
+        } */
+    }
+
+    .form--legend-invisible {
+        .formbody > fieldset > legend {
+            clip: rect(0 0 0 0);
+            clip-path: inset(50%);
+            height: 1px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+        }
+    }
+
+    /* AJAX-Bestaetigungsmeldung */
+    .form-confirmation {
+        p {
+            font-size: var(--font-size-md);
+        }
+    }
+}

@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Generic: Reset
+   Beschreibung: CSS-Reset-Styles fuer eine saubere Ausgangsbasis.
+   Ebene (Layer): Generic
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+@layer generic {
+    /* Reset-Styles */
+
+    /* Brauchen wir border-box aktuell mit grid und flexbox?
+        https://www.youtube.com/watch?v=PtAcpV6TAGM */
+
+    /** ,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    } */
+
+    /* Quelle: https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/ */
+    html {
+        text-size-adjust: none;
+    }
+
+    /* User-Agent-Margins werden entfernt, damit Flow und Spacing zentral definiert sind.
+       Mit logical properties wird nur margin-block-end statt aller Seiten angepasst. */
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    figure,
+    blockquote,
+    dl,
+    dd {
+        margin: 0;
+
+        /* margin-block-end: 0; */
+    }
+
+    /* Quelle: https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html */
+    [role="list"] {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Gut lesbare line-height wird vererbt.
+       min-block-size: 100vh bleibt als robuste Basis fuer dekorative Elemente. */
+    body {
+        min-block-size: 100vh;
+        line-height: var(--line-height-body);
+    }
+
+    /* Fuer Headings und Buttons ist eine kuerzere line-height sinnvoll.
+       Bei Fonts mit grossen ascenders/descenders ggf. anpassen, um Accessibility-Probleme zu vermeiden. */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    button,
+    input,
+    label {
+        line-height: 1.1;
+    }
+
+    /* Textumbruch fuer Headings ausbalancieren */
+    :where(h1, h2, h3, h4, h5, h6) {
+        text-wrap: balance;
+    }
+
+    :where(p, li) {
+        text-wrap: pretty;
+    }
+
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+        max-inline-size: 100%;
+        block-size: auto;
+        display: block;
+    }
+
+    /* Fonts fuer Inputs und Buttons vererben */
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+    /* 1. Korrektes box-sizing in Firefox. 2. overflow in Edge und IE anzeigen. */
+    hr {
+        box-sizing: content-box;
+        height: 0;
+        overflow: visible;
+    }
+
+    /* 1. Vererbung und Skalierung der font-size in allen Browsern korrigieren.
+       2. Ungewoehnliche `em`-font-size in allen Browsern korrigieren. */
+    pre {
+        font-family: monospace;
+        font-size: 1em;
+    }
+}

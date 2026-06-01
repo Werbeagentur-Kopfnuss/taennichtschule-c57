@@ -1,0 +1,18 @@
+{% extends "@Contao/content_element/accordion.html.twig" %}
+
+{% block element_header %}
+    {% set accordion_header_attributes = attrs()
+        .addClass('handorgel__header')
+        .mergeWith(accordion_header_attributes|default)
+    %}
+    <{{ element.header_tag }}{{ accordion_header_attributes }}>
+        {% set accordion_header_button_attributes = attrs()
+            .addClass('handorgel__header__button')
+            .set('type', 'button')
+            .mergeWith(accordion_header_button_attributes|default)
+        %}
+        <button{{ accordion_header_button_attributes }}>
+            <span class="handorgel__headline">{{- element.header -}}</span><span class="handorgel__icon"></span>
+        </button>
+    </{{ element.header_tag }}>
+{% endblock %}

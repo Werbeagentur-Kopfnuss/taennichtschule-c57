@@ -1,0 +1,107 @@
+{% block block_table_text %}
+
+    {#
+        RSCE-Element: Block mit Link und Tabelle für Unterseite
+        Details: Tabelle, Link zu Unterseite, Überschrift und Unterüberschrift
+        Depends on: _c-rsce-headline-subheadline.css
+    #}
+
+    {# classes like in the second example #}
+    {% set borderClass = hasBorder ? 'card--border' : '' %}
+    {% set backgroundClass = hasBackgroundColor ? 'card--background' : '' %}
+
+    {# only set aria-label if it makes sense #}
+    {% if linkAriaLabel is defined and linkAriaLabel is not empty %}
+        {% set ariaLabel = linkAriaLabel %}
+    {% elseif text is defined and text|striptags is not empty %}
+        {% set ariaLabel = text|striptags %}
+    {% else %}
+        {% set ariaLabel = null %}
+    {% endif %}
+
+    {# link present? #}
+    {% set hasCardLink = hasLink|default(false) and url|default %}
+    {% set cardTag = hasCardLink ? 'a' : 'div' %}
+
+    {% set card_attributes = attrs()
+        .addClass('block-table-link__card')
+        .addClass('card')
+        .addClass(class)
+        .addClass(borderClass)
+        .addClass(backgroundClass)
+    %}
+
+    {% if cssID %}
+        {% set card_attributes = card_attributes.set('id', cssID) %}
+    {% endif %}
+
+    {# IMPORTANT: only set aria-label if ariaLabel !== null #}
+    {% if hasCardLink %}
+        {% set card_attributes = card_attributes.set('href', url|insert_tag) %}
+        {% if ariaLabel %}
+            {% set card_attributes = card_attributes.set('aria-label', ariaLabel) %}
+        {% endif %}
+    {% endif %}
+
+    <{{ cardTag }}{{ card_attributes }}>
+        {% if hasBackgroundIcon %}
+            <svg class="card-bg-icon" viewBox="0 0 75 175" aria-hidden="true" focusable="false" fill="none">
+                <path d="M40.0425 18.6416L37.2156 0L34.1818 19.021C28.0798 31.1096 14.8414 61.3569 14.8414 96.7777C14.8414 98.1055 14.8414 99.4506 14.8587 100.761C14.9793 110.108 15.5137 119.058 16.3928 127.353C16.7203 130.457 17.0995 133.457 17.5305 136.354H34.0267L30.1655 95.5361H43.6969L39.6978 136.354H56.918C57.3661 133.181 57.7798 129.905 58.1246 126.508C58.9692 118.196 59.4863 109.263 59.5725 99.9162C59.5725 98.8643 59.5898 97.8124 59.5898 96.7604C59.5898 60.9603 46.0584 30.437 40.0425 18.6244V18.6416ZM37.2156 68.5652C32.4753 68.5652 28.6141 64.7024 28.6141 59.9601C28.6141 55.2178 32.4753 51.3549 37.2156 51.3549C41.9559 51.3549 45.8171 55.2178 45.8171 59.9601C45.8171 64.7024 41.9731 68.5652 37.2156 68.5652ZM37.2156 66.8752C33.4061 66.8752 30.3034 63.7712 30.3034 59.9601C30.3034 56.149 33.4061 53.0449 37.2156 53.0449C41.0251 53.0449 44.1278 56.149 44.1278 59.9601C44.1278 63.7712 41.0251 66.8752 37.2156 66.8752ZM37.2156 56.08C35.0781 56.08 33.3372 57.8217 33.3372 59.9601C33.3372 62.0984 35.0781 63.8402 37.2156 63.8402C39.353 63.8402 41.094 62.0984 41.094 59.9601C41.094 57.8217 39.353 56.08 37.2156 56.08ZM10.4631 145.304L0 118.661L11.8249 100.761C11.9455 110.108 12.4799 119.058 13.359 127.353C8.73937 135.941 10.4631 145.287 10.4631 145.287V145.304ZM64.5541 145.304C64.5541 145.304 66.3813 135.32 61.1756 126.525C62.0202 118.213 62.5374 109.28 62.6235 99.9335L75 118.661L64.5541 145.304ZM36.8536 175C36.8536 175 36.9743 174.983 37.0432 174.966C37.1122 174.966 37.1639 174.983 37.2328 175H36.8708H36.8536ZM50.1264 160.48C47.4374 155.772 47.4374 156.772 47.4374 156.772C47.4374 156.772 41.4388 173.845 37.0432 174.966C32.6477 173.845 26.649 156.772 26.649 156.772C26.649 156.772 26.649 155.755 23.9428 160.48C17.8752 153.91 22.0984 138.062 22.0984 138.062H28.097C27.6488 140.079 26.2526 147.443 29.3208 150.771C30.9067 147.977 30.9067 148.581 30.9067 148.581C30.9067 148.581 34.4404 158.635 37.0432 159.29C39.6461 158.635 43.1797 148.581 43.1797 148.581C43.1797 148.581 43.1797 147.977 44.7656 150.771C47.8338 147.443 46.4376 140.079 46.0067 138.062H52.0053C52.0053 138.062 56.2112 153.91 50.1436 160.48H50.1264ZM37.1466 159.324H36.9225C36.9225 159.324 36.9915 159.324 37.026 159.29C37.0604 159.307 37.0949 159.307 37.1294 159.324H37.1466ZM40.6803 98.9333L36.8536 146.994L33.1648 98.9333H40.6631H40.6803Z" fill="#262626"/>
+            </svg>
+        {% endif %}
+        <div class="card__content flow">
+
+            <{{ headlineOrder }} class="content-headline headline-subheadline">
+                {{ headline }}
+                {% if subheadline is not empty %}
+                    <span class="headline-bottom">{{ subheadline }}</span>
+                {% endif %}
+            </{{ headlineOrder }}>
+
+            {% if table is not empty %}
+                <table>
+                    {% if captionTable is not empty %}
+                        <caption class="visually-hidden">{{ captionTable }}</caption>
+                    {% endif %}
+
+                    <tbody>
+                        {% for row in table %}
+                            <tr>
+                                {% for cell in row %}
+                                    {% if loop.first %}
+                                        <th scope="row">{{ cell }}</th>
+                                    {% else %}
+                                        <td>{{ cell }}</td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+            {% if hasCardLink %}
+                <div class="text-icon text-icon--link">
+                    <span class="text-icon__icon svg-icon svg-icon--size-sm" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                            <circle cx="12" cy="12" r="11.5" class="text-icon__icon-bg"></circle>
+                            <path d="M10 7l5 5-5 5"
+                                  class="text-icon__icon-arrow"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"></path>
+                        </svg>
+                    </span>
+
+                    {# only set visual hidden label if ariaLabel exists #}
+                    {% if ariaLabel %}
+                        <span class="visually-hidden">{{ ariaLabel }}</span>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        </div>
+    </{{ cardTag }}>
+
+{% endblock %}

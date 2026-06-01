@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Utility: Image Utilities
+   Beschreibung: Utility-Klassen fuer Bilder.
+   Ebene (Layer): Utilities
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+
+@layer utilities {
+    .content-image--center {
+        display: block;
+        width: fit-content;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+
+        figure {
+            width: fit-content;
+        }
+    }
+}

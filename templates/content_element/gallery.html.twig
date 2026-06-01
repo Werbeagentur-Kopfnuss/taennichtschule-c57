@@ -1,0 +1,13 @@
+{% extends "@Contao/content_element/gallery.html.twig" %}
+{% use "@Contao/component/_figure.html.twig" %}
+
+{% set figure_attributes = attrs()
+  .addClass('image--hover')
+  .mergeWith(figure_attributes|default)
+%}
+
+{% block content %}
+    <div class="content-collection">
+      {{ parent() }}
+    </div>
+{% endblock %}

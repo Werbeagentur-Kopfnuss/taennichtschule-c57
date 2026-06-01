@@ -1,0 +1,58 @@
+<?php $this->extend('be_tinyMCE'); ?>
+
+<?php $this->block('content_css'); ?>
+  content_css: [
+    'system/themes/<?= \Contao\Backend::getTheme() ?>/tinymce.min.css',
+    'files/custom/theme/src/css/myCustomTiny.css'
+  ],
+<?php $this->endblock(); ?>
+
+<?php $this->block('menubar'); ?>
+  menubar: 'file edit insert view help',
+<?php $this->endblock(); ?>
+
+<?php $this->block('toolbar'); ?>
+  toolbar: 'link unlink | image | blocks | bold italic underline strikethrough | subscript superscript | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code',
+<?php $this->endblock(); ?>
+
+<?php $this->block('paste_data_images'); ?>
+  paste_as_text: true,
+  paste_auto_cleanup_on_paste: true,
+  paste_remove_styles: true,
+  paste_remove_styles_if_webkit: true,
+  paste_strip_class_attributes: 'all',
+  paste_remove_spans: true,
+  paste_data_images: false,
+
+  valid_elements: '*[*]',
+  invalid_elements: 'font',
+<?php $this->endblock(); ?>
+
+<?php $this->block('custom'); ?>
+  formats: {
+    alignleft: {
+      selector: 'p,h1,h2,h3,h4,h5,h6,div',
+      classes: 'u-text-left',
+      styles: { 'text-align': '' } // verhindert inline-styles
+    },
+    aligncenter: {
+      selector: 'p,h1,h2,h3,h4,h5,h6,div',
+      classes: 'u-text-center',
+      styles: { 'text-align': '' }
+    },
+    alignright: {
+      selector: 'p,h1,h2,h3,h4,h5,h6,div',
+      classes: 'u-text-right',
+      styles: { 'text-align': '' }
+    },
+    alignjustify: {
+      selector: 'p,h1,h2,h3,h4,h5,h6,div',
+      classes: 'u-text-justify',
+      styles: { 'text-align': '' }
+    }
+  },
+  fontsize_formats: '',
+  font_family_formats: '',
+  color_map: [],
+  textcolor_map: [],
+<?php $this->endblock(); ?>

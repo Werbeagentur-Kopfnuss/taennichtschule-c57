@@ -1,0 +1,90 @@
+<div class="layout_full content-block block{{ class }}">
+
+    {% block sharebuttons %}
+        {% set absoluteUrl = absolute_url(link) %}
+        {% set shareUrl = absoluteUrl | url_encode %}
+        {% set shareTitle = headline | url_encode %}
+
+        <div class="share-buttons" role="group" aria-label="Seite teilen">
+            {# Facebook #}
+            <a class="svg-icon svg-icon--size-lg" href="https://www.facebook.com/sharer/sharer.php?u={{ shareUrl }}" target="_blank" rel="noopener" aria-label="Auf Facebook teilen (öffnet neues Fenster)">
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M45 22.5564C45 10.1053 34.92 0 22.5 0C10.08 0 0 10.1053 0 22.5564C0 33.4737 7.74 42.5639 18 44.6617V29.3233H13.5V22.5564H18V16.9173C18 12.5639 21.5325 9.02256 25.875 9.02256H31.5V15.7895H27C25.7625 15.7895 24.75 16.8045 24.75 18.0451V22.5564H31.5V29.3233H24.75V45C36.1125 43.8722 45 34.2632 45 22.5564Z" fill="currentColor"/>
+                </svg>
+            </a>
+
+            {# LinkedIn #}
+            <a class="svg-icon svg-icon--size-lg" href="https://www.linkedin.com/sharing/share-offsite/?url={{ shareUrl }}" target="_blank" rel="noopener" aria-label="Auf LinkedIn teilen (öffnet neues Fenster)">
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.5 0C10.0744 0 0 10.0744 0 22.5C0 34.9256 10.0744 45 22.5 45C34.9256 45 45 34.9256 45 22.5C45 10.0744 34.9256 0 22.5 0ZM18.75 30H15V18.75H18.75V30ZM16.875 17.0794C15.7369 17.0794 14.8125 16.1494 14.8125 15C14.8125 13.8525 15.735 12.9206 16.875 12.9206C18.015 12.9206 18.9375 13.8525 18.9375 15C18.9375 16.1494 18.0131 17.0794 16.875 17.0794ZM31.875 30H28.1287V24.6356C28.1287 21.1087 24.375 21.4069 24.375 24.6356V30H20.625V18.75H24.375V20.7994C26.01 17.7694 31.875 17.5444 31.875 23.7019V30Z" fill="currentColor"/>
+                </svg>
+            </a>
+
+            {# X / Twitter #}
+            <a class="svg-icon svg-icon--size-lg" href="https://twitter.com/intent/tweet?url={{ shareUrl }}&text={{ shareTitle }}" target="_blank" rel="noopener" aria-label="Auf X teilen (öffnet neues Fenster)">
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 188 188" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M93.75,0c51.777,0 93.75,41.973 93.75,93.75c0,51.777 -41.973,93.75 -93.75,93.75c-51.777,0 -93.75,-41.973 -93.75,-93.75c0,-51.777 41.973,-93.75 93.75,-93.75Zm22.94,57.695l-20.158,23.041l-17.428,-23.041l-25.241,0l30.159,39.437l-28.584,32.67l12.24,0l22.061,-25.208l19.28,25.208l24.617,0l-31.439,-41.563l26.723,-30.545l-12.232,0Zm-4.294,64.785l-44.248,-57.848l7.273,0l43.753,57.848l-6.779,0Z" style="fill:currentColor;"/>
+                </svg>
+            </a>
+
+            {# WhatsApp #}
+            <a class="svg-icon svg-icon--size-lg" href="https://wa.me/?text={{ shareTitle }}%20{{ shareUrl }}" target="_blank" rel="noopener" aria-label="Auf WhatsApp teilen (öffnet neues Fenster)">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 397.35 397.35">
+                    <g>
+                        <path d="M198.68,0h0C88.95,0,0,88.95,0,198.68h0c0,109.73,88.95,198.68,198.68,198.68h0c109.73,0,198.68-88.95,198.68-198.68h0C397.35,88.95,308.4,0,198.68,0ZM321.16,195.36c-2.37,61.28-52.26,111.61-113.52,114.45-21.95,1.02-42.65-3.86-60.68-13.28h-.04l-59.7,13.33c-2.7.56-5.09-1.83-4.53-4.53l13.33-59.7c-9.49-18.16-14.37-39.07-13.26-61.18,3.07-61.36,53.79-111.09,115.19-113.08,69.31-2.25,125.89,54.59,123.2,123.99Z" fill="currentColor"/>
+                        <path d="M201.93,95.99c-52.17,0-94.63,42.46-94.63,94.63,0,18.97,5.6,36.62,15.22,51.43l-10.16,38.14,38.14-10.16c1.23.82,2.51,1.6,3.83,2.35,13.99,8.19,30.24,12.88,47.6,12.88,52.17,0,94.63-42.46,94.63-94.63s-42.46-94.63-94.63-94.63ZM258.05,232.28c-1.65,2.47-3.38,4.79-6.15,7.55-6.06,6.06-14.48,9.12-23.02,8.25-15.3-1.57-37.04-10.02-55.73-28.67-18.69-18.69-27.14-40.43-28.67-55.73-.87-8.54,2.19-16.95,8.25-23.02,2.76-2.76,5.07-4.5,7.55-6.19,4.58-3.09,10.81-1.03,12.54,4.17l6.27,18.81c1.73,5.16.95,8.42-1.28,10.6l-4.99,5.04c-2.48,2.48-2.89,6.31-.99,9.28,2.76,4.33,7.96,11.26,17.53,20.83,9.57,9.57,16.5,14.77,20.83,17.53,2.97,1.9,6.81,1.48,9.28-.99l5.04-4.99c2.19-2.23,5.45-3.01,10.6-1.28l18.81,6.27c5.2,1.73,7.26,7.96,4.13,12.54Z" fill="currentColor"/>
+                    </g>
+                </svg>
+            </a>
+        </div>
+    {% endblock %}
+
+    {% block info %}
+        <p class="info"><time datetime="{{ datetime }}">{{ date }}</time> {{ author }}</p>
+    {% endblock %}
+
+    {% if hasSubHeadline %}
+        <h2>{{ subHeadline }}</h2>
+    {% endif %}
+
+    {% if hasText.invoke() %}
+        {{ text.invoke()|raw }}
+    {% else %}
+        <div class="ce_text block">
+            {% if not addBefore %}
+                {{ teaser|default|sanitize_html('contao')|csp_inline_styles|insert_tag_raw }}
+            {% endif %}
+
+            {% if addImage %}
+                {{ include('@Contao/image.html.twig') }}
+            {% endif %}
+
+            {% if addBefore %}
+                {{ teaser|default|sanitize_html('contao')|csp_inline_styles|insert_tag_raw }}
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% if enclosure %}
+        <ul class="enclosure">
+            {% for enclosure in enclosure %}
+                <li class="download-element ext-{{ enclosure.extension }}">
+                    <a href="{{ enclosure.href }}" title="{{ enclosure.title }}">{{ enclosure.link }} <span class="size">({{ enclosure.filesize }})</span></a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</div>
+
+{% set schemaOrg = getSchemaOrgData.invoke() %}
+
+{% if hasText.invoke() %}
+    {% set schemaOrg = schemaOrg|merge({text: text.invoke()|html_to_plain_text}) %}
+{% endif %}
+
+{% do add_schema_org(schemaOrg) %}
+
+{% if figure|default %}
+    {% do add_schema_org({'@type': 'WebPage', primaryImageOfPage: figure.getSchemaOrgData()}) %}
+{% endif %}

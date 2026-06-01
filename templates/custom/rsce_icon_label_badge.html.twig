@@ -1,0 +1,95 @@
+{% use "@Contao/component/_figure.html.twig" %}
+
+{% block icon_text %}
+
+    {#
+        RSCE-Element: Icon mit Text
+        Details: Icon, Bezeichnung
+        Depends on: _c-badge--vars.css, _b-icons.css
+    #}
+
+    {# element style #}
+    {% set elementClass = elementStyle|default ? 'badge--' ~ elementStyle : 'badge--primary' %}
+
+    {# derive icon position from select field (isleft / isright), with fallback #}
+    {% set iconPosition = hasIconLeftRight|default('isRight') == 'isLeft' ? 'left' : 'right' %}
+
+    {# checkboxes & icon type #}
+    {% set isElementCentered = elementCenter|default(false) %}
+    {% set iconIsSvg = iconArt|default == 'isIconFileSvg' %}
+    {% set iconIsImage = iconArt|default == 'isIconImage' %}
+
+    {# Text vorhanden? (Checkbox oder bool) #}
+    {% set hasText = iconHasText|default(true) %}
+
+    {# aria-label: eigenes Feld, sonst Text als Fallback #}
+    {% set ariaLabel = elementAriaLabel|default(text|striptags) %}
+
+    {# Icon vorbereiten (SVG oder Bild) #}
+    {% set icon = '' %}
+
+    {# SVG-Icon #}
+    {% if iconIsSvg and svg is defined and svg %}
+        {% set icon %}
+            <span class="badge__icon text-icon__icon svg-icon" aria-hidden="true">
+                {{ svg|insert_tag|raw }}
+            </span>
+        {% endset %}
+    {% endif %}
+
+    {# Bild-Icon #}
+    {% if iconIsImage and image is defined and image %}
+        {# determine / override metadata #}
+        {% if hasImageMetadata == true %}
+            {% set metadataImage = {
+                alt: imageAlt|default,
+                title: imageTitle|default
+            } %}
+        {% else %}
+            {% set figureData = figure(image, {}) %}
+            {% set metadataImage = {
+                alt: figureData.metadata.alt|insert_tag,
+                title: figureData.metadata.title|insert_tag
+            } %}
+        {% endif %}
+
+        {% set icon %}
+            <span class="badge__icon text-icon__icon badge__icon--image" aria-hidden="true">
+                {% include "@Contao/component/_figure.html.twig" with {
+                    figure: figure(image, imageSize|default(''), {
+                        metadata: metadataImage
+                    })
+                } %}
+            </span>
+        {% endset %}
+    {% endif %}
+
+    {# Root-Element: Badge mit Icon/Text #}
+    <span
+        class="badge text-icon {{ elementClass }}
+               {% if isElementCentered %}badge--center{% endif %}
+               {% if icon is empty %}badge--no-icon{% endif %}
+               {% if not hasText %}badge--no-text{% endif %}
+               {{ class|default('') }}"
+        {% if cssID is defined and cssID %}id="{{ cssID }}"{% endif %}
+        {% if ariaLabel %}aria-label="{{ ariaLabel }}"{% endif %}
+    >
+
+        {# Icon links #}
+        {% if iconPosition == 'left' and icon is not empty %}
+            {{ icon|raw }}
+        {% endif %}
+
+        {# Text #}
+        {% if hasText and text is defined and text %}
+            <span class="badge__label text-icon__text">{{ text|raw }}</span>
+        {% endif %}
+
+        {# Icon rechts #}
+        {% if iconPosition == 'right' and icon is not empty %}
+            {{ icon|raw }}
+        {% endif %}
+
+    </span>
+
+{% endblock %}

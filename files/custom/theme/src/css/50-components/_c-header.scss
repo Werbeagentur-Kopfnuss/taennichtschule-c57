@@ -1,0 +1,50 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Site Header
+   Beschreibung: Styles fuer die Site-Header-Komponente.
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@use "../00-settings/s-tokens-semantic" as *;
+
+@layer components {
+    .site-header {
+        background-color: transparent;
+        border-bottom: 1px solid var(--border-color-light);
+        padding-block: var(--header-padding-block-default);
+    }
+
+    .site-header__inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .site-header__logo-link {
+        margin-inline-end: auto;
+    }
+
+    .site-header__logo-image {
+        width: var(--logo-width-default);
+    }
+
+    @media (width < $breakpoint-main-nav-mobile) {
+        .site-header {
+            background-color: var(--background-color-extra-light);
+            border: none;
+            padding-block: 0; /* Padding fuer Mobile entfernen, damit der Button gestreckt werden kann */
+        }
+        .site-header__inner {
+            align-items: stretch;
+            flex-wrap: nowrap;
+            column-gap: var(--elements-gap-inline);
+        }
+        .site-header__logo-link {
+            margin-block: var(--header-padding-block-default); /* Margin fuer Mobile, damit der Button gestreckt werden kann */
+        }
+    }
+}

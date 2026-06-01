@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao addon Handorgel
+   Beschreibung: Angepasste Styles fuer die Contao-Handorgel-Accordion-Extension.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+
+/* Ohne layer, um Standard-Handorgel-Styles zu ueberschreiben */
+.handorgel__header {
+    .handorgel__header__button {
+        box-sizing: border-box;
+        padding: 1rem;
+
+        // border: none;
+        &:hover {
+            color: var(--text-color-default-hover);
+        }
+    }
+    &.handorgel__header--opened {
+        .handorgel__header__button {
+            color: var(--text-color-default-hover);
+        }
+    }
+}
+
+.handorgel__headline {
+    line-height: 1;
+}
+
+// 1.3 Plus-Minus-Animation fuer Contao-Accordion
+.handorgel__header {
+    .handorgel__header__button {
+        display: flex;
+        justify-content: space-between;
+    }
+    .handorgel__icon {
+        position: relative;
+        width: 1em;
+    }
+    .handorgel__icon::before,
+    .handorgel__icon::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 16px;
+        height: 4px;
+        background-color: var(--text-color-default);
+        transform-origin: 50% 50%;
+        transition: all 0.25s ease;
+    }
+    .handorgel__icon::before {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    .handorgel__icon::after {
+        transform: rotate(-90deg);
+    }
+    &.handorgel__header--opened .handorgel__icon::before {
+        transform: rotate(0deg);
+        opacity: 1;
+        background-color: var(--text-color-default-hover);
+    }
+    &.handorgel__header--opened .handorgel__icon::after {
+        transform: rotate(0deg);
+        background-color: var(--text-color-default-hover);
+    }
+}

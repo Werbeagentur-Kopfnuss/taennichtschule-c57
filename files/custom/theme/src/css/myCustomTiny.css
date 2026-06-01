@@ -1,0 +1,26 @@
+/* ==========================================================================
+   Author: Agentur KOPFNUSS - Marco Schädlich
+   Extension: Contao tinyMCE Custom Styles
+   Description: Custom styles for tinyMCE editor in Contao.
+   Layer:
+   Reusable: No
+   Custom Property Definitions: No
+   Depends on: be_tinyMCE.html5
+   Extension:
+   ========================================================================== */
+
+.u-text-left {
+    text-align: left;
+}
+
+.u-text-center {
+    text-align: center;
+}
+
+.u-text-right {
+    text-align: right;
+}
+
+.u-text-justify {
+    text-align: justify;
+}

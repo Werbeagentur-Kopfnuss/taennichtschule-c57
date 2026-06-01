@@ -1,0 +1,107 @@
+{% use "@Contao/component/_figure.html.twig" %}
+
+{% block rsce_link_list %}
+
+    {#
+        RSCE-Element: Link Liste
+        Details: Icon, Linkliste mit Link und Bezeichnung + QR-Code Option
+        Depends on: _c-link-list.css
+    #}
+
+    {# checkboxes & icon type #}
+    {% set hasCustomIconEnabled = hasCustomIcon is defined and hasCustomIcon %}
+    {% set iconIsSvg = iconArt|default == 'isIconFileSvg' %}
+    {% set iconIsImage = iconArt|default == 'isIconImage' %}
+
+    {# prepare icon once (svg, image or fallback) #}
+    {% set icon = '' %}
+
+    {% if hasCustomIconEnabled %}
+        {# custom svg icon #}
+        {% if iconIsSvg and svg is defined and svg %}
+            {% set icon %}
+                <span class="text-icon__icon svg-icon svg-icon--size-font" aria-hidden="true">
+                    {{ svg|insert_tag|raw }}
+                </span>
+            {% endset %}
+        {# custom image icon #}
+        {% elseif iconIsImage and image is defined and image %}
+            {# determine / override metadata #}
+            {% if hasImageMetadata == true %}
+                {% set metadataImage = {
+                    alt: imageAlt|default
+                } %}
+            {% else %}
+                {% set figureData = figure(image, {}) %}
+                {% set metadataImage = {
+                    alt: figureData.metadata.alt|insert_tag
+                } %}
+            {% endif %}
+
+            {% set icon %}
+                <span class="text-icon__image" aria-hidden="true">
+                    {% include "@Contao/component/_figure.html.twig" with {
+                        figure: figure(image, imageSize|default(''), {
+                            metadata: metadataImage
+                        })
+                    } %}
+                </span>
+            {% endset %}
+        {% endif %}
+    {% endif %}
+
+    {# fallback icon if no custom icon was set #}
+    {% if icon is empty %}
+        {% set icon %}
+            <span class="text-icon__icon svg-icon svg-icon--size-font" aria-hidden="true">
+                <svg viewBox="0 0 18 14" focusable="false" aria-hidden="true">
+                    <path d="M11.525 13.7928C11.525 13.7928 16.026 9.2878 17.779 7.5338C17.926 7.3878 17.999 7.1958 17.999 7.0038C17.999 6.8118 17.926 6.6198 17.779 6.4738C16.027 4.7198 11.527 0.216802 11.527 0.216802C11.382 0.0718016 11.191 -0.000198959 11 -0.000198976C10.809 0.000801412 10.617 0.0738013 10.47 0.220802C10.177 0.513802 10.176 0.9868 10.466 1.2778L15.442 6.2538L0.750024 6.2538C0.336024 6.2538 2.35367e-05 6.5898 2.35005e-05 7.0038C2.34643e-05 7.4178 0.336024 7.7538 0.750023 7.7538L15.442 7.7538L10.464 12.7328C10.175 13.0218 10.177 13.4938 10.47 13.7868C10.617 13.9338 10.809 14.0078 11 14.0078C11.191 14.0088 11.38 13.9368 11.525 13.7928Z" fill="currentcolor"/>
+                </svg>
+            </span>
+        {% endset %}
+    {% endif %}
+
+    <div class="{{ class }} flow"{% if cssID %} id="{{ cssID }}"{% endif %} {% if labelNav|default %} aria-label="{{ labelNav|default }}"{% endif %}>
+        {% if headline|default %}
+            <{{ headlineOrder }} class="content-headline">
+                {{ headline }}
+            </{{ headlineOrder }}>
+        {% endif %}
+        <nav {% if labelNav|default %} aria-label="{{ labelNav|default }}"{% endif %}>
+            {% if links|default %}
+                <ul class="link-list">
+                    {% for item in links %}
+                        <li>
+                            {# headline above link if available #}
+                            {% if item.linkHeadline|default %}
+                                <span class="link-list__headline">
+                                    {{ item.linkHeadline }}
+                                </span>
+                            {% endif %}
+
+                            <a class="text-icon text-icon--link" href="{{ item.linkUrl|insert_tag|raw }}"{% if item.isLinkBlank|default %} target="_blank"{% endif %}>
+
+                                {{ icon|raw }}
+
+                                <span class="text-icon__text">{{ item.linkName }}</span>
+
+                            </a>
+
+                            {# qr-code below link #}
+                            {% if item.hasLinkQrCode|default %}
+                                <span class="link-list__qr" aria-hidden="true">
+                                    {% include "@Contao/component/_figure.html.twig" with {
+                                        figure: figure(item.qrImage, item.qrImageSize|default(''), {
+                                                metadata: { alt: '' }
+                                            })
+                                    } %}
+                                </span>
+                            {% endif %}
+
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </nav>
+    </div>
+{% endblock %}

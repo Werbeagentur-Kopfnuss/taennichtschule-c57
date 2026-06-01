@@ -1,0 +1,19 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Accessible navigation
+   Beschreibung: Styles fuer Accessible-Navigation.
+   Ebene (Layer): Projects/fe-schule
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@use "../../00-settings/s-tokens-semantic" as *;
+
+@layer projects {
+    @media (width < $breakpoint-main-nav-mobile) {
+        .navigation-accessible {
+            order: 3;
+        }
+    }
+}

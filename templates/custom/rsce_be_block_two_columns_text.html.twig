@@ -1,0 +1,60 @@
+{% block be_block_two_columns_text_image %}
+<div class="{{ class }} backend-rsce-block-two-columns-text"{% if cssID %} id="{{ cssID }}"{% endif %}>
+
+    {% if headlineRow %}
+        <{{ headlineOrder }} class="headline">
+        {{ headlineRow }}
+        </{{ headlineOrder }}>
+    {% endif %}
+    <div class="wrapper-flex-50-text-image {% if hasHorizontalCenter %}wrapper-flex-50-center{% endif %}">
+        <div class="flex-50-item">
+            {% if imageLeft|default %}
+                {% if imageLeftPosition|default == 'top' %}
+                    {% include "@Contao/component/_figure.html.twig" with {
+                        figure: figure(imageLeft|default, imageSizeLeft, {
+                            metadata: { alt: imageAltLeft|default, caption: '' },
+                        }),
+                    } %}
+                {% endif %}
+            {% endif %}
+
+            {{ textLeft|raw }}
+
+            {% if imageLeft|default %}
+                {% if imageLeftPosition|default == 'bottom' %}
+                    {% include "@Contao/component/_figure.html.twig" with {
+                        figure: figure(imageLeft|default, imageSizeLeft, {
+                            metadata: { alt: imageAltLeft|default, caption: '' },
+                        }),
+                    } %}
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <div class="flex-50-item">
+            {% if imageRight|default %}
+                {% if imageRightPosition|default == 'top' %}
+                    {% include "@Contao/component/_figure.html.twig" with {
+                        figure: figure(imageRight|default, imageSizeRight, {
+                            metadata: { alt: imageAltRight|default, caption: '' },
+                        }),
+                    } %}
+                {% endif %}
+            {% endif %}
+
+            {{ textRight|raw }}
+
+            {% if imageRight|default %}
+                {% if imageRightPosition|default == 'bottom' %}
+                    {% include "@Contao/component/_figure.html.twig" with {
+                        figure: figure(imageRight|default, imageSizeRight, {
+                            metadata: { alt: imageAltRight|default, caption: '' },
+                        }),
+                    } %}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    </div>
+{% endblock %}

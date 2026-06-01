@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Layout: Flow Spacing
+   Beschreibung: Utility-Klassen fuer konsistente vertikale Abstaende zwischen Elementen.
+   Ebene (Layer): Layout
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer layout {
+    /* flow waehlt nur Elemente mit einem vorherigen Geschwister-Element,
+       dadurch erhaelt das erste Kind keinen margin */
+
+    /* Alternative ist .flow > :not(:first-child) - bringt zusaetzliche specificity */
+    .flow > * + * {
+        /* em verwenden, damit der Abstand relativ zur font-size des Elements ist.
+           rem waere relativ zur root font-size.
+           Der Abstand bei Headings haengt von der font-size ab. */
+
+        /* margin-block-start verwenden, weil der groessere Abstand oben liegen soll.
+           Bei Heading gefolgt von Paragraph liegt der Abstand ueber dem Paragraphen,
+           nicht unter dem Heading. */
+        margin-block-start: var(--flow-spacing-block-default);
+        hyphens: auto; /* Silbentrennung fuer Headings aktivieren, um Overflow in kleinen Viewports zu vermeiden */
+        overflow-wrap: break-word;
+    }
+    /* grid-flow ist die Grid-Version von flow:
+       Alle Elemente liegen im Grid und behalten konsistente Abstaende.
+       Nuetzlich, wenn Elemente im Grid ausgerichtet und trotzdem gleichmaessig getrennt werden sollen. */
+    .grid-flow {
+        display: grid;
+        gap: var(--flow-grid-spacing-block);
+        align-content: start;
+        justify-items: start;
+    }
+}

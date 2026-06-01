@@ -1,0 +1,17 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Utility: Table Utilities
+   Beschreibung: Utility-Klassen fuer Tabellen.
+   Ebene (Layer): Utilities
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+
+@layer utilities {
+    .u-table-50-50 {
+        table tr > :first-child {
+            width: 50%;
+        }
+    }
+}

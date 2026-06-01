@@ -1,0 +1,27 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Link List
+   Beschreibung: Styles fuer Link List.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css, _b-icon.css, _b-lists.css
+   ========================================================================== */
+
+@layer components {
+    .link-list {
+        /* Nur wenn keine headline vorhanden ist */
+        li:first-child:not(:has(.link-list__headline)) .text-icon--link {
+            padding-block-start: 0;
+        }
+        &:has(.link-list__headline) li + li {
+            margin-block-start: var(--flow-spacing-block-default);
+        }
+    }
+
+    .link-list__headline {
+        display: block;
+        margin-bottom: 0.25rem;
+        font-weight: var(--font-weight-medium);
+    }
+}

@@ -1,0 +1,42 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Search Icon in Navigation
+   Beschreibung: Styles fuer das Search-Icon in der Hauptnavigation.
+   Ebene (Layer): Components
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@use "../00-settings/s-tokens-semantic" as *;
+
+@layer components {
+    .nav-search-icon.text-icon {
+        padding-inline-start: 3rem;
+        margin-inline-start: 3rem;
+        border-left: 1px solid var(--border-color-light);
+        .svg_icon_search__path {
+            fill: var(--navigation-color-default);
+        }
+        &:hover .svg_icon_search__path {
+            fill: var(--navigation-color-default-hover);
+        }
+    }
+
+    @media (width < $breakpoint-desktop) {
+        .nav-search-icon.text-icon {
+            margin-inline-start: 0;
+            border-left: none;
+            padding-inline: 3rem;
+            display: flex;
+            align-items: center;
+            block-size: auto; /* Reset von svg-icon */
+        }
+    }
+
+    @media (width < 768px) {
+        .nav-search-icon.text-icon {
+            display: none;
+        }
+    }
+}

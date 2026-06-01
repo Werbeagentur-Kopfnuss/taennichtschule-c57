@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Page Teaser Standard
+   Beschreibung: Styles fuer die Standard-Page-Teaser-Komponente in RSCE.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_page_teaser_standard.html.twig, rsce_page_teaser_standard_config.php, tokens.semantic.css, _b-cards.css
+   ========================================================================== */
+
+@use "../../00-settings/s-tokens-semantic" as *;
+
+@layer components {
+    /* breakpoint ist identisch mit equal-columns */
+    .page-teaser {
+        --equal-columns-gap-rows: 0; /* row-gap ist in diesem Grid 0, margin-block-end wird fuer den Abstand zwischen Cards verwendet */
+
+        @media (width > $breakpoint-container-grid-1) {
+            grid-template-rows: repeat(4, auto); /* maximal 4 Zeilen fuer den Standard-Teaser, damit subgrid funktioniert */
+        }
+    }
+
+    .page-teaser__card {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 4; /* maximal 4 Zeilen fuer den Standard-Teaser, damit subgrid funktioniert */
+        gap: 0;
+        margin-block-end: var(
+            --equal-columns-gap-columns,
+            1rem
+        ); /* margin-block-end fuer horizontalen Abstand zwischen Cards im subgrid verwenden */
+
+        /* Card-Styles ueberschreiben */
+        &.card--border,
+        &.card--background {
+            padding-inline: 0;
+            padding-block: 0;
+            .image--hover,
+            img {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
+
+    /* margin-block-end abhaengig von breakpoints auf 0 setzen */
+    .page-teaser.equal-columns--columns-3 .page-teaser__card:last-child {
+        margin-block-end: 0;
+    }
+
+    @container article-wrapper (#{$breakpoint-container-grid-1} <= width <= #{$breakpoint-container-grid-2}) {
+        .page-teaser.equal-columns--columns-3 .page-teaser__card:nth-child(2n + 1):nth-last-child(-n + 2),
+        .page-teaser.equal-columns--columns-3
+            .page-teaser__card:nth-child(2n + 1):nth-last-child(-n + 2)
+            ~ .page-teaser__card {
+            margin-block-end: 0;
+        }
+    }
+
+    @container article-wrapper (width > #{$breakpoint-container-grid-2}) {
+        .page-teaser.equal-columns--columns-3 .page-teaser__card:nth-child(3n + 1):nth-last-child(-n + 3),
+        .page-teaser.equal-columns--columns-3
+            .page-teaser__card:nth-child(3n + 1):nth-last-child(-n + 3)
+            ~ .page-teaser__card {
+            margin-block-end: 0;
+        }
+    }
+
+    a.page-teaser__card {
+        text-decoration: none;
+        color: var(--text-color-default);
+    }
+}

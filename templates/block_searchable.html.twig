@@ -1,0 +1,16 @@
+{% extends "@Contao/block_searchable.html.twig" %}
+
+{% block wrapper %}
+    <div class="content-collection">
+        <div{{ wrapperAttributes }}>
+            {% block headline %}
+            {% if headline|default %}
+            <{{ hl }}>{{ headline|insert_tag_raw }}</{{ hl }}>
+        {% endif %}
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+    </div>
+{% endblock %}

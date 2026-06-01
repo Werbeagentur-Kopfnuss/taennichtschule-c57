@@ -1,0 +1,69 @@
+{% block block_icon_text %}
+
+    {% set borderClass = hasBorder ? 'card--border' : '' %}
+    {% set backgroundClass = hasBackgroundColor ? 'card--background' : '' %}
+
+    {% set card_attributes = attrs()
+        .addClass('block-text-icon__card')
+        .addClass('card')
+        .addClass(class)
+        .addClass(borderClass)
+        .addClass(backgroundClass) %}
+
+    {% if hasIcon %}
+        {# custom svg icon #}
+        {% if iconArt|default == 'isIconFileSvg' and svg is defined and svg %}
+            {% set icon %}
+                <span class="block-text-icon__icon svg-icon svg-icon--size-xl" aria-hidden="true">
+                    {{ svg|insert_tag|raw }}
+                </span>
+            {% endset %}
+
+            {# custom image icon #}
+        {% elseif iconArt|default == 'isIconImage' and image is defined and image %}
+            {% if hasImageMetadata == true %}
+                {% set metadataImage = {
+                    alt: imageAlt|default
+                } %}
+            {% else %}
+                {% set figureData = figure(image, {}) %}
+                {% set metadataImage = {
+                    alt: figureData.metadata.alt|insert_tag
+                } %}
+            {% endif %}
+
+            {% set icon %}
+                <span class="block-text-icon__icon block-text-icon__icon--image">
+                    {% include "@Contao/component/_figure.html.twig" with {
+                        figure: figure(image, imageSize|default(''), {
+                            metadata: metadataImage
+                        })
+                    } %}
+                </span>
+            {% endset %}
+        {% endif %}
+    {% endif %}
+
+    <div {{ card_attributes }}{% if cssID %} id="{{ cssID }}"{% endif %}>
+
+        <div class="card__content">
+            {# icon left and top #}
+            {% if iconPosition|default == 'left' or iconPosition|default == 'top' %}
+                {{ icon|raw }}
+            {% endif %}
+
+            <div class="flow">
+                {% if hasHeadline %}
+                <{{ headlineOrder }} itemprop="name">{{ headline }}</{{ headlineOrder }}>
+            {% endif %}
+            {{ text|insert_tag_raw|raw }}
+        </div>
+
+        {# icon right #}
+        {% if iconPosition|default == 'right' %}
+            {{ icon|raw }}
+        {% endif %}
+    </div>
+
+    </div>
+{% endblock %}

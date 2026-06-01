@@ -1,0 +1,15 @@
+{% block be_headline_subheadline %}
+<div class="{{ class }} backend_rsce_headline_subheadline"{% if cssID %} id="{{ cssID }}"{% endif %}>
+
+    <{{ headlineOrder }} class="content-headline">
+    {% if subheadlineTopBottom == 'isTop' %}
+        <span class="headline-top">{{ headlineTop }}</span>
+    {% endif %}
+    {{ headline }}
+    {% if subheadlineTopBottom == 'isBottom' %}
+        <span class="headline-bottom">{{ headlineBottom }}</span>
+    {% endif %}
+    </{{ headlineOrder }}>
+
+    </div>
+{% endblock %}

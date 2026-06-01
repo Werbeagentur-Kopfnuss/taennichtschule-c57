@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Utility: Accessibility Utilities
+   Beschreibung: Utility-Klassen zur Verbesserung der Accessibility.
+   Ebene (Layer): Utilities
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+
+@layer utilities {
+    /* .sr-only ist ein gaengiger Klassenname fuer screen-reader-only Content,
+       aber .visually-hidden beschreibt besser, was es tut, statt fuer wen es ist. */
+    .visually-hidden {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    /* Utility-Klassen aus semantischen Custom Properties */
+    [hidden] {
+        display: none;
+    }
+
+    /* Accessible-Variante fuer Nutzer mit reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
+            scroll-behavior: auto !important;
+        }
+    }
+
+    .is-reduce-motion * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}

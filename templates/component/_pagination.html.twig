@@ -1,0 +1,6 @@
+{% use "@Contao/component/_pagination.html.twig" %}
+
+{% block pagination_component %}
+    {% set pagination_attributes = pagination_attributes|default(attrs()).addClass('navigation') %}
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,62 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Hero Section
+   Beschreibung: Styles fuer die Hero-Section-Komponente mit Bildern und Text.
+   Ebene (Layer): Components
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    .hero .wrapper {
+        display: grid;
+        gap: var(--flow-grid-spacing-block) var(--elements-gap-inline);
+    }
+
+    .hero__column:first-child {
+        grid-row: 2/3;
+    }
+
+    .hero__column:last-child {
+        grid-row: 1/2;
+    }
+
+    .hero-images {
+        display: grid;
+        .content-image:last-child {
+            display: none;
+        }
+    }
+
+    @media (width > 600px) {
+        .hero-images {
+            grid-template-columns: 1fr 0.7fr;
+            gap: var(--elements-gap-block) var(--elements-gap-inline);
+            .content-image {
+                align-self: end;
+            }
+            .content-image:last-child {
+                display: block;
+            }
+        }
+    }
+
+    @media (width > 1400px) {
+        .hero .wrapper {
+            grid-template-columns: 0.8fr 1fr;
+            grid-template-rows: auto;
+        }
+
+        .hero__column:first-child {
+            grid-row: 1/2;
+            grid-column: 1/2;
+            align-self: center;
+        }
+
+        .hero__column:last-child {
+            grid-row: 1/2;
+            grid-column: 2/3;
+        }
+    }
+}

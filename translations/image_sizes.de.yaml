@@ -1,0 +1,32 @@
+# translations/image_sizes.de.yaml
+
+# Image Size - Galerie
+galerie_element_2_images_per_row: Galerie - 2 Bilder pro Zeile
+galerie_element_3_images_per_row: Galerie - 3 Bilder pro Zeile
+galerie_element_4_images_per_row: Galerie - 4 Bilder pro Zeile
+
+# Image Size - Content Element
+content_element_image_50_narrow_site: Inhaltselement - Bild - 50% Breite - schmale Seite
+content_element_image_50_standard_site: Inhaltselement - Bild - 50% Breite - Standardseite
+content_element_image_75_fixed_height_standard_site: Inhaltselement - Bild - 75% Breite - feste Höhe - Standardseite
+content_element_logo_same_width: Inhaltselement - Logo - gleiche Breite
+content_element_logo_same_height: Inhaltselement - Logo - gleiche Höhe
+content_element_social_media_icon: Inhaltselement - Social-Media-Icon
+
+# Image Size - News
+news_teaser_image: News - Teaserbild
+
+# Image Size - RSCE
+rsce_block_image_slider_text_image: Custom - Block - Slider-Bild
+rsce_block_link_list_icon: Custom - Block - Linkliste - Icon
+rsce_block_icon_text_icon: Custom - Block - Icon
+rsce_block_page_teaser_standard_teaser_image: Custom - Block - Seiteteaser - Bild & Text - Teaserbild
+rsce_block_team_image: Custom - Block - Teammitglied - Bild
+rsce_icon_label_badge_icon: Custom - Icon - Label - Badge - Icon
+rsce_block_link_list_qr_code: Custom - Block - Linkliste - QR-Code
+rsce_button_icon: Custom - Button - Icon
+
+# Image Size - Project
+content_element_image_hero_big: Inhaltselement - Bild - Hero - groß
+content_element_image_hero_small: Inhaltselement - Bild - Hero - klein
+content_element_logo_supporter: Inhaltselement - Logo - Unterstützer

@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Site Header Top Section
+   Beschreibung: Styles fuer den oberen Bereich der Site-Header-Komponente.
+   Ebene (Layer): Projects
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer projects {
+    .site-header > :first-child {
+        background-color: var(--background-color-light);
+    }
+}

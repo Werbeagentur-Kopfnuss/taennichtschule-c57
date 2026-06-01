@@ -1,0 +1,293 @@
+/* =========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Einstellungen: Tokens Semantic
+   Beschreibung: Definiert semantische Design-Tokens basierend auf primitiven Tokens.
+   Ebene (Layer):
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Ja
+   Abhaengigkeiten:
+   ========================================================================== */
+
+/* Muster: --[component]-[property]-[variant]-[state]:
+   component (Komponente): button, navigation, link, text, border, background, icon, etc.
+   property (Eigenschaft): color, background, border, size, spacing, font-size, font-weight, etc.
+   variant (Variante): primary, secondary, sm, lg, etc.
+   state (Zustand): hover, active, focus, disabled, etc.
+*/
+
+/* Token-Struktur:
+   1. Breakpoints
+   2. Focus - Globale Interaktionszustaende
+   3. Section - Haupt-Container
+   4. Wrapper - Inhalts-Wrapper
+   5. Layout Gaps - Allgemeine Abstaende zwischen Elementen
+   6. Flow Spacing - Vertikaler Rhythmus
+   7. Card - Card-Komponenten
+   8. Equal Columns Layout - Grid-Layout-Utility
+   9. Flex Group Layout - Flex-Layout-Utility
+   10. Grid Auto-Fit Layout - Responsive Grid-Utility
+   11. Header - Header-Bereich
+   12. Logo - Logo-Komponente
+   13. Navigation - Navigationsmenue
+   14. Button - Buttons
+   15. Link - Links
+   16. Text - Textfarben
+   17. Background - Hintergrundfarben
+   18. Form - Formularelemente
+   19. Table - Tabellenelemente
+   20. Border - Rahmen (Farben & Radius)
+   21. Icon - Icon-Groessen
+   22. Font - Typografie (Font-Groessen, Weights, Families, Line Heights)
+*/
+
+@use "s-tokens-primitives" as *;
+@use 'sass:math';
+
+/* ================
+Breakpoints
+================ */
+/* Sass-Variablen fuer Breakpoints zur Verwendung in Media Queries */
+/* Normale Breakpoints */
+$breakpoint-mobile: $breakpoint-200;
+$breakpoint-tablet: $breakpoint-400;
+$breakpoint-desktop: $breakpoint-750;
+$breakpoint-desktop-wide: $breakpoint-800;
+$breakpoint-desktop-ultrawide: $breakpoint-1000;
+
+$breakpoint-main-nav-mobile: $breakpoint-750;
+$breakpoint-nav-mobile-small: $breakpoint-300;
+
+/* Container-Breakpoints fuer Container Queries */
+$breakpoint-container-grid-1: $breakpoint-300;
+$breakpoint-container-grid-2: $breakpoint-700;
+
+@layer settings {
+    :root {
+        /* ================
+        Focus
+        ================ */
+        --focus-color-default: var(--clr-blue-500);
+
+        --skip-link-color: var(--clr-white);
+        --skip-link-background: var(--clr-black);
+        --skip-link-focus-border-color: var(--clr-white);
+        --skip-link-font-weight: var(--fw-400);
+
+        /* ================
+        Section (Bereich)
+        ================ */
+        --section-width-xs: var(--width-300);
+        --section-width-sm: var(--width-500);
+        --section-width-default: var(--width-700);
+        --section-width-full: var(--width-1000);
+        --section-padding-inline: var(--space-400); /* noch nicht verwenden */
+        --section-padding-block: var(--space-800);
+
+        /* ================
+        Wrapper (Huelle)
+        ================ */
+        --wrapper-padding-inline: var(--space-400);
+        --wrapper-padding-block: var(--space-750); /* noch nicht verwenden */
+
+        /* ================
+        Layout Gaps (Abstaende)
+        ================ */
+        --elements-gap-inline: var(--space-750);
+        --elements-gap-block: var(--space-750);
+
+        /* ================
+        Flow Spacing (Fluss-Abstaende)
+        ================ */
+        --flow-spacing-block-sm: var(--space-200-em);
+        --flow-spacing-block-default: var(--space-400-em); /* fuer normalen Flow em-Einheiten verwenden */
+        --flow-spacing-block-lg: var(--space-500-em);
+        --flow-grid-spacing-block: var(--space-700); /* Grid-Flow muss rem sein */
+
+        /* ================
+        Card (Karte)
+        ================ */
+        --card-padding-inline: var(--space-600);
+        --card-padding-block: var(--space-700);
+
+        /* ================
+        Equal Columns Layout (Gleichmaessige Spalten)
+        ================ */
+        --equal-columns-gap-sm: var(--space-500);
+        --equal-columns-gap-default: var(--space-750);
+        --equal-columns-gap-lg: var(--space-800);
+
+        /* ================
+        Flex Group Layout (Flex-Gruppen-Layout)
+        ================ */
+        --flex-group-gap-default: var(--space-750);
+
+        /* ================
+        Grid Auto-Fit Layout (Automatisch passendes Grid)
+        ================ */
+        --grid-auto-fit-column-size-min: var(--element-width-300);
+        --grid-auto-fit-column-size-max: var(--element-width-400);
+
+        /* ================
+        Header
+        ================ */
+        --header-padding-block-default: var(--space-750);
+
+        /* ================
+        Logo
+        ================ */
+        --logo-width-default: 380px;
+
+        /* ================
+        Navigation
+        ================ */
+        --navigation-gap-inline-default: var(--space-600);
+        --navigation-gap-block-default: var(--space-300);
+        --navigation-font-size-default: var(--fs-650);
+        --navigation-font-weight-default: var(--fw-300);
+        --navigation-line-height-item: var(--lh-m);
+        --navigation-font-family-default: var(--ff-sans);
+        --navigation-color-default: var(--clr-black);
+        --navigation-color-default-hover: var(--clr-green-500);
+        --navigation-color-active: var(--clr-green-500);
+
+        /* ================
+        Button
+        ================ */
+        --button-background-primary: var(--clr-violett-500);
+        --button-background-secondary: var(--clr-grey-600);
+        --button-background-reduced: var(--clr-grey-600);
+        --button-background-accent: var(--clr-orange-500);
+        --button-background-primary-hover: var(--clr-white);
+        --button-background-secondary-hover: var(--clr-white);
+        --button-background-reduced-hover: var(--clr-white);
+        --button-background-accent-hover: var(--clr-white);
+        --button-color-primary: var(--clr-white);
+        --button-color-secondary: var(--clr-green-500);
+        --button-color-reduced: var(--clr-black);
+        --button-color-accent: var(--clr-black);
+        --button-color-primary-hover: var(--clr-green-500);
+        --button-color-secondary-hover: var(--clr-black);
+        --button-color-reduced-hover: var(--clr-black);
+        --button-color-accent-hover: var(--clr-black);
+        --button-padding-inline: var(--space-450);
+        --button-padding-block: var(--space-350);
+        --button-padding-inline-sm: var(--space-300);
+        --button-padding-block-sm: var(--space-200);
+
+        /* ================
+        Link (Verknuepfung)
+        ================ */
+        --link-color-default: var(--clr-black);
+        --link-color-default-hover: var(--clr-violett-500);
+
+        /* ================
+        Text
+        ================ */
+        --text-color-default: var(--clr-black);
+        --text-color-light: var(--clr-grey-500);
+        --text-color-extra-light: var(--clr-white);
+        --text-color-default-hover: var(--clr-green-500);
+
+        /* ================
+        Background
+        ================ */
+        --background-color-default: var(--clr-white);
+        --background-color-light: var(--clr-grey-800);
+        --background-color-extra-light: var(--clr-grey-900);
+
+        /* ================
+        Form
+        ================ */
+        --form-field-background-color-default: var(--clr-grey-900);
+        --form-field-background-color-default-active: var(--clr-white);
+        --form-mandatory-color: var(--clr-red-500);
+        --form-field-padding-inline: var(--space-400);
+        --form-field-padding-block: var(--space-300);
+
+        /* ================
+        Table
+        ================ */
+        --table-header-background-color: var(--clr-grey-800);
+        --table-header-color: var(--clr-black);
+        --table-row-background-color: var(--clr-white);
+        --table-row-odd-background-color: var(--clr-grey-900);
+        --table-border-color: var(--clr-grey-600);
+        --table-cell-padding-inline-sm: var(--space-200);
+        --table-cell-padding-inline-default: var(--space-300);
+        --table-cell-padding-block-sm: var(--space-100);
+        --table-cell-padding-block-default: var(--space-200);
+
+        /* ================
+        Border
+        ================ */
+        --border-color-default: var(--clr-grey-500);
+        --border-color-light: var(--clr-grey-600);
+        --border-color-extra-light: var(--clr-white);
+        --border-radius-lg: var(--radius-lg);
+        --border-radius-default: var(--radius-md);
+        --border-width-default: var(--border-width-100);
+
+        /* ================
+        Icon
+        ================ */
+        --icon-size-sm: var(--object-size-sm);
+        --icon-size-regular: var(--object-size-regular);
+        --icon-size-lg: var(--object-size-lg);
+        --icon-size-xl: var(--object-size-xl);
+        --icon-padding-inline-regular: var(--space-200);
+        --icon-padding-inline-lg: var(--space-300);
+
+        /* ================
+        Fonts
+        ================ */
+
+        /* Font-Groessen */
+        --font-size-heading-sm: var(--fs-650);
+        --font-size-heading-regular: var(--fs-800);
+        --font-size-heading-lg-min: var(--fs-hl-lg-min);
+        --font-size-heading-lg-max: var(--fs-hl-lg-max);
+        --font-size-heading-lg-min-no-unit: var(--fs-hl-lg-min-no-unit);
+        --font-size-heading-lg-max-no-unit: var(--fs-hl-lg-max-no-unit);
+        --font-size-heading-xl-min: var(--fs-hl-xl-min);
+        --font-size-heading-xl-max: var(--fs-hl-xl-max);
+        --font-size-heading-xl-min-no-unit: var(--fs-hl-xl-min-no-unit);
+        --font-size-heading-xl-max-no-unit: var(--fs-hl-xl-max-no-unit);
+        --font-size-heading-xxl-min: var(--fs-hl-xxl-min);
+        --font-size-heading-xxl-max: var(--fs-hl-xxl-max);
+        --font-size-heading-xxl-min-no-unit: var(--fs-hl-xxl-min-no-unit);
+        --font-size-heading-xxl-max-no-unit: var(--fs-hl-xxl-max-no-unit);
+        --font-size-regular-min: var(--fs-regular-min);
+        --font-size-regular-min-no-unit: var(--fs-regular-min-no-unit);
+        --font-size-regular-max: var(--fs-regular-max);
+        --font-size-regular-max-no-unit: var(--fs-regular-max-no-unit);
+
+        /* Statische Font-Groessen */
+        --font-size-xs: var(--fs-400);
+        --font-size-sm: var(--fs-500);
+        --font-size-regular: var(--fs-650);
+        --font-size-md: var(--fs-700);
+        --font-size-lg: var(--fs-800);
+
+        /* font weight (Schriftgewicht) */
+        --font-weight-light: var(--fw-200);
+        --font-weight-book: var(--fw-300);
+        --font-weight-regular: var(--fw-400);
+        --font-weight-medium: var(--fw-500);
+        --font-weight-semi-bold: var(--fw-600);
+        --font-weight-bold: var(--fw-700);
+        --font-weight-heavy: var(--fw-900);
+
+        /* Breakpoints fuer fluide Typografie */
+        /* Sass-Variablen werden nicht "automatisch" in Custom Properties eingesetzt, daher verwenden wir hier Interpolation. */
+        --fluid-breakpoint-min: #{$breakpoint-200};
+        --fluid-breakpoint-max: #{$breakpoint-800};
+        --fluid-breakpoint-min-no-unit: #{math.div($breakpoint-200, 1rem)};
+        --fluid-breakpoint-max-no-unit: #{math.div($breakpoint-800, 1rem)};
+
+        /* Font Families (Schriftfamilien) */
+        --font-family-base: var(--ff-sans);
+        --font-family-heading: var(--ff-sans-2);
+        --line-height-body: var(--lh-regular);
+        --line-height-heading: var(--lh-sm);
+    }
+}

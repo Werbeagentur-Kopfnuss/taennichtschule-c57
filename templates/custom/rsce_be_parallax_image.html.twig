@@ -1,0 +1,24 @@
+{% block be_parallax_image %}
+<div class="{{ class }} backend_rsce_parallax_image"{% if cssID %} id="{{ cssID }}"{% endif %}>
+
+{% use "@Contao/component/_figure.html.twig" %}
+
+<div class="parallax-container">
+
+    {% if hasImageMetadata == true %}
+        {% set metadataImage = { alt: imageAlt|default, title: imageTitle|default } %}
+    {% else %}
+        {% set metadataImage = { alt: figure(image, {}).metadata.alt|insert_tag, title: figure(image, {}).metadata.title|insert_tag } %}
+    {% endif %}
+    {% with { figure: figure(image, imageSize, {
+            metadata: metadataImage,
+            setOptions: {attr: {class: 'parallax-image'}}
+        }),
+    } %}
+        {{ block('figure_component') }}
+    {% endwith %}
+
+</div>
+
+</div>
+{% endblock %}

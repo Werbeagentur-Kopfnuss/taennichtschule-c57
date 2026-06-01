@@ -1,0 +1,142 @@
+{% use "@Contao/component/_stylesheet.html.twig" %}
+{% use "@Contao/component/_figure.html.twig" %}
+
+{#
+    rsce: image / slider with text
+    - 1 image  → normal image
+    - >1 image → swiper slider
+#}
+
+{% set borderClass = hasBorder ? 'card--border' : '' %}
+{% set backgroundClass = hasBackgroundColor ? 'card--background' : '' %}
+
+{% set card_attributes = attrs()
+    .addClass('image-slider-text__card')
+    .addClass('card')
+    .addClass(class)
+    .addClass(borderClass)
+    .addClass(backgroundClass)
+%}
+
+{% block block_image_slider_text %}
+
+    <div {{ card_attributes }}>
+
+        {# fields from rsce #}
+        {% set images = images|default([]) %}
+        {% set imageSizeValue = imageSize|default(null) %}
+        {% set count  = images|length %}
+
+        {# slider settings #}
+        {% set slider_settings = {
+            loop: true,
+            autoplay: (autoplay ? {
+                delay: (autoplayDelay|default(5000)),
+                disableOnInteraction: false
+            } : false),
+            speed: 600,
+        } %}
+
+        {# multiple images: swiper slider #}
+        {% if count > 1 %}
+
+            {% set slider_attributes = attrs()
+                .addClass('swiper')
+                .addClass('image-slider-text__slider')
+                .addClass('card__image')
+                .set('data-settings', slider_settings|json_encode)
+            %}
+
+            <div{{ slider_attributes }}>
+                {% set slider_wrapper_attributes = attrs()
+                    .addClass('swiper-wrapper')
+                %}
+                <div{{ slider_wrapper_attributes }}>
+
+                    {% for image in images %}
+                        {% set slide_attributes = attrs()
+                            .addClass('swiper-slide')
+                        %}
+                        <div{{ slide_attributes }}>
+                            {% with { figure: figure(image, imageSizeValue) } %}
+                                {{ block('figure_component') }}
+                            {% endwith %}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                {# swiper controls (local per slider) #}
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+        {# one image: normal image without slider #}
+        {% elseif count == 1 %}
+
+            {% set image = images|first %}
+            <div class="image-slider-text__image card__image">
+                {% with { figure: figure(image, imageSizeValue) } %}
+                    {{ block('figure_component') }}
+                {% endwith %}
+            </div>
+
+        {% endif %}
+
+        {# text field #}
+        <div class="block-text-icon__content flow">
+            {% if hasHeadline %}
+                <{{ headlineOrder }} itemprop="name">{{ headline }}</{{ headlineOrder }}>
+            {% endif %}
+            {{ text|raw }}
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{# include and initialize swiper js #}
+{% block script %}
+    {% add "swiper_js" to body %}
+        {% set script_attributes = attrs()
+            .setIfExists('nonce', csp_nonce('script-src'))
+            .mergeWith(script_attributes|default)
+        %}
+        <script src="{{ asset('js/swiper-bundle.min.js', 'contao-components/swiper') }}"></script>
+        <script{{ script_attributes }}>
+            (function() {
+                const swipers = document.querySelectorAll('.image-slider-text__slider.swiper');
+
+                swipers.forEach(function (el) {
+                    let opts = {};
+                    try {
+                        opts = JSON.parse(el.getAttribute('data-settings') ?? '{}');
+                    } catch (e) {
+                        console.error('Invalid Swiper settings JSON', e);
+                    }
+
+                    new Swiper(el, Object.assign({
+                        pagination: {
+                            el: el.querySelector('.swiper-pagination'),
+                            clickable: true,
+                        },
+                        navigation: {
+                            prevEl: el.querySelector('.swiper-button-prev'),
+                            nextEl: el.querySelector('.swiper-button-next'),
+                        },
+                    }, opts));
+                });
+            })();
+        </script>
+    {% endadd %}
+{% endblock %}
+
+{# include swiper css #}
+{% block style %}
+    {% add "swiper_css" to stylesheets %}
+        {% with {file: swiper_css_file|default(asset('css/swiper-bundle.min.css', 'contao-components/swiper'))} %}
+            {{ block('stylesheet_component') }}
+        {% endwith %}
+    {% endadd %}
+{% endblock %}

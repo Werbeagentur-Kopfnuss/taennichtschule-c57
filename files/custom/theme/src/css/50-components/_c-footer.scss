@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Site Footer
+   Beschreibung: Styles fuer die Site-Footer-Komponente mit Footer-Bottom.
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@use "../00-settings/s-tokens-semantic" as *;
+
+@layer components {
+    .site-footer {
+        h2 {
+            /* Fluide Typografie-Parameter */
+            --min-font-size: var(--font-size-heading-lg-min);
+            --max-font-size: var(--font-size-heading-lg-max);
+            --min-font-size-no-unit: var(--font-size-heading-lg-min-no-unit);
+            --max-font-size-no-unit: var(--font-size-heading-lg-max-no-unit);
+
+            /* Fluide Typografie */
+            --slope: calc(
+                (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+                    (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit))
+            );
+            --intercept: calc(
+                var(--min-font-size) - (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+                    (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit)) *
+                    var(--fluid-breakpoint-min)
+            ); /* Fallback */
+
+            font-size: clamp(var(--min-font-size), calc(var(--intercept) + var(--slope) * 100vw), var(--max-font-size));
+            font-weight: var(--font-weight-bold);
+        }
+    }
+
+    .site-footer__inner {
+        background-color: var(--background-color-light);
+        border: 1px solid var(--border-color-extra-light);
+    }
+
+    .site-footer__bottom {
+        background-color: var(--background-color-light);
+    }
+
+    @media (width < $breakpoint-desktop) {
+        .site-footer__bottom {
+            .flex-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            p {
+                text-align: center;
+            }
+        }
+    }
+
+    /* ================
+    Equal Columns Subgrid mit 2 Zeilen
+    ================ */
+    .site-footer .equal-columns {
+        grid-template-rows: auto 1fr;
+        & > * {
+            display: grid;
+            grid-template-rows: subgrid;
+            grid-row: span 2;
+            gap: 0; /* Gap aus equal-columns zuruecksetzen und .flow verwenden */
+        }
+    }
+}

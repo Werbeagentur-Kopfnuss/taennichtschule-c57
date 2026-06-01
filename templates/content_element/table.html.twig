@@ -1,0 +1,6 @@
+{% extends "@Contao/content_element/table.html.twig" %}
+{% use "@Contao/component/_table.html.twig" %}
+
+{% set default_header_cell_attributes = (default_header_cell_attributes|default({}))|merge({
+    scope: 'col'
+}) %}

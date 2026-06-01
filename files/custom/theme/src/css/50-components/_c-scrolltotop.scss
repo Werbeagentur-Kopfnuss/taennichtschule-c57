@@ -1,0 +1,55 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Scroll to Top Button
+   Beschreibung: Styles fuer die Scroll-to-Top-Button-Komponente.
+   Ebene (Layer): Components
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    .back-to-top {
+        position: fixed;
+        inset-block-end: 1rem; /* unten */
+        inset-inline-end: 1rem; /* rechts */
+        z-index: 1000;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        /* min-width: 44px; */
+
+        /* WCAG-Zielflaeche */
+
+        /* min-height: 44px; */
+
+        /* WCAG-Zielflaeche */
+        min-width: 2.5em;
+        min-height: 2.5em;
+
+        /* padding: 0.75rem 1rem; */
+
+        text-decoration: none;
+        font: inherit;
+        background: var(--button-background-reduced, #eee);
+        color: var(--button-color-reduced, #000);
+        box-shadow: 0 4px 16px rgb(0 0 0 / 25%);
+        border-radius: var(--border-radius-default, 0);
+        opacity: 0;
+        transform: translateY(12px);
+        pointer-events: none;
+        transition: opacity 0.2s, transform 0.2s;
+
+        .back-to-top__path {
+            fill: var(--button-color-reduced, #000);
+        }
+    }
+
+    .back-to-top[data-visible="true"] {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+    }
+}

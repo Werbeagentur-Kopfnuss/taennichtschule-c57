@@ -1,0 +1,39 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: List Base
+   Beschreibung: Basis-Styles fuer Listen.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer base {
+    .link-list {
+        --link-list-row-padding-block: 0.5rem;
+        --link-list-row-padding-inline: 0; // Kein horizontales Padding, da ggf. Link-Icon-Abstand
+        --link-list-row-min-block-size: 2.75rem; // ~44px tap target
+        --link-list-row-gap: 0.5rem;
+
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0; // Abstaende kommen ueber row padding (oder hier als gap)
+    }
+
+    .link-list__item {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Die Zeile definiert Hoehe/Spacing - egal ob a oder span */
+    .link-list__row {
+        display: flex;
+        align-items: center;
+        gap: var(--link-list-row-gap);
+        padding-block: var(--link-list-row-padding-block);
+        padding-inline: var(--link-list-row-padding-inline);
+        min-block-size: var(--link-list-row-min-block-size);
+    }
+}

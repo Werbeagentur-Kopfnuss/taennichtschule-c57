@@ -1,0 +1,35 @@
+{% extends "@Contao/form_submit.html.twig" %}
+
+{% block field %}
+    {% if this.src|default %}
+        <input{{ attrs()
+            .set('type', 'image')
+            .set('src', this.src)
+            .set('id', "ctrl_#{this.id}")
+            .addClass('submit')
+            .addClass(this.class|default)
+            .set('title', this.slabel)
+            .set('alt', this.slabel)
+            .mergeWith(getAttributes.invoke())
+        }}>
+    {% else %}
+        <button{{ attrs()
+            .set('type', 'submit')
+            .set('id', "ctrl_#{this.id}")
+            .addClass('button')
+            .addClass('text-icon')
+            .addClass('button--primary')
+            .addClass('submit')
+            .addClass(this.class|default)
+            .mergeWith(getAttributes.invoke())
+        }}>
+            <span class="button__text text-icon__text">{{ this.slabel }}</span>
+            <span class="button__icon text-icon__icon svg-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <circle cx="12" cy="12" r="11.5" class="button__icon-bg"></circle>
+                    <path d="M10 7l5 5-5 5" class="button__icon-arrow" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+            </span>
+        </button>
+    {% endif %}
+{% endblock %}

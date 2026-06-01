@@ -1,0 +1,315 @@
+# Oveleon - Contao Cookiebar
+contao_cookiebar:
+  consider_dnt: false
+  anonymize_ip: true
+  consent_log: true
+  lifetime: 63072000
+
+# Agentur KOPFNUSS - Contao Element Group Flex
+contao_element_group_flex:
+  allowed_types:
+    - image
+    - text
+    - headline
+    - download
+    - rsce_icon_text
+    - rsce_icon_label_badge
+
+# Agentur KOPFNUSS - Contao Element Group Grid
+contao_element_group_grid:
+  allowed_types:
+    - image
+    - text
+    - headline
+    - player
+    - table
+    - download
+    - element_group
+    - accordion
+    - rsce_icon_text
+    - rsce_page_teaser_standard
+    - rsce_block_page_teaser_standard
+    - rsce_team
+    - rsce_block_team
+    - rsce_block_icon_text
+    - rsce_link_list
+    - rsce_block_link_list
+    - rsce_button
+    - rsce_block_image_slider
+    - rsce_block_image_slider_text
+    - rsce_block_table_link
+    - rsce_icon_label_badge
+
+    # Contao Managed Edition
+contao:
+  # Enable search index
+  search:
+    # The default search indexer, which indexes pages in the database.
+    default_indexer:
+      enable: true
+    # Enables indexing of protected pages.
+    index_protected: false
+
+  # Show customizable, pretty error screens instead of the default PHP error messages.
+  pretty_error_screens: true
+
+  # The folder used by the file manager.
+  upload_path: files
+  editable_files: "css,csv,html,ini,js,json,less,md,scss,svg,svgz,ts,txt,xliff,xml,yml,yaml"
+
+  # Backend settings.
+  localconfig:
+    adminEmail: "admin@werbeagentur-kopfnuss.de"
+    allowedDownload: jpg,jpeg,gif,png,svg,svgz,webp,avif,heic,jxl,odt,ods,odp,odg,ott,ots,otp,otg,pdf,doc,docx,dot,dotx,xls,xlsx,xlt,xltx,ppt,pptx,pot,potx,mp3,mp4,m4a,m4v,webm,ogg,ogv,wma,wmv,ram,rm,mov,zip,rar,7z,md
+    allowedTags: <svg><path><a><abbr><acronym><address><area><article><aside><audio><b><bdi><bdo><big><blockquote><br><button><caption><cite><code><col><colgroup><data><datalist><dd><del><dfn><div><dl><dt><em><fieldset><figcaption><figure><footer><form><h1><h2><h3><h4><h5><h6><header><hgroup><hr><i><img><input><ins><kbd><label><legend><li><map><mark><menu><nav><ol><optgroup><option><output><p><picture><pre><q><s><samp><section><select><small><source><span><strong><style><sub><sup><table><tbody><td><textarea><tfoot><th><thead><time><tr><tt><u><ul><var><video><wbr>
+    dateFormat: d.m.Y
+    datimFormat: d.m.Y H:i
+    timeFormat: H:i
+    folderUrl: false
+    gdMaxImgHeight: 3000
+    gdMaxImgWidth: 3000
+    imageHeight: 3000
+    imageWidth: 3000
+    maxFileSize: 8192000
+
+  image:
+    sizes:
+
+      # Inhaltsbreite Standard maximal: 125rem - 2000px
+      # Inhaltsbreite Mittel maximal: 100rem - 1600px
+      # Inhaltsbreite Schmal maximal: 82rem - 1312px
+      # Grid Breakpoints
+      # $breakpoint-1: 46rem - 736px
+      # $breakpoint-2: 70rem - 1120px
+      # Grid 4 Spalten: width > $breakpoint-2: 4 Spalten, width > $breakpoint-1: 2 Spalten, width < $breakpoint-1: 1 Spalte
+      # Grid 3 Spalten: width > $breakpoint-2: 3 Spalten, width > $breakpoint-1: 2 Spalten, width < $breakpoint-1: 1 Spalte
+      # Grid 2 Spalten: width > $breakpoint-1: 2 Spalten, width < $breakpoint-1: 1 Spalte
+
+      #
+      # Standard
+      #
+
+      # Image Size - Galerie
+      # 2 Spalten | <736px: 1 Spalte (100vw) · ≥736px: 2 Spalten (50vw → max 1000px)
+      galerie_element_2_images_per_row:
+        width: 1100
+        height: 730
+        resize_mode: crop
+        lazy_loading: true
+        densities: 400w, 736w, 1100w, 2200w
+        sizes: "(min-width: 46rem) 50vw, 100vw"
+        imagine_options:
+          jpeg_quality: 90
+
+      # 3 Spalten | <736px: 1 Spalte (100vw) · 736-1120px: 2 Spalten (50vw → max 560px) · ≥1120px: 3 Spalten (33vw → max 660px)
+      galerie_element_3_images_per_row:
+        width: 760
+        height: 505
+        resize_mode: crop
+        lazy_loading: true
+        densities: 400w, 560w, 760w, 1100w, 1520w
+        sizes: "(min-width: 70rem) 33vw, (min-width: 46rem) 50vw, 100vw"
+        imagine_options:
+          jpeg_quality: 90
+
+      # 4 Spalten | <736px: 1 Spalte (100vw) · 736-1120px: 2 Spalten (50vw → max 560px) · ≥1120px: 4 Spalten (25vw → max 500px)
+      galerie_element_4_images_per_row:
+        width: 550
+        height: 365
+        resize_mode: crop
+        lazy_loading: true
+        densities: 360w, 550w, 1100w
+        sizes: "(min-width: 70rem) 25vw, (min-width: 46rem) 50vw, 100vw"
+        imagine_options:
+          jpeg_quality: 90
+
+          #
+      # Image Size - Content Element
+      #
+
+      # 2 Spalten | <768px: 1 Spalte (100vw → max 680px) · 768-1312px: 2 Spalten (50vw → max 656px) · >1312px: fix 656px
+      content_element_image_50_narrow_site:
+        width: 680
+        resize_mode: proportional
+        lazy_loading: true
+        densities: 380w, 680w, 1360w
+        sizes: "(max-width: 48rem) 100vw, (max-width: 82rem) 50vw, 41rem"
+        imagine_options:
+          jpeg_quality: 90
+
+      # 2 Spalten | <768px: 1 Spalte (100vw → max 768px) · 768-1312px: 2 Spalten (50vw → max 656px) · >1312px: fix 656px
+      content_element_image_50_standard_site:
+        width: 1200
+        resize_mode: proportional
+        lazy_loading: true
+        densities: 400w, 768w, 1200w, 2000w
+        sizes: "(max-width: 48rem) 100vw, (max-width: 82rem) 50vw, 41rem"
+        imagine_options:
+          jpeg_quality: 90
+
+      # 2 Spalten | <768px: 1 Spalte (100vw → max 768px) · 768-2000px: 2 Spalten (75vw → max 1180px) · > 2000px: fix 1180px
+      content_element_image_75_fixed_height_standard_site:
+        width: 1180
+        height: 500
+        resize_mode: crop
+        lazy_loading: true
+        densities: 400w, 768w, 1180w, 2360w
+        sizes: "(max-width: 48rem) 100vw, (max-width: 98.25rem) 75vw, 73.75rem"
+        imagine_options:
+          jpeg_quality: 90
+
+      content_element_logo_same_width:
+        width: 300
+        resize_mode: proportional
+        lazy_loading: true
+        densities: 300w, 600w
+        imagine_options:
+          jpeg_quality: 90
+
+      content_element_logo_same_height:
+        height: 100
+        resize_mode: proportional
+        lazy_loading: true
+        densities: 100w, 200w
+        imagine_options:
+          jpeg_quality: 90
+
+      content_element_social_media_icon:
+        width: 50
+        resize_mode: proportional
+        lazy_loading: true
+        densities: 50w, 100w
+        imagine_options:
+          jpeg_quality: 90
+
+      #
+      # Image Size - News
+      #
+
+      # 3 Spalten | <768px: 1 Spalte (100vw) · 768-2000px: 2 Spalten (50vw → max 980px) · >2000px: fix 980px
+      news_teaser_image:
+        width: 760
+        height: 365
+        resize_mode: crop
+        lazy_loading: true
+        densities: 455w, 910w, 1365w, 1820w
+        sizes: "(min-width: 70rem) 33vw, (min-width: 46rem) 50vw, 100vw"
+        imagine_options:
+          jpeg_quality: 90
+
+      #
+      # Image Size - RSCE
+      #
+
+      # 3 Spalten | <736px: 1 Spalte (100vw) · 736-1120px: 2 Spalten (50vw → max 560px) · ≥1120px: 3 Spalten (33vw → max 660px)
+      rsce_block_image_slider_text_image:
+        width: 760
+        height: 400
+        resize_mode: crop
+        lazy_loading: true
+        densities: 400w, 560w, 760w, 1520w
+        sizes: "(min-width: 70rem) 33vw, (min-width: 46rem) 50vw, 100vw"
+        imagine_options:
+          jpeg_quality: 90
+
+      rsce_block_icon_text_icon:
+        width: 48
+        resize_mode: proportional
+        lazy_loading: true
+        densities: 46w, 86w
+        imagine_options:
+          jpeg_quality: 90
+
+      rsce_block_link_list_icon:
+        width: 22
+        resize_mode: proportional
+        lazy_loading: true
+        densities: 22w, 44w
+        imagine_options:
+          jpeg_quality: 90
+
+      rsce_block_link_list_qr_code:
+        width: 200
+        resize_mode: proportional
+        lazy_loading: true
+        densities: 200w, 400w
+        imagine_options:
+          jpeg_quality: 90
+
+      # 3 Spalten - standard Seite | <736px: 1 Spalte (100vw) · 736-1120px: 2 Spalten (50vw → max 560px) · ≥1120px: 3 Spalten (33vw → max 660px)
+      rsce_block_page_teaser_standard_teaser_image:
+        width: 760
+        height: 400
+        resize_mode: crop
+        lazy_loading: true
+        densities: 400w, 560w, 760w, 1100w, 1520w
+        sizes: "(min-width: 70rem) 33vw, (min-width: 46rem) 50vw, 100vw"
+        imagine_options:
+          jpeg_quality: 90
+
+      # 3 Spalten - standard Seite | <736px: 1 Spalte (100vw) · 736-1120px: 2 Spalten (50vw → max 560px) · ≥1120px: 3 Spalten (33vw → max 660px)
+      rsce_block_team_image:
+        width: 760
+        height: 800
+        resize_mode: crop
+        lazy_loading: true
+        densities: 400w, 560w, 760w, 1100w, 1520w
+        sizes: "(min-width: 70rem) 33vw, (min-width: 46rem) 50vw, 100vw"
+        imagine_options:
+          jpeg_quality: 90
+
+      rsce_icon_label_badge_icon:
+        width: 22
+        resize_mode: proportional
+        lazy_loading: true
+        densities: 22w, 44w
+        imagine_options:
+          jpeg_quality: 90
+
+      rsce_button_icon:
+        width: 22
+        resize_mode: proportional
+        lazy_loading: true
+        densities: 22w, 44w
+        imagine_options:
+          jpeg_quality: 90
+
+      #
+      # Image Size - Project
+      #
+
+      # 4 Spalten - standard Seite | <600px: 1 Spalte (100vw) · 600-1400px: 2 Spalten (50vw → max 760px) · ≥1400px: 4 Spalten (25vw → max 610px)
+      content_element_image_hero_big:
+        width: 770
+        height: 950
+        resize_mode: crop
+        lazy_loading: true
+        densities: 360w, 610w, 760w, 1520w
+        sizes: "(min-width: 87.5rem) 25vw, (min-width: 37.5rem) 50vw, 100vw"
+        imagine_options:
+          jpeg_quality: 90
+
+      # 4 Spalten - standard Seite | <600px: 1 Spalte (100vw) · 600-1400px: 2 Spalten (50vw → max 540px) · ≥1400px: 4 Spalten (25vw → max 610px)
+      content_element_image_hero_small:
+        width: 540
+        height: 600
+        resize_mode: crop
+        lazy_loading: true
+        densities: 360w, 540w, 1080w
+        sizes: "(min-width: 87.5rem) 25vw, (min-width: 37.5rem) 50vw, 100vw"
+        imagine_options:
+          jpeg_quality: 90
+
+
+      content_element_logo_supporter:
+        width: 300
+        resize_mode: proportional
+        lazy_loading: true
+        densities: 455w, 910w, 1365w, 1820w
+        imagine_options:
+          jpeg_quality: 90
+
+  backend:
+    custom_css:
+      - files/custom/theme/src/css/backend.css
+    # badge_title: develop

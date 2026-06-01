@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Typography Adjustments
+   Beschreibung: Angepasste Typografie-Styles fuer bessere Lesbarkeit und Aesthetik.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   Extension:
+   ========================================================================== */
+
+@layer extensions {
+    .wrapper--width-narrow > .content-text,
+    .wrapper--width-standard > .content-text {
+        max-width: 65ch;
+
+        &:not(:has(.u-text-center)) {
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                text-align: left;
+            }
+        }
+
+        &:has(.u-text-center) {
+            margin-inline: auto;
+        }
+    }
+
+    /* max-width in Zeichen fuer bessere Lesbarkeit - nur im wrapper und nicht in .equal-columns.
+       In .equal-columns wird die max-width durch die Spalten definiert. */
+    .wrapper--width-narrow > *:not(:has(.equal-columns)) .content-text,
+    .wrapper--width-standard > *:not(:has(.equal-columns)) .content-text {
+        max-width: 65ch;
+    }
+
+    .wrapper--width-standard > * .ce_rsce_two_columns_text {
+        max-width: var(--section-width-sm);
+        margin-inline: auto;
+    }
+}

@@ -1,0 +1,11 @@
+{% block be_button %}
+    <div class="{{ class }} backend-rsce-button"{% if cssID %} id="{{ cssID }}"{% endif %}>
+
+        {% set buttonClass = buttonStyle|default ? 'button--' ~ buttonStyle : 'button--primary' %}
+
+        <div class="button {{ buttonClass }}">
+            <span class="button__text">{{ buttonText }}</span>
+        </div>
+
+    </div>
+{% endblock %}

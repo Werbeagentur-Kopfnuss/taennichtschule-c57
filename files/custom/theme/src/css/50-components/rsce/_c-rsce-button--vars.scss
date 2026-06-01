@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Button with Icon
+   Beschreibung: Styles fuer die Button-Komponente in RSCE.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: _b-button.css, _c-icon-with-text--vars.css, rsce_button.html.twig, rsce_button_config.php, tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    /* Button mit Icon */
+    .button:has(.button__icon) {
+        /* Mit icon-with-text-Variablen ueberschreiben */
+        --icon-with-text-gap: var(--icon-padding-inline-regular);
+
+        display: flex; /* display:flex wegen Modifikator center mit margin-inline: auto */
+        width: fit-content;
+        align-items: center;
+
+
+        strong {
+            font-weight: 800;
+        }
+    }
+
+    /* Gemeinsame Transition fuer alle Icon-Elemente */
+    .button__icon-arrow,
+    .button__icon-bg {
+        transition: stroke 0.3s ease, fill 0.3s ease;
+    }
+
+    /* Primaere Button-Farben ueber CSS-Variablen */
+    .button--primary {
+        --icon-arrow-stroke: var(--button-background-primary);
+        --icon-bg-fill: var(--button-color-primary);
+    }
+
+    .button--primary:hover {
+        --icon-arrow-stroke: var(--button-color-primary);
+        --icon-bg-fill: var(--button-background-primary);
+    }
+
+    /* Sekundaere Button-Farben ueber CSS-Variablen */
+    .button--secondary {
+        --icon-arrow-stroke: var(--button-background-secondary);
+        --icon-bg-fill: var(--button-color-secondary);
+    }
+
+    .button--secondary:hover {
+        --icon-arrow-stroke: var(--button-color-secondary);
+        --icon-bg-fill: var(--button-background-secondary);
+    }
+
+    /* Reduced-Button-Farben ueber CSS-Variablen */
+    .button--reduced {
+        --icon-arrow-stroke: var(--button-background-reduced);
+        --icon-bg-fill: var(--button-color-reduced);
+    }
+
+    .button--reduced:hover {
+        --icon-arrow-stroke: var(--button-color-reduced);
+        --icon-bg-fill: var(--button-background-reduced);
+    }
+
+    /* only-text-icon-Button-Farben ueber CSS-Variablen */
+    .button--only-text-icon {
+        --icon-arrow-stroke: var(--button-background-reduced);
+        --icon-bg-fill: var(--button-color-reduced);
+    }
+
+    .button--only-text-icon:hover {
+        --icon-arrow-stroke: var(#fff);
+        --icon-bg-fill: var(--navigation-color-default-hover);
+    }
+
+    /* Zuweisung an die Icons */
+    .button__icon-arrow {
+        stroke: var(--icon-arrow-stroke);
+    }
+
+    .button__icon-bg {
+        fill: var(--icon-bg-fill);
+    }
+
+    /* ================
+        Accessible
+        ================ */
+
+    /* Accessible-Variante fuer Nutzer mit reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        .button__icon-arrow,
+        .button__icon-bg {
+            transition: none !important;
+        }
+    }
+
+    /* Accessible-Variante fuer manuelle Nutzung */
+    .is-reduce-motion {
+        .button__icon-arrow,
+        .button__icon-bg {
+            transition: none !important;
+        }
+    }
+}

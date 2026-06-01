@@ -1,0 +1,21 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Flow Spacing
+   Beschreibung: Fuegt konsistente vertikale Abstaende zwischen Elementen in Contao hinzu.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   Extension:
+   ========================================================================== */
+
+@layer extensions {
+    .content-text > * + *,
+    .content-text > .rte > * + * {
+        margin-block-start: var(--flow-spacing-block-default, 1.25em);
+    }
+    /* Sonderbehandlung fuer das erste Heading innerhalb von content-text */
+    .content-text > h1 + * {
+        margin-block-start: var(--elements-gap-block);
+    }
+}

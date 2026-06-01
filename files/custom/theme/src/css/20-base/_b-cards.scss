@@ -1,0 +1,72 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Card Base
+   Beschreibung: Basis-Styles fuer Cards.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer base {
+    .card {
+        --flow-spacing-block: var(--flow-spacing-block-default);
+
+        display: grid;
+    }
+
+    /* Styles nur anwenden, wenn mehr als ein Kind vorhanden ist.
+       Das ist bei subgrid der Fall. Ausschliessen, wenn ein svg ein Kind ist. */
+    .card:has(> :not(svg) ~ :not(svg)):not(:has(> .card__image)) {
+        & > * {
+            padding-inline: 0;
+        }
+        & > *:last-child {
+            padding-block-end: var(--card-padding-block);
+        }
+
+        & > *:first-child {
+            padding-block-start: var(--card-padding-block);
+        }
+        & > :nth-child(n + 2) {
+            margin-block-start: var(--flow-spacing-block);
+        }
+    }
+
+    /* Spezielle Styles, wenn figure/image vorhanden ist */
+    .card:has(.card__image) {
+        > *:not(:first-child) {
+            padding-inline: var(--card-padding-inline);
+        }
+        > *:first-child {
+            padding-block-start: 0; // padding-block-start fuer erstes Element mit figure zuruecksetzen
+        }
+        > *:last-child {
+            padding-block-end: var(--card-padding-block);
+        }
+        > *:nth-child(2) {
+            padding-block-start: var(--card-padding-block);
+        }
+        > :nth-child(n + 2) {
+            margin-block-start: 0; // margin-block-start fuer zweites Element mit figure zuruecksetzen
+        }
+        > :nth-child(n + 3) {
+            margin-block-start: var(--flow-spacing-block);
+        }
+    }
+
+    /* Card-Modifikatoren */
+    .card--background,
+    .card--border {
+        border-radius: var(--border-radius-default);
+        padding-inline: var(--elements-gap-inline);
+        padding-block: var(--elements-gap-block);
+    }
+
+    .card--background {
+        background-color: var(--background-color-light);
+    }
+    .card--border {
+        border: var(--border-width-default) solid var(--border-color-default);
+    }
+}

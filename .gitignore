@@ -1,0 +1,22 @@
+#ignore folders
+node_modules/
+assets/
+bin/
+contao-manager/
+files/custom/media/
+files/custom/theme/src/homeicons/
+public/
+system/
+var/
+vendor/
+.vscode/
+.idea/
+
+#ignore files
+.env
+.env.local
+.htaccess
+.htpasswd
+package-lock.json
+package.json
+.prettierignore

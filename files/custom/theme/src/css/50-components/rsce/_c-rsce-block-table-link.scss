@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Block Table Link
+   Beschreibung: Styles fuer das RSCE-Block-Table-Link-Element.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_block-table-link.html.twig, rsce_block-table-link_config.php, tokens.semantic.css, _b-cards.css
+   ========================================================================== */
+
+@layer components {
+    a.block-table-link__card {
+        text-decoration: none;
+        color: var(--text-color-default);
+
+        &:hover {
+            .content-headline {
+                color: var(--text-color-default-hover);
+            }
+        }
+    }
+
+    .block-table-link__card {
+        table {
+            text-align: left;
+            border-collapse: collapse;
+            width: 100%;
+
+            th,
+            td {
+                padding: var(--table-cell-padding-block-sm, 0.25rem) var(--table-cell-padding-inline-default, 0.75rem);
+            }
+
+            th {
+                font-weight: var(--font-size-regular);
+            }
+
+            tr > :first-child {
+                padding-inline-start: 0;
+            }
+
+            tr > :last-child {
+                padding-inline-end: 0;
+            }
+
+            caption {
+                color: var(--text-color-light);
+                font-size: var(--font-size-sm);
+            }
+        }
+
+        .text-icon {
+            display: block;
+            width: fit-content;
+            margin-inline: auto;
+        }
+    }
+
+    .block-table-link__card:has(.card-bg-icon) {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card-bg-icon {
+        position: absolute;
+        top: -6.5rem;
+        right: 3%;
+        width: 4.68rem;
+        height: auto;
+        opacity: 0.08;
+        pointer-events: none;
+        z-index: 0;
+    }
+}

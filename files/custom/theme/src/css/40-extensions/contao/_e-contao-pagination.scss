@@ -1,0 +1,23 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Pagination
+   Beschreibung: Angepasste Styles fuer die Contao-Pagination passend zum Layout.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+
+@layer extensions {
+    .pagination {
+        margin-block-start: var(--elements-gap-block);
+        p:first-child {
+            margin-block-end: var(--flow-spacing-block-sm);
+            text-align: center;
+        }
+        ul {
+            justify-content: center;
+        }
+    }
+}

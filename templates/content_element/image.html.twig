@@ -1,0 +1,10 @@
+{% extends "@Contao/content_element/image.html.twig" %}
+{% use "@Contao/component/_figure.html.twig" %}
+
+{% block media_link %}
+    {% set link_attributes = (link_attributes|default(attrs()))
+        .addClass('image--hover')
+    %}
+
+    {{ parent() }}  {# rendert den Original-Block mit deinen erweiterten Attributes #}
+{% endblock %}

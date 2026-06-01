@@ -1,0 +1,25 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Search Module Styles
+   Beschreibung: Angepasste Styles fuer das Contao-Search-Module passend zum Layout.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+
+@layer extensions {
+    .mod_search {
+        & > *:first-child {
+            margin-block-end: var(--elements-gap-block);
+        }
+    }
+    .search_default:not(:first-child) {
+        margin-block-start: var(--elements-gap-block);
+    }
+
+    .search_default .context {
+        color: var(--text-color-light);
+    }
+}

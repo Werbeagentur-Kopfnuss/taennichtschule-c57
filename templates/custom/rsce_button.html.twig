@@ -1,0 +1,105 @@
+{% use "@Contao/component/_figure.html.twig" %}
+
+{% block rsce_button %}
+
+    {#
+    RSCE-Element: Button
+    Details: Link, Bezeichnung, Aria-label, Icon
+    Depends on: _b-button.css, _b-icons.css
+    #}
+
+    {# button style #}
+    {% set buttonClass = buttonStyle|default ? 'button--' ~ buttonStyle : 'button--primary' %}
+
+    {# derive icon position from select field (isleft / isright), with fallback #}
+    {% set iconPosition = hasIconLeftRight|default('isRight') == 'isLeft' ? 'left' : 'right' %}
+
+    {# checkboxes & icon type #}
+    {% set hasCustomIconEnabled = hasCustomIcon is defined and 'isCustomIcon' in hasCustomIcon|default([]) %}
+    {% set isButtonCentered = buttonCenter   is defined and 'isButtonCenter' in buttonCenter|default([]) %}
+    {% set iconIsSvg = iconArt|default == 'isIconFileSvg' %}
+    {% set iconIsImage = iconArt|default == 'isIconImage' %}
+
+    {# aria-label: use field, otherwise button text as fallback #}
+    {% set ariaLabel = buttonAriaLabel|default(buttonText) %}
+
+    {# prepare icon once (svg, image or fallback) #}
+    {% set icon = '' %}
+
+    {% if hasCustomIconEnabled %}
+        {# custom svg icon #}
+        {% if iconIsSvg and svg is defined and svg %}
+            {% set icon %}
+                <span class="button__icon text-icon__icon svg-icon" aria-hidden="true">
+                    {{ svg|insert_tag|raw }}
+                </span>
+            {% endset %}
+            {# custom image icon #}
+        {% elseif iconIsImage and image is defined and image %}
+            {# determine / override metadata #}
+
+            {% set icon %}
+                <span class="button__icon text-icon__icon button__icon--image" aria-hidden="true">
+                    {% include "@Contao/component/_figure.html.twig" with {
+                        figure: figure(image, imageSize|default(''), {})
+                    } %}
+                </span>
+            {% endset %}
+        {% endif %}
+    {% endif %}
+
+    {# fallback icon if no custom icon was set #}
+    {% if icon is empty %}
+        {% set icon %}
+            <span class="button__icon text-icon__icon svg-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <circle cx="12" cy="12" r="11.5" class="button__icon-bg"></circle>
+                    <path d="M10 7l5 5-5 5" class="button__icon-arrow" fill="none" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+            </span>
+        {% endset %}
+    {% endif %}
+
+    {# determine href based on link type #}
+    {% set linkType = linkArt|default('isUrl') %}
+
+    {% if linkType == 'isEmail' and email is defined and email %}
+        {# mailto-Link #}
+        {% set href = 'mailto:' ~ email|trim %}
+    {% elseif linkType == 'isTelefon' and telefon is defined and telefon %}
+        {# phone number: remove +, spaces, /, - and parentheses #}
+        {% set telefonOnly = telefon|replace({
+            '+': '',
+            ' ': '',
+            '/': '',
+            '-': '',
+            '(': '',
+            ')': ''
+        }) %}
+        {% set href = 'tel:' ~ telefonOnly %}
+    {% else %}
+        {# default: normal URL mit InsertTags #}
+        {% set href = url|default|insert_tag %}
+    {% endif %}
+
+    {# button with icon and text #}
+    <a href="{{ href }}"
+       class="button text-icon {{ buttonClass }}{% if isButtonCentered %} button--center{% endif %} text-icon--icon-{{ iconPosition }} {{ class|default('') }}"
+       {% if cssID %}id="{{ cssID }}"{% endif %}
+       aria-label="{{ ariaLabel }}">
+
+        {# icon left #}
+        {% if iconPosition == 'left' %}
+            {{ icon|raw }}
+        {% endif %}
+
+        <span class="button__text text-icon__text">{{ buttonText }}</span>
+
+        {# icon right #}
+        {% if iconPosition == 'right' %}
+            {{ icon|raw }}
+        {% endif %}
+    </a>
+
+{% endblock %}

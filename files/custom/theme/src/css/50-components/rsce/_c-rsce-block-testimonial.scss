@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE element for testimonial block
+   Beschreibung: Styles fuer die RSCE-Block-Testimonial-Komponente.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_block_testimonial.html.twig, rsce_block_testimonial_config.php, tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    .testimonial {
+        overflow: hidden; /* Verhindert, dass dekorative Quotes ueberlaufen */
+    }
+
+    .testimonial__figure {
+        position: relative;
+        margin-block-start: 3rem;
+    }
+
+    .testimonial:not(:has(.testimonial__quote--two-columns)) {
+        max-width: 48rem;
+        margin-inline: auto;
+    }
+
+    @media (width >= 48rem) {
+        .testimonial__quote--two-columns {
+            column-count: 2;
+            column-gap: var(--equal-columns-gap-default);
+        }
+    }
+
+    /* Name unten links */
+    .testimonial__author {
+        margin-block-start: var(--flow-spacing-block-lg);
+        font-size: var(--font-size-sm);
+        color: var(--text-color-light);
+    }
+
+    /* Dekorative Anfuehrungszeichen */
+    .testimonial__figure::before,
+    .testimonial__figure::after {
+        position: absolute;
+        font-size: var(--font-size-heading-xxl-max);
+        line-height: 1;
+        color: var(--text-color-default);
+        content: "";
+    }
+
+    /* Oeffnendes Anfuehrungszeichen oben links */
+    .testimonial__figure::before {
+        content: "“";
+        top: -3rem;
+        left: 0;
+    }
+
+    /* Schliessendes Anfuehrungszeichen unten rechts */
+    .testimonial__figure::after {
+        content: "”";
+        right: 0;
+        bottom: -2.5rem;
+    }
+}

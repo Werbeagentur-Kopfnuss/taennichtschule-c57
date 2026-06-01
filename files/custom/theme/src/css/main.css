@@ -1,0 +1,4184 @@
+@charset "UTF-8";
+/* ==========================================================================
+   Author: Agentur KOPFNUSS - Marco Schädlich
+   Main SCSS File
+   Description: Structured imports using SCSS modules + CSS layers
+   ========================================================================== */
+/* 00) settings */
+/*  =========================================================================
+    Autor: Agentur KOPFNUSS - Marco Schaedlich
+    Einstellungen: Tokens Primitives
+    Beschreibung: Definiert primitive Design-Tokens wie Farben, Typografie, Abstaende usw.
+    Ebene (Layer):
+    Wiederverwendbar: Ja
+    Custom-Property-Definitionen: Ja
+    Abhaengigkeiten:
+    ========================================================================== */
+/* 320px */
+/* 420px */
+/* 736px */
+/* 768px */
+/* 848px */
+/* 1024px */
+/* 1120px */
+/* 1200px */
+/* 1440px */
+/* 1600px */
+/* 1800px */
+@layer settings {
+  :root {
+    /* ================
+    Farben
+    ================ */
+    --clr-black: hsl(0deg 0% 0%);
+    --clr-white: hsl(0deg 0% 100%);
+    --clr-red-500: hsl(351deg 86% 46%);
+    --clr-blue-500: hsl(198deg 100% 45%);
+    --clr-green-500: #18614F;
+    --clr-violett-500: #AB4459;
+    --clr-orange-500: #FFA62B;
+    --clr-grey-200: hsl(0deg 0% 20%);
+    --clr-grey-500: hsl(0deg 0% 49%);
+    --clr-grey-600: hsl(43deg 14% 90%);
+    --clr-grey-800: hsl(0deg 0% 95%);
+    --clr-grey-900: hsl(0deg 0% 97%);
+    --clr-warm-grey-800: hsl(60deg 12% 97%);
+    /* ================
+    Schriftfamilien
+    ================ */
+    --ff-sans: "Inter", arial, sans-serif;
+    --ff-sans-2: "Copperhewitt", "Times New Roman", times, serif;
+    /* ================
+    Typografie
+    ================ */
+    /* Zeilenhoehe */
+    --lh-none: 1;
+    --lh-sm: 1.15;
+    --lh-regular: 1.4;
+    --lh-m: 1.5;
+    --lh-l: 1.8;
+    /* Feste Font-Groesse - wird in Navigation usw. verwendet. */
+    --fs-200: 0.75rem; /* 12px */
+    --fs-300: 0.875rem; /* 14px */
+    --fs-400: 0.875rem; /* 16px */
+    --fs-500: 1rem; /* 18px */
+    --fs-600: 1.125rem; /* 20px */
+    --fs-650: 1.25rem; /* 22px */
+    --fs-700: 1.375rem; /* 24px */
+    --fs-800: 1.5rem; /* 26px */
+    --fs-900: 1.625rem; /* 34px */
+    --fs-1000: 2.125rem; /* 42px */
+    --fs-1100: 2.65rem; /* 46px */
+  }
+  @media (width > 48rem) {
+    :root {
+      --fs-200: 0.75rem; /* 12px */
+      --fs-300: 0.875rem; /* 14px */
+      --fs-400: 1rem; /* 16px */
+      --fs-500: 1.125rem; /* 18px */
+      --fs-600: 1.25rem; /* 20px */
+      --fs-650: 1.375rem; /* 22px */
+      --fs-700: 1.5rem; /* 24px */
+      --fs-800: 1.625rem; /* 26px */
+      --fs-900: 2.125rem; /* 34px */
+      --fs-1000: 2.65rem; /* 42px */
+      --fs-1100: 2.875rem; /* 46px */
+    }
+  }
+  :root {
+    /* Schriftgewicht (font-weight) */
+    --fw-200: 200;
+    --fw-300: 300;
+    --fw-400: 400;
+    --fw-500: 500;
+    --fw-600: 600;
+    --fw-700: 700;
+    --fw-800: 800;
+    --fw-900: 900;
+    /* Fluide Parameter */
+    --fs-hl-xxl-min: 2.5rem;
+    --fs-hl-xxl-max: 4.756rem;
+    --fs-hl-xxl-min-no-unit: 2.5;
+    --fs-hl-xxl-max-no-unit: 4.756;
+    --fs-hl-xl-min: 2.25rem;
+    --fs-hl-xl-max: 3.125rem;
+    --fs-hl-xl-min-no-unit: 2.25;
+    --fs-hl-xl-max-no-unit: 3.125;
+    --fs-hl-lg-min: 2rem;
+    --fs-hl-lg-max: 2rem;
+    --fs-hl-lg-min-no-unit: 2;
+    --fs-hl-lg-max-no-unit: 2;
+    --fs-regular-min: 1.125rem;
+    --fs-regular-min-no-unit: 1.125;
+    --fs-regular-max: 1.375rem;
+    --fs-regular-max-no-unit: 1.37;
+    /* ================
+    Seitenbreite
+    ================ */
+    --width-100: 26rem; /* 416px */
+    --width-300: 40rem; /* 640px */
+    --width-500: 82rem; /* 1312px */
+    --width-700: 125rem; /* 2000px */
+    --width-1000: 100%;
+    /* ================
+    Elementbreiten
+    ================ */
+    --element-width-100: 160px;
+    --element-width-200: 240px;
+    --element-width-300: 320px;
+    --element-width-400: 380px;
+    --element-width-500: 416px;
+    --element-width-700: 640px;
+    /* ================
+    Abstaende
+    ================ */
+    --space-100: 0.2rem;
+    --space-200: 0.25rem;
+    --space-300: 0.5rem;
+    --space-350: 0.6rem;
+    --space-400: 0.75rem;
+    --space-450: 0.8rem;
+    --space-500: 1rem;
+    --space-600: 1.25rem;
+    --space-700: 1.5rem;
+    --space-750: 1.75rem;
+    --space-800: 2rem;
+    --space-900: 3rem;
+  }
+  @media (width > 48rem) {
+    :root {
+      --space-100: 0.25rem; /* 4px */
+      --space-200: 0.5rem; /* 8px */
+      --space-300: 0.75rem; /* 12px */
+      --space-350: 1rem; /* 12px */
+      --space-400: 1.25rem; /* 16px */
+      --space-450: 1.5rem; /* 16px */
+      --space-500: 1.75rem; /* 24px */
+      --space-600: 2.125rem; /* 32px */
+      --space-700: 2.5rem; /* 48px */
+      --space-750: 3rem; /* 48px */
+      --space-800: 4.75rem; /* 64px */
+      --space-900: 7rem; /* 96px */
+    }
+  }
+  :root {
+    --space-100-em: 0.2em;
+    --space-200-em: 0.25em;
+    --space-300-em: 0.5em;
+    --space-400-em: 0.75em;
+    --space-500-em: 1em;
+    --space-600-em: 1.25em;
+    --space-700-em: 1.5em;
+    --space-800-em: 1.75em;
+    --space-900-em: 2em;
+  }
+  @media (width > 48rem) {
+    :root {
+      --space-100-em: 0.25em; /* 4px */
+      --space-200-em: 0.5em; /* 8px */
+      --space-300-em: 0.75em; /* 12px */
+      --space-400-em: 1.25em; /* 16px */
+      --space-500-em: 1.75em; /* 24px */
+      --space-600-em: 2.125em; /* 32px */
+      --space-700-em: 2.5em; /* 48px */
+      --space-800-em: 3em; /* 48px */
+      --space-900-em: 4.75em; /* 64px */
+    }
+  }
+  :root {
+    /* ================
+    Radius
+    ================ */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 20px;
+    --radius-xl: 40px;
+    /* ================
+    Rahmen
+    ================ */
+    --border-width-100: 1px;
+    --border-width-200: 2px;
+    /* ================
+    Objektgroesse
+    ================ */
+    --object-size-xs: 0.75rem;
+    --object-size-sm: 1rem;
+    --object-size-regular: 1.375rem;
+    --object-size-md: 1.5rem;
+    --object-size-lg: 2rem;
+    --object-size-xl: 3rem;
+    --object-size-xxl: 5rem;
+  }
+}
+/* =========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Einstellungen: Tokens Semantic
+   Beschreibung: Definiert semantische Design-Tokens basierend auf primitiven Tokens.
+   Ebene (Layer):
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Ja
+   Abhaengigkeiten:
+   ========================================================================== */
+/* Muster: --[component]-[property]-[variant]-[state]:
+   component (Komponente): button, navigation, link, text, border, background, icon, etc.
+   property (Eigenschaft): color, background, border, size, spacing, font-size, font-weight, etc.
+   variant (Variante): primary, secondary, sm, lg, etc.
+   state (Zustand): hover, active, focus, disabled, etc.
+*/
+/* Token-Struktur:
+   1. Breakpoints
+   2. Focus - Globale Interaktionszustaende
+   3. Section - Haupt-Container
+   4. Wrapper - Inhalts-Wrapper
+   5. Layout Gaps - Allgemeine Abstaende zwischen Elementen
+   6. Flow Spacing - Vertikaler Rhythmus
+   7. Card - Card-Komponenten
+   8. Equal Columns Layout - Grid-Layout-Utility
+   9. Flex Group Layout - Flex-Layout-Utility
+   10. Grid Auto-Fit Layout - Responsive Grid-Utility
+   11. Header - Header-Bereich
+   12. Logo - Logo-Komponente
+   13. Navigation - Navigationsmenue
+   14. Button - Buttons
+   15. Link - Links
+   16. Text - Textfarben
+   17. Background - Hintergrundfarben
+   18. Form - Formularelemente
+   19. Table - Tabellenelemente
+   20. Border - Rahmen (Farben & Radius)
+   21. Icon - Icon-Groessen
+   22. Font - Typografie (Font-Groessen, Weights, Families, Line Heights)
+*/
+/* ================
+Breakpoints
+================ */
+/* Sass-Variablen fuer Breakpoints zur Verwendung in Media Queries */
+/* Normale Breakpoints */
+/* Container-Breakpoints fuer Container Queries */
+@layer settings {
+  :root {
+    /* ================
+    Focus
+    ================ */
+    --focus-color-default: var(--clr-blue-500);
+    --skip-link-color: var(--clr-white);
+    --skip-link-background: var(--clr-black);
+    --skip-link-focus-border-color: var(--clr-white);
+    --skip-link-font-weight: var(--fw-400);
+    /* ================
+    Section (Bereich)
+    ================ */
+    --section-width-xs: var(--width-300);
+    --section-width-sm: var(--width-500);
+    --section-width-default: var(--width-700);
+    --section-width-full: var(--width-1000);
+    --section-padding-inline: var(--space-400); /* noch nicht verwenden */
+    --section-padding-block: var(--space-800);
+    /* ================
+    Wrapper (Huelle)
+    ================ */
+    --wrapper-padding-inline: var(--space-400);
+    --wrapper-padding-block: var(--space-750); /* noch nicht verwenden */
+    /* ================
+    Layout Gaps (Abstaende)
+    ================ */
+    --elements-gap-inline: var(--space-750);
+    --elements-gap-block: var(--space-750);
+    /* ================
+    Flow Spacing (Fluss-Abstaende)
+    ================ */
+    --flow-spacing-block-sm: var(--space-200-em);
+    --flow-spacing-block-default: var(--space-400-em); /* fuer normalen Flow em-Einheiten verwenden */
+    --flow-spacing-block-lg: var(--space-500-em);
+    --flow-grid-spacing-block: var(--space-700); /* Grid-Flow muss rem sein */
+    /* ================
+    Card (Karte)
+    ================ */
+    --card-padding-inline: var(--space-600);
+    --card-padding-block: var(--space-700);
+    /* ================
+    Equal Columns Layout (Gleichmaessige Spalten)
+    ================ */
+    --equal-columns-gap-sm: var(--space-500);
+    --equal-columns-gap-default: var(--space-750);
+    --equal-columns-gap-lg: var(--space-800);
+    /* ================
+    Flex Group Layout (Flex-Gruppen-Layout)
+    ================ */
+    --flex-group-gap-default: var(--space-750);
+    /* ================
+    Grid Auto-Fit Layout (Automatisch passendes Grid)
+    ================ */
+    --grid-auto-fit-column-size-min: var(--element-width-300);
+    --grid-auto-fit-column-size-max: var(--element-width-400);
+    /* ================
+    Header
+    ================ */
+    --header-padding-block-default: var(--space-750);
+    /* ================
+    Logo
+    ================ */
+    --logo-width-default: 380px;
+    /* ================
+    Navigation
+    ================ */
+    --navigation-gap-inline-default: var(--space-600);
+    --navigation-gap-block-default: var(--space-300);
+    --navigation-font-size-default: var(--fs-650);
+    --navigation-font-weight-default: var(--fw-300);
+    --navigation-line-height-item: var(--lh-m);
+    --navigation-font-family-default: var(--ff-sans);
+    --navigation-color-default: var(--clr-black);
+    --navigation-color-default-hover: var(--clr-green-500);
+    --navigation-color-active: var(--clr-green-500);
+    /* ================
+    Button
+    ================ */
+    --button-background-primary: var(--clr-violett-500);
+    --button-background-secondary: var(--clr-grey-600);
+    --button-background-reduced: var(--clr-grey-600);
+    --button-background-accent: var(--clr-orange-500);
+    --button-background-primary-hover: var(--clr-white);
+    --button-background-secondary-hover: var(--clr-white);
+    --button-background-reduced-hover: var(--clr-white);
+    --button-background-accent-hover: var(--clr-white);
+    --button-color-primary: var(--clr-white);
+    --button-color-secondary: var(--clr-green-500);
+    --button-color-reduced: var(--clr-black);
+    --button-color-accent: var(--clr-black);
+    --button-color-primary-hover: var(--clr-green-500);
+    --button-color-secondary-hover: var(--clr-black);
+    --button-color-reduced-hover: var(--clr-black);
+    --button-color-accent-hover: var(--clr-black);
+    --button-padding-inline: var(--space-450);
+    --button-padding-block: var(--space-350);
+    --button-padding-inline-sm: var(--space-300);
+    --button-padding-block-sm: var(--space-200);
+    /* ================
+    Link (Verknuepfung)
+    ================ */
+    --link-color-default: var(--clr-black);
+    --link-color-default-hover: var(--clr-violett-500);
+    /* ================
+    Text
+    ================ */
+    --text-color-default: var(--clr-black);
+    --text-color-light: var(--clr-grey-500);
+    --text-color-extra-light: var(--clr-white);
+    --text-color-default-hover: var(--clr-green-500);
+    /* ================
+    Background
+    ================ */
+    --background-color-default: var(--clr-white);
+    --background-color-light: var(--clr-grey-800);
+    --background-color-extra-light: var(--clr-grey-900);
+    /* ================
+    Form
+    ================ */
+    --form-field-background-color-default: var(--clr-grey-900);
+    --form-field-background-color-default-active: var(--clr-white);
+    --form-mandatory-color: var(--clr-red-500);
+    --form-field-padding-inline: var(--space-400);
+    --form-field-padding-block: var(--space-300);
+    /* ================
+    Table
+    ================ */
+    --table-header-background-color: var(--clr-grey-800);
+    --table-header-color: var(--clr-black);
+    --table-row-background-color: var(--clr-white);
+    --table-row-odd-background-color: var(--clr-grey-900);
+    --table-border-color: var(--clr-grey-600);
+    --table-cell-padding-inline-sm: var(--space-200);
+    --table-cell-padding-inline-default: var(--space-300);
+    --table-cell-padding-block-sm: var(--space-100);
+    --table-cell-padding-block-default: var(--space-200);
+    /* ================
+    Border
+    ================ */
+    --border-color-default: var(--clr-grey-500);
+    --border-color-light: var(--clr-grey-600);
+    --border-color-extra-light: var(--clr-white);
+    --border-radius-lg: var(--radius-lg);
+    --border-radius-default: var(--radius-md);
+    --border-width-default: var(--border-width-100);
+    /* ================
+    Icon
+    ================ */
+    --icon-size-sm: var(--object-size-sm);
+    --icon-size-regular: var(--object-size-regular);
+    --icon-size-lg: var(--object-size-lg);
+    --icon-size-xl: var(--object-size-xl);
+    --icon-padding-inline-regular: var(--space-200);
+    --icon-padding-inline-lg: var(--space-300);
+    /* ================
+    Fonts
+    ================ */
+    /* Font-Groessen */
+    --font-size-heading-sm: var(--fs-650);
+    --font-size-heading-regular: var(--fs-800);
+    --font-size-heading-lg-min: var(--fs-hl-lg-min);
+    --font-size-heading-lg-max: var(--fs-hl-lg-max);
+    --font-size-heading-lg-min-no-unit: var(--fs-hl-lg-min-no-unit);
+    --font-size-heading-lg-max-no-unit: var(--fs-hl-lg-max-no-unit);
+    --font-size-heading-xl-min: var(--fs-hl-xl-min);
+    --font-size-heading-xl-max: var(--fs-hl-xl-max);
+    --font-size-heading-xl-min-no-unit: var(--fs-hl-xl-min-no-unit);
+    --font-size-heading-xl-max-no-unit: var(--fs-hl-xl-max-no-unit);
+    --font-size-heading-xxl-min: var(--fs-hl-xxl-min);
+    --font-size-heading-xxl-max: var(--fs-hl-xxl-max);
+    --font-size-heading-xxl-min-no-unit: var(--fs-hl-xxl-min-no-unit);
+    --font-size-heading-xxl-max-no-unit: var(--fs-hl-xxl-max-no-unit);
+    --font-size-regular-min: var(--fs-regular-min);
+    --font-size-regular-min-no-unit: var(--fs-regular-min-no-unit);
+    --font-size-regular-max: var(--fs-regular-max);
+    --font-size-regular-max-no-unit: var(--fs-regular-max-no-unit);
+    /* Statische Font-Groessen */
+    --font-size-xs: var(--fs-400);
+    --font-size-sm: var(--fs-500);
+    --font-size-regular: var(--fs-650);
+    --font-size-md: var(--fs-700);
+    --font-size-lg: var(--fs-800);
+    /* font weight (Schriftgewicht) */
+    --font-weight-light: var(--fw-200);
+    --font-weight-book: var(--fw-300);
+    --font-weight-regular: var(--fw-400);
+    --font-weight-medium: var(--fw-500);
+    --font-weight-semi-bold: var(--fw-600);
+    --font-weight-bold: var(--fw-700);
+    --font-weight-heavy: var(--fw-900);
+    /* Breakpoints fuer fluide Typografie */
+    /* Sass-Variablen werden nicht "automatisch" in Custom Properties eingesetzt, daher verwenden wir hier Interpolation. */
+    --fluid-breakpoint-min: 26.25rem;
+    --fluid-breakpoint-max: 90rem;
+    --fluid-breakpoint-min-no-unit: 26.25;
+    --fluid-breakpoint-max-no-unit: 90;
+    /* Font Families (Schriftfamilien) */
+    --font-family-base: var(--ff-sans);
+    --font-family-heading: var(--ff-sans-2);
+    --line-height-body: var(--lh-regular);
+    --line-height-heading: var(--lh-sm);
+  }
+}
+/* =========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Einstellungen: Tokens Project Semantic
+   Beschreibung: Definition von Tokens fuer das Projekt.
+   Ebene (Layer):
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Ja
+   Abhaengigkeiten:
+   ========================================================================== */
+@layer settings {
+  :root {
+    /* ================
+     Brand-Farben
+     ================ */
+    --brand-color-primary: var(--clr-green-500);
+    --brand-color-secondary: var(--clr-violett-500);
+    --brand-color-tertiary: var(--clr-orange-500);
+  }
+}
+/* 10) generic */
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Generic: Reset
+   Beschreibung: CSS-Reset-Styles fuer eine saubere Ausgangsbasis.
+   Ebene (Layer): Generic
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+@layer generic {
+  /* Reset-Styles */
+  /* Brauchen wir border-box aktuell mit grid und flexbox?
+      https://www.youtube.com/watch?v=PtAcpV6TAGM */
+  /** ,
+  *::before,
+  *::after {
+      box-sizing: border-box;
+  } */
+  /* Quelle: https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/ */
+  html {
+    text-size-adjust: none;
+  }
+  /* User-Agent-Margins werden entfernt, damit Flow und Spacing zentral definiert sind.
+     Mit logical properties wird nur margin-block-end statt aller Seiten angepasst. */
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin: 0;
+    /* margin-block-end: 0; */
+  }
+  /* Quelle: https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html */
+  [role=list] {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  /* Gut lesbare line-height wird vererbt.
+     min-block-size: 100vh bleibt als robuste Basis fuer dekorative Elemente. */
+  body {
+    min-block-size: 100vh;
+    line-height: var(--line-height-body);
+  }
+  /* Fuer Headings und Buttons ist eine kuerzere line-height sinnvoll.
+     Bei Fonts mit grossen ascenders/descenders ggf. anpassen, um Accessibility-Probleme zu vermeiden. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  button,
+  input,
+  label {
+    line-height: 1.1;
+  }
+  /* Textumbruch fuer Headings ausbalancieren */
+  :where(h1, h2, h3, h4, h5, h6) {
+    text-wrap: balance;
+  }
+  :where(p, li) {
+    text-wrap: pretty;
+  }
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    max-inline-size: 100%;
+    block-size: auto;
+    display: block;
+  }
+  /* Fonts fuer Inputs und Buttons vererben */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+  /* 1. Korrektes box-sizing in Firefox. 2. overflow in Edge und IE anzeigen. */
+  hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+  }
+  /* 1. Vererbung und Skalierung der font-size in allen Browsern korrigieren.
+     2. Ungewoehnliche `em`-font-size in allen Browsern korrigieren. */
+  pre {
+    font-family: monospace;
+    font-size: 1em;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Generic: Fonts
+   Beschreibung: Importiert lokale Fonts.
+   Ebene (Layer): Generic
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+/* Relativer Root-Pfad von kompilierter CSS zum Fonts-Ordner ist css/ */
+@layer generic {
+  @font-face {
+    font-family: Copperhewitt;
+    src: url("../fonts/cooperhewitt-medium-webfont.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: Copperhewitt;
+    src: url("../fonts/cooperhewitt-semibold-webfont.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: Copperhewitt;
+    src: url("../fonts/cooperhewitt-bold-webfont.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: Copperhewitt;
+    src: url("../fonts/cooperhewitt-heavy-webfont.woff2") format("woff2");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: Inter;
+    src: url("../fonts/inter-extralight-webfont.woff2") format("woff2");
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: Inter;
+    src: url("../fonts/inter-light-webfont.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: Inter;
+    src: url("../fonts/inter-lightitalic-webfont.woff2") format("woff2");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: Inter;
+    src: url("../fonts/inter-regular-webfont.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: Inter;
+    src: url("../fonts/inter-medium-webfont.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: Inter;
+    src: url("../fonts/inter-bold-webfont.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+/* 20) base */
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Root Element
+   Beschreibung: Basis fuer Root-Elemente wie html und body.
+   Ebene (Layer): Base
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer base {
+  /* Diese CSS prueft die Motion-Praeferenz des Systems.
+     Bei prefers-reduced-motion: no-preference wird smooth scroll auf html gesetzt.
+     Fuer Abstaende scroll-margin oder scroll-padding verwenden. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    background-color: var(--background-color-default);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Typography Styles
+   Beschreibung: Basis-Typografie-Styles fuer das Theme.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer base {
+  html {
+    font-family: var(--font-family-base);
+    line-height: var(--line-height-body);
+  }
+  body {
+    font-size: var(--font-size-regular);
+    font-weight: var(--font-weight-book);
+    color: var(--text-color-default);
+  }
+  /* Formel fuer den preferred value in clamp() */
+  /*
+  slope = (maxFontSize - minFontSize) / (maxWidth - minWidth)
+  yAxisIntersection = -minWidth * slope + minFontSize
+  preferredValue = yAxisIntersection[rem] + (slope * 100)[vw]
+  */
+  /*
+  --slope: calc((var(--max-font-size) - var(--min-font-size)) / (var(--max-width) - var(--min-width)));
+  --intercept: calc(var(--min-font-size) - var(--slope) * var(--min-width));
+  --fluid-font-size: calc(var(--slope) * 100vw + var(--intercept));
+  */
+  /* Headings (clamp + fallback) */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-family-heading);
+    line-height: var(--line-height-heading);
+    color: var(--text-color-default);
+    text-wrap: balance;
+    hyphens: auto; /* Silbentrennung fuer Headings aktivieren, um Overflow in kleinen Viewports zu vermeiden */
+  }
+  h1 {
+    /* Fluide Typografie-Parameter */
+    --min-font-size: var(--font-size-heading-xxl-min);
+    --max-font-size: var(--font-size-heading-xxl-max);
+    --min-font-size-no-unit: var(--font-size-heading-xxl-min-no-unit);
+    --max-font-size-no-unit: var(--font-size-heading-xxl-max-no-unit);
+    /* Fluide Typografie */
+    --slope: calc(
+        (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+            (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit))
+    );
+    --intercept: calc(
+        var(--min-font-size) - (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+            (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit)) *
+            var(--fluid-breakpoint-min)
+    );
+    /* Fallback */
+    /* Fluide Typografie */
+    font-size: clamp(var(--min-font-size), var(--intercept) + var(--slope) * 100vw, var(--max-font-size));
+    font-weight: var(--font-weight-heavy);
+    text-align: center;
+    margin-block-end: var(--flow-spacing-block-sm);
+  }
+  h2 {
+    /* Fluide Typografie-Parameter */
+    --min-font-size: var(--font-size-heading-xl-min);
+    --max-font-size: var(--font-size-heading-xl-max);
+    --min-font-size-no-unit: var(--font-size-heading-xl-min-no-unit);
+    --max-font-size-no-unit: var(--font-size-heading-xl-max-no-unit);
+    /* Fluide Typografie */
+    --slope: calc(
+        (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+            (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit))
+    );
+    --intercept: calc(
+        var(--min-font-size) - (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+            (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit)) *
+            var(--fluid-breakpoint-min)
+    );
+    /* Fallback */
+    /* Fluide Typografie */
+    font-size: clamp(var(--min-font-size), var(--intercept) + var(--slope) * 100vw, var(--max-font-size));
+    font-weight: var(--font-weight-heavy);
+    text-align: center;
+  }
+  h3 {
+    /* Fluide Typografie-Parameter */
+    --min-font-size: var(--font-size-heading-lg-min);
+    --max-font-size: var(--font-size-heading-lg-max);
+    --min-font-size-no-unit: var(--font-size-heading-lg-min-no-unit);
+    --max-font-size-no-unit: var(--font-size-heading-lg-max-no-unit);
+    /* Fluide Typografie */
+    --slope: calc(
+        (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+            (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit))
+    );
+    --intercept: calc(
+        var(--min-font-size) - (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+            (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit)) *
+            var(--fluid-breakpoint-min)
+    );
+    /* Fallback */
+    /* Fluide Typografie */
+    font-size: clamp(var(--min-font-size), var(--intercept) + var(--slope) * 100vw, var(--max-font-size));
+    font-weight: var(--font-weight-bold);
+  }
+  /* h4-h5 (Fix) */
+  h4 {
+    font-size: var(--font-size-heading-regular);
+    font-weight: var(--font-weight-semi-bold);
+  }
+  h5 {
+    font-size: var(--font-size-heading-sm);
+    font-weight: var(--font-weight-medium);
+  }
+  .headline--left {
+    text-align: left;
+  }
+  .headline--center {
+    text-align: center;
+  }
+  /* Text-Elemente */
+  th,
+  td,
+  caption,
+  p {
+    /* Fluide Typografie-Parameter */
+    --min-font-size: var(--font-size-regular-min);
+    --max-font-size: var(--font-size-regular-max);
+    --min-font-size-no-unit: var(--font-size-regular-min-no-unit);
+    --max-font-size-no-unit: var(--font-size-regular-max-no-unit);
+    /* Fluide Typografie */
+    --slope: calc(
+        (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+            (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit))
+    );
+    --intercept: calc(
+        var(--min-font-size) - (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+            (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit)) *
+            var(--fluid-breakpoint-min)
+    );
+    /* Fallback */
+    /* Fluide Typografie */
+    font-size: clamp(var(--min-font-size), var(--intercept) + var(--slope) * 100vw, var(--max-font-size));
+  }
+  strong,
+  b {
+    font-weight: var(--font-weight-medium);
+  }
+  a {
+    color: var(--text-color-default);
+    transition: color 0.3s ease;
+  }
+  /* focus-visible statt focus verwenden, damit ein Button nach Klick nicht sichtbar im Fokus bleibt */
+  a:hover,
+  a:focus-visible {
+    color: var(--text-color-default-hover);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    a {
+      transition: none !important;
+    }
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Button Base
+   Beschreibung: Basis-Styles fuer Buttons.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer base {
+  button {
+    all: unset; /* Alle Button-Styles zuruecksetzen */
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    line-height: inherit;
+    text-align: inherit;
+    text-decoration: none;
+    box-shadow: none;
+    border-radius: 0;
+    cursor: pointer;
+  }
+  .button {
+    --button-background: var(--button-background-primary);
+    --button-color: var(--button-color-primary);
+    padding-inline: var(--button-padding-inline);
+    padding-block: var(--button-padding-block);
+    background-color: var(--button-background);
+    color: var(--button-color);
+    border-radius: var(--border-radius-lg);
+    text-decoration: none;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  .button.button--primary {
+    --button-background: var(--button-background-primary);
+    --button-color: var(--button-color-primary);
+  }
+  .button.button--primary:hover {
+    --button-color-hover: var(--button-color-primary-hover);
+    --button-background-hover: var(--button-background-primary-hover);
+  }
+  .button.button--secondary {
+    --button-background: var(--button-background-secondary);
+    --button-color: var(--button-color-secondary);
+  }
+  .button.button--secondary:hover {
+    --button-color-hover: var(--button-color-secondary-hover);
+    --button-background-hover: var(--button-background-secondary-hover);
+  }
+  .button.button--accent {
+    --button-background: var(--button-background-accent);
+    --button-color: var(--button-color-accent);
+  }
+  .button.button--accent:hover {
+    --button-color-hover: var(--button-color-accent-hover);
+    --button-background-hover: var(--button-background-accent-hover);
+  }
+  .button.button--reduced {
+    --button-background: var(--button-background-reduced);
+    --button-color: var(--button-color-reduced);
+  }
+  .button.button--reduced:hover {
+    --button-color-hover: var(--button-color-reduced-hover);
+    --button-background-hover: var(--button-background-reduced-hover);
+  }
+  .button.button--only-text-icon {
+    --button-background: transparent;
+    --button-color: var(--navigation-color-default);
+  }
+  .button.button--only-text-icon:hover {
+    --button-color-hover: var(--navigation-color-default-hover);
+    --button-background-hover: transparent;
+  }
+  .button {
+    /* Fallback fuer Standard */
+  }
+  .button:hover {
+    background-color: var(--button-background-hover);
+    color: var(--button-color-hover);
+  }
+  .button.button--center {
+    margin-inline: auto;
+  }
+  button.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  /* Button im content-download Wrapper mit Klasse button--center zentrieren */
+  .content-download.button--center .button {
+    margin-inline: auto;
+  }
+  /* Focus-Styles */
+  :where(button, .button) {
+    outline: none;
+  }
+  :where(button, .button):focus-visible {
+    outline: 2px solid var(--focus-color-default);
+    outline-offset: 3px;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Image Styles
+   Beschreibung: Basis-Styles fuer Bilder.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer base {
+  img {
+    border-radius: var(--border-radius-default);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Video Styles
+   Beschreibung: Basis-Styles fuer Videos.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer base {
+  video {
+    border-radius: var(--border-radius-default);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: SVG Icon Base
+   Beschreibung: Basis fuer SVG-Icons mit Groessen-Modifikatoren.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer base {
+  .svg-icon {
+    --svg-icon-width: var(--icon-size-regular);
+    --svg-icon-height: var(--icon-size-regular);
+    display: inline-flex;
+    inline-size: var(--svg-icon-width);
+    block-size: var(--svg-icon-width);
+  }
+  /* Groessen-Modifikatoren */
+  .svg-icon--size-sm {
+    --svg-icon-width: var(--icon-size-sm);
+    --svg-icon-height: var(--icon-size-sm);
+  }
+  .svg-icon--size-lg {
+    --svg-icon-width: var(--icon-size-lg);
+    --svg-icon-height: var(--icon-size-lg);
+  }
+  .svg-icon--size-xl {
+    --svg-icon-width: var(--icon-size-xl);
+    --svg-icon-height: var(--icon-size-xl);
+  }
+  .svg-icon--size-font {
+    --svg-icon-width: 1em;
+    --svg-icon-height: 1em;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Card Base
+   Beschreibung: Basis-Styles fuer Cards.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer base {
+  .card {
+    --flow-spacing-block: var(--flow-spacing-block-default);
+    display: grid;
+  }
+  /* Styles nur anwenden, wenn mehr als ein Kind vorhanden ist.
+     Das ist bei subgrid der Fall. Ausschliessen, wenn ein svg ein Kind ist. */
+  .card:has(> :not(svg) ~ :not(svg)):not(:has(> .card__image)) > * {
+    padding-inline: 0;
+  }
+  .card:has(> :not(svg) ~ :not(svg)):not(:has(> .card__image)) > *:last-child {
+    padding-block-end: var(--card-padding-block);
+  }
+  .card:has(> :not(svg) ~ :not(svg)):not(:has(> .card__image)) > *:first-child {
+    padding-block-start: var(--card-padding-block);
+  }
+  .card:has(> :not(svg) ~ :not(svg)):not(:has(> .card__image)) > :nth-child(n+2) {
+    margin-block-start: var(--flow-spacing-block);
+  }
+  /* Spezielle Styles, wenn figure/image vorhanden ist */
+  .card:has(.card__image) > *:not(:first-child) {
+    padding-inline: var(--card-padding-inline);
+  }
+  .card:has(.card__image) > *:first-child {
+    padding-block-start: 0;
+  }
+  .card:has(.card__image) > *:last-child {
+    padding-block-end: var(--card-padding-block);
+  }
+  .card:has(.card__image) > *:nth-child(2) {
+    padding-block-start: var(--card-padding-block);
+  }
+  .card:has(.card__image) > :nth-child(n+2) {
+    margin-block-start: 0;
+  }
+  .card:has(.card__image) > :nth-child(n+3) {
+    margin-block-start: var(--flow-spacing-block);
+  }
+  /* Card-Modifikatoren */
+  .card--background,
+  .card--border {
+    border-radius: var(--border-radius-default);
+    padding-inline: var(--elements-gap-inline);
+    padding-block: var(--elements-gap-block);
+  }
+  .card--background {
+    background-color: var(--background-color-light);
+  }
+  .card--border {
+    border: var(--border-width-default) solid var(--border-color-default);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: List Base
+   Beschreibung: Basis-Styles fuer Listen.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer base {
+  .link-list {
+    --link-list-row-padding-block: 0.5rem;
+    --link-list-row-padding-inline: 0;
+    --link-list-row-min-block-size: 2.75rem;
+    --link-list-row-gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+  .link-list__item {
+    margin: 0;
+    padding: 0;
+  }
+  /* Die Zeile definiert Hoehe/Spacing - egal ob a oder span */
+  .link-list__row {
+    display: flex;
+    align-items: center;
+    gap: var(--link-list-row-gap);
+    padding-block: var(--link-list-row-padding-block);
+    padding-inline: var(--link-list-row-padding-inline);
+    min-block-size: var(--link-list-row-min-block-size);
+  }
+}
+/* 30) layout */
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Layout: Wrapper and Section Layout
+   Beschreibung: Styles fuer den Haupt-Layout-Wrapper und Section-Abstaende.
+   Ebene (Layer): Layout
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer layout {
+  .wrapper {
+    --wrapper-max-width: var(--section-width-default);
+    --wrapper-padding: var(--wrapper-padding-inline);
+    /* width: min(100% - 2rem, 70rem); */
+    max-width: var(--wrapper-max-width); /* Als Fallback, falls min() nicht unterstuetzt wird - 1130px */
+    margin-inline: auto;
+    /* Achtung: padding-inline vergroessert die Box.
+       Dadurch ist max-width nicht die reale Maximalbreite und der Inhalt wird kleiner.
+       Loesung: calc(var(--wrapper-max-width) + 2rem) fuer max-width. */
+    padding-inline: var(--wrapper-padding);
+    /* Modifier-Klassen fuer unterschiedliche Breiten.
+       Alternativ waeren BEM-Modifier wie .wrapper--wide moeglich.
+       data-Attribute sind fuer JavaScript oft einfacher und in nesting nutzbar. */
+  }
+  .wrapper.wrapper--width-full {
+    /* Es muss nur die Custom Property geaendert werden */
+    --wrapper-max-width: var(--section-width-full);
+  }
+  .wrapper.wrapper--width-standard {
+    --wrapper-max-width: var(--section-width-default);
+  }
+  .wrapper.wrapper--width-medium {
+    --wrapper-max-width: var(--section-width-sm);
+  }
+  .wrapper.wrapper--width-narrow {
+    --wrapper-max-width: var(--section-width-sm);
+  }
+  section:not(.hero, .site-footer__inner, .site-footer__bottom) {
+    /* content-block setzt Abstaende zwischen Content-Elementen innerhalb von Sections */
+  }
+  section:not(.hero, .site-footer__inner, .site-footer__bottom) .content-block > * + * {
+    margin-block-start: var(--elements-gap-block, 1.25rem);
+  }
+  section:not(.hero, .site-footer__inner, .site-footer__bottom) {
+    /* Sonderfall fuer Headings direkt im Wrapper (ohne h1) fuer Element-Abstaende */
+  }
+  section:not(.hero, .site-footer__inner, .site-footer__bottom) .content-block > .content-headline:not(h1) + * {
+    margin-block-start: var(--flow-spacing-block-default);
+  }
+  section:not(.hero, .site-footer__inner, .site-footer__bottom) {
+    /* Sonderfall, wenn Content-Elemente direkt aufeinander folgen */
+  }
+  section:not(.hero, .site-footer__inner, .site-footer__bottom) .content-block > :is(.content-text, .content-table) + :is(.content-text, .content-table) {
+    margin-block-start: var(--flow-spacing-block-default);
+  }
+  section:not(.hero, .site-footer__inner, .site-footer__bottom) {
+    /* Bessere Loesung fuer alle Content-Elemente:
+       Klasse .content-element auf allen Content-Elementen verwenden */
+    /* .content-block > .content-element + .content-element {
+        margin-block-start: var(--flow-spacing-block-default);
+    } */
+    /* Benoetigt ce_rsce_headline_subheadline */
+    /* Sonderfall fuer rsce_two_columns_text nach ce_rsce_headline_subheadline,
+       ausser bei h1 - kleineren Abstand definieren */
+  }
+  section:not(.hero, .site-footer__inner, .site-footer__bottom) .content-block > .ce_rsce_headline_subheadline:not(h1) + .content-collection:has(.ce_rsce_two_columns_text) {
+    margin-block-start: var(--flow-spacing-block-default);
+  }
+  section {
+    padding-block: var(--section-padding-block);
+  }
+  section section {
+    padding-block: 0; /* Padding fuer verschachtelte Sections entfernen */
+  }
+  .element--center {
+    margin-inline: auto;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Layout: Flow Spacing
+   Beschreibung: Utility-Klassen fuer konsistente vertikale Abstaende zwischen Elementen.
+   Ebene (Layer): Layout
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer layout {
+  /* flow waehlt nur Elemente mit einem vorherigen Geschwister-Element,
+     dadurch erhaelt das erste Kind keinen margin */
+  /* Alternative ist .flow > :not(:first-child) - bringt zusaetzliche specificity */
+  .flow > * + * {
+    /* em verwenden, damit der Abstand relativ zur font-size des Elements ist.
+       rem waere relativ zur root font-size.
+       Der Abstand bei Headings haengt von der font-size ab. */
+    /* margin-block-start verwenden, weil der groessere Abstand oben liegen soll.
+       Bei Heading gefolgt von Paragraph liegt der Abstand ueber dem Paragraphen,
+       nicht unter dem Heading. */
+    margin-block-start: var(--flow-spacing-block-default);
+    hyphens: auto; /* Silbentrennung fuer Headings aktivieren, um Overflow in kleinen Viewports zu vermeiden */
+    overflow-wrap: break-word;
+  }
+  /* grid-flow ist die Grid-Version von flow:
+     Alle Elemente liegen im Grid und behalten konsistente Abstaende.
+     Nuetzlich, wenn Elemente im Grid ausgerichtet und trotzdem gleichmaessig getrennt werden sollen. */
+  .grid-flow {
+    display: grid;
+    gap: var(--flow-grid-spacing-block);
+    align-content: start;
+    justify-items: start;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Layout: Equal Columns Grid
+   Beschreibung: Grid-Layout mit gleich breiten Spalten sowie anpassbaren Gaps und Alignment.
+   Ebene (Layer): Layout
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer layout {
+  .equal-columns {
+    --equal-columns-gap-columns: var(--equal-columns-gap-default);
+    --equal-columns-gap-rows: var(--equal-columns-gap-default);
+    container-type: inline-size;
+    container-name: equal-columns;
+    display: grid;
+    gap: var(--equal-columns-gap-rows) var(--equal-columns-gap-columns);
+    align-items: var(--column-layout-alignment, start);
+    /* Gap setzen, wenn content-downloads enthalten sind */
+  }
+  .equal-columns:has(.content-download) {
+    gap: var(--flow-grid-spacing-block) var(--equal-columns-gap-columns);
+  }
+  .equal-columns.equal-columns--gap-lg {
+    --equal-columns-gap: var(--equal-columns-gap-lg);
+  }
+  .equal-columns.equal-columns--alignment-center {
+    --column-layout-alignment: center;
+  }
+  .equal-columns.equal-columns--alignment-bottom {
+    --column-layout-alignment: end;
+  }
+  .equal-columns.equal-columns--alignment-stretch {
+    --column-layout-alignment: stretch;
+  }
+  .equal-columns.equal-columns--only-content {
+    /* Wenn nur Content enthalten ist, wird ein Flow wie bei rsce-two-columns verwendet */
+    --equal-columns-gap-rows: var(--flow-spacing-block-default);
+  }
+  .equal-columns {
+    /* Sicherstellen, dass Headings im Grid linksbuendig ausgerichtet sind */
+  }
+  .equal-columns h2,
+  .equal-columns h3,
+  .equal-columns h4,
+  .equal-columns h5 {
+    text-align: left;
+  }
+  /* grid-auto-flow: column -> alles in einer Zeile.
+     grid-auto-columns: 1fr -> alle Spalten sind gleich breit.
+     Mobile first: auf kleinen Screens normaler Flow, auf groesseren Screens Grid mit gleich breiten Spalten. */
+  @container article-wrapper (width > 46rem) {
+    .equal-columns {
+      grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-auto-fit-column-size-min, 250px), 100%), 1fr));
+    }
+  }
+  /* Container angeben, um container queries zu aktivieren */
+  .content-collection {
+    container-type: inline-size;
+    container-name: article-wrapper;
+    /* margin fuer erstes Kind nach Headings in content-collection setzen - Modul equal-columns */
+  }
+  .content-collection > :is(h2, h3, h4, h5, h6):first-child + * {
+    margin-block-start: var(--flow-spacing-block-default);
+  }
+  /* ================
+  Equal Columns mit fester Anzahl von 4 Spalten
+  ================ */
+  @container article-wrapper (width > 46rem) {
+    .equal-columns--columns-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .equal-columns--columns-4.equal-columns--columns-center {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .equal-columns--columns-4.equal-columns--columns-center > * {
+      grid-column: span 2;
+    }
+    .equal-columns--columns-4.equal-columns--columns-center {
+      /* Letzte Reihe hat nur 1 Item -> zentrieren */
+    }
+    .equal-columns--columns-4.equal-columns--columns-center > *:nth-child(2n+1):nth-last-child(1) {
+      grid-column: 2/span 2;
+    }
+  }
+  @container article-wrapper (width > 70rem) {
+    .equal-columns--columns-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .equal-columns--columns-4.equal-columns--columns-center {
+      grid-template-columns: repeat(8, 1fr);
+    }
+    .equal-columns--columns-4.equal-columns--columns-center > * {
+      grid-column: span 2;
+    }
+    .equal-columns--columns-4.equal-columns--columns-center {
+      /* Reset ab width > 46rem */
+    }
+    .equal-columns--columns-4.equal-columns--columns-center > *:nth-child(2n+1):nth-last-child(1) {
+      grid-column: span 2;
+    }
+    .equal-columns--columns-4.equal-columns--columns-center {
+      /* Fall 1: Letzte Reihe hat nur 1 Item -> in die Mitte */
+    }
+    .equal-columns--columns-4.equal-columns--columns-center > *:nth-child(4n+1):nth-last-child(1) {
+      grid-column: 4/span 2;
+    }
+    .equal-columns--columns-4.equal-columns--columns-center {
+      /* Fall 2: Letzte Reihe hat 2 Items -> mittig */
+    }
+    .equal-columns--columns-4.equal-columns--columns-center > *:nth-child(4n+1):nth-last-child(2) {
+      grid-column: 3/span 2;
+    }
+    .equal-columns--columns-4.equal-columns--columns-center > *:nth-child(4n+2):nth-last-child(1) {
+      grid-column: 5/span 2;
+    }
+    .equal-columns--columns-4.equal-columns--columns-center {
+      /* Fall 3: Letzte Reihe hat 3 Items -> ebenfalls mittig */
+    }
+    .equal-columns--columns-4.equal-columns--columns-center > *:nth-child(4n+1):nth-last-child(3) {
+      grid-column: 2/span 2;
+    }
+    .equal-columns--columns-4.equal-columns--columns-center > *:nth-child(4n+2):nth-last-child(2) {
+      grid-column: 4/span 2;
+    }
+    .equal-columns--columns-4.equal-columns--columns-center > *:nth-child(4n+3):nth-last-child(1) {
+      grid-column: 6/span 2;
+    }
+  }
+  /* ================
+  Equal Columns mit fester Anzahl von 3 Spalten
+  ================ */
+  @container article-wrapper (width > 46rem) {
+    .equal-columns--columns-3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .equal-columns--columns-3.equal-columns--columns-center {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .equal-columns--columns-3.equal-columns--columns-center > * {
+      grid-column: span 2;
+    }
+    .equal-columns--columns-3.equal-columns--columns-center {
+      /* Letzte Reihe mit weniger als 3 Items behandeln und zentrieren */
+    }
+    .equal-columns--columns-3.equal-columns--columns-center > *:nth-child(2n+1):nth-last-child(1) {
+      grid-column: 2/span 2;
+    }
+  }
+  @container article-wrapper (width > 70rem) {
+    .equal-columns--columns-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .equal-columns--columns-3.equal-columns--columns-center {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    .equal-columns--columns-3.equal-columns--columns-center > * {
+      grid-column: span 2;
+    }
+    .equal-columns--columns-3.equal-columns--columns-center {
+      /* Reset ab width > 46rem */
+    }
+    .equal-columns--columns-3.equal-columns--columns-center > *:nth-child(2n+1):nth-last-child(1) {
+      grid-column: span 2;
+    }
+    .equal-columns--columns-3.equal-columns--columns-center {
+      /* Fall 1: Letzte Reihe hat nur 1 Item -> in die Mitte */
+    }
+    .equal-columns--columns-3.equal-columns--columns-center > *:nth-child(3n+1):nth-last-child(1) {
+      grid-column: 3/span 2;
+    }
+    .equal-columns--columns-3.equal-columns--columns-center {
+      /* Fall 2: Letzte Reihe hat 2 Items -> mittig */
+    }
+    .equal-columns--columns-3.equal-columns--columns-center > *:nth-child(3n+1):nth-last-child(2) {
+      grid-column: 2/span 2;
+    }
+    .equal-columns--columns-3.equal-columns--columns-center > *:nth-child(3n+2):nth-last-child(1) {
+      grid-column: 4/span 2;
+    }
+  }
+  /* ================
+  Equal Columns mit fester Anzahl von 2 Spalten
+  ================ */
+  @container article-wrapper (width > 46rem) {
+    .equal-columns--columns-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .equal-columns--columns-2.equal-columns--two-columns-left-wide {
+      grid-template-columns: 3fr 2fr;
+    }
+    .equal-columns--columns-2.equal-columns--two-columns-right-wide {
+      grid-template-columns: 2fr 3fr;
+    }
+    .equal-columns--columns-2.equal-columns--columns-center {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .equal-columns--columns-2.equal-columns--columns-center > * {
+      grid-column: span 2;
+    }
+    .equal-columns--columns-2.equal-columns--columns-center {
+      /* Letzte Reihe mit weniger als 2 Items behandeln und zentrieren */
+    }
+    .equal-columns--columns-2.equal-columns--columns-center > *:nth-child(2n+1):nth-last-child(1) {
+      grid-column: 2/span 2;
+    }
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Layout: Flex Group
+   Beschreibung: Utility-Klasse fuer flexible Gruppen von Elementen mit konsistentem Spacing und Alignment.
+   Ebene (Layer): Layout
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer layout {
+  .flex-group {
+    display: flex;
+    gap: var(--flex-group-gap-default, 0.5rem);
+    flex-wrap: wrap;
+    /* align-items steuert die cross axis:
+       vertikal bei flex-direction: row, horizontal bei flex-direction: column */
+    align-items: var(--flex-group-alignment, center);
+    /* justify-content steuert die main axis:
+       horizontal bei flex-direction: row, vertikal bei flex-direction: column */
+    justify-content: var(--flex-group-justification, flex-start);
+  }
+  .flex-group.flex-group--align-start {
+    --flex-group-alignment: start;
+  }
+  .flex-group.flex-group--align-center {
+    --flex-group-alignment: center;
+  }
+  .flex-group.flex-group--align-end {
+    --flex-group-alignment: end;
+  }
+  .flex-group.flex-group--justify-center {
+    --flex-group-justification: center;
+  }
+  .flex-group.flex-group--justify-space-between {
+    --flex-group-justification: space-between;
+  }
+  .flex-group.flex-group--justify-end {
+    --flex-group-justification: flex-end;
+  }
+  .flex-group.flex-group--justify-start {
+    --flex-group-justification: flex-start;
+  }
+}
+/* 40) extensions (contao) */
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Flow Spacing
+   Beschreibung: Fuegt konsistente vertikale Abstaende zwischen Elementen in Contao hinzu.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   Extension:
+   ========================================================================== */
+@layer extensions {
+  .content-text > * + *,
+  .content-text > .rte > * + * {
+    margin-block-start: var(--flow-spacing-block-default, 1.25em);
+  }
+  /* Sonderbehandlung fuer das erste Heading innerhalb von content-text */
+  .content-text > h1 + * {
+    margin-block-start: var(--elements-gap-block);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao News Module Styles
+   Beschreibung: Angepasste Styles fuer das Contao-News-Module passend zum Layout.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension: codefog/contao-news_categories
+   ========================================================================== */
+@layer extensions {
+  /* breakpoint ist identisch mit equal-columns */
+  @media (width > 46rem) {
+    .newslist {
+      grid-template-rows: auto auto auto;
+    }
+  }
+  .newslist p.empty {
+    margin-inline: auto;
+  }
+  .newslist__card {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    gap: 0;
+  }
+  a.newslist__link {
+    text-decoration: none;
+    color: var(--text-color-default);
+  }
+  .newslist__card > *:not(:first-child) {
+    padding-inline: var(--card-padding-inline, 1rem);
+  }
+  .newslist__card > *:nth-child(2) {
+    padding-block-start: var(--card-padding-block, 1.5rem);
+  }
+  .newslist__card > *:last-child {
+    padding-block-end: var(--card-padding-block, 1.5rem);
+  }
+  .newslist__card > :nth-child(n+3) {
+    margin-block-start: var(--flow-grid-spacing-block, 1.5rem);
+  }
+  .newslist__card.newslist__card--no-image {
+    border-radius: var(--border-radius-default);
+    padding-inline: var(--elements-gap-inline);
+    padding-block: var(--elements-gap-block);
+    border: var(--border-width-default) solid var(--border-color-default);
+    background-color: var(--background-color-light);
+  }
+  .newslist__card.newslist__card--no-image > *:not(:first-child) {
+    padding-inline: 0;
+  }
+  .newslist__card.newslist__card--no-image > *:last-child {
+    padding-block-end: 0;
+  }
+  .newslist__info .newslist__meta {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    font-weight: var(--font-weight-light);
+    font-size: var(--font-size-sm);
+    color: var(--text-color-default);
+    gap: 0.25em 2em;
+    flex-flow: wrap;
+  }
+  .newslist__info .newslist__divider {
+    padding-inline-end: 0.5rem;
+  }
+  .layout_full {
+    margin-block-end: var(--section-padding-block);
+    /* Info unter Headline ausblenden */
+  }
+  .layout_full .info {
+    display: none;
+  }
+  /* max-width fuer Inhalt im Newsreader begrenzen, ausser bei Galleries */
+  .wrapper--width-standard .content-block > *:not(.content-gallery) {
+    max-width: var(--section-width-sm);
+    margin-inline: auto;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Typography Adjustments
+   Beschreibung: Angepasste Typografie-Styles fuer bessere Lesbarkeit und Aesthetik.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   Extension:
+   ========================================================================== */
+@layer extensions {
+  .wrapper--width-narrow > .content-text,
+  .wrapper--width-standard > .content-text {
+    max-width: 65ch;
+  }
+  .wrapper--width-narrow > .content-text:not(:has(.u-text-center)) h2,
+  .wrapper--width-narrow > .content-text:not(:has(.u-text-center)) h3,
+  .wrapper--width-narrow > .content-text:not(:has(.u-text-center)) h4,
+  .wrapper--width-narrow > .content-text:not(:has(.u-text-center)) h5,
+  .wrapper--width-narrow > .content-text:not(:has(.u-text-center)) h6,
+  .wrapper--width-standard > .content-text:not(:has(.u-text-center)) h2,
+  .wrapper--width-standard > .content-text:not(:has(.u-text-center)) h3,
+  .wrapper--width-standard > .content-text:not(:has(.u-text-center)) h4,
+  .wrapper--width-standard > .content-text:not(:has(.u-text-center)) h5,
+  .wrapper--width-standard > .content-text:not(:has(.u-text-center)) h6 {
+    text-align: left;
+  }
+  .wrapper--width-narrow > .content-text:has(.u-text-center),
+  .wrapper--width-standard > .content-text:has(.u-text-center) {
+    margin-inline: auto;
+  }
+  /* max-width in Zeichen fuer bessere Lesbarkeit - nur im wrapper und nicht in .equal-columns.
+     In .equal-columns wird die max-width durch die Spalten definiert. */
+  .wrapper--width-narrow > *:not(:has(.equal-columns)) .content-text,
+  .wrapper--width-standard > *:not(:has(.equal-columns)) .content-text {
+    max-width: 65ch;
+  }
+  .wrapper--width-standard > * .ce_rsce_two_columns_text {
+    max-width: var(--section-width-sm);
+    margin-inline: auto;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Swiper Adjustments
+   Beschreibung: Angepasste Styles fuer die Swiper-Integration in Contao.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   Extension:
+   ========================================================================== */
+@layer extensions {
+  :root {
+    --swiper-navigation-size: 2rem !important;
+    /* --swiper-navigation-top-offset: 50%;
+    --swiper-navigation-sides-offset: 10px; */
+    --swiper-pagination-bullet-inactive-opacity: 0.5;
+    --swiper-pagination-bullet-size: 16px;
+    --swiper-pagination-bullet-width: 16px;
+    --swiper-pagination-bullet-height: 16px;
+    --swiper-pagination-bullet-inactive-color: #f5f5f5;
+    --swiper-pagination-bullet-horizontal-gap: 0.3rem;
+    --swiper-theme-color: #000 !important;
+    --swiper-navigation-color: var(--swiper-theme-color);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Form Module Styles
+   Beschreibung: Angepasste Styles fuer das Contao-Form-Module passend zum Layout.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+@layer extensions {
+  /* Grundlayout Formular */
+  .formbody {
+    display: grid;
+    gap: var(--flow-grid-spacing-block, 1.25rem);
+    align-content: start;
+  }
+  .formbody .invisible {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  .formbody fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+  .formbody fieldset > legend {
+    padding: 0;
+  }
+  .formbody .widget > * + *,
+  .formbody fieldset > * + * {
+    margin-block-start: var(--flow-spacing-block-sm);
+  }
+  .formbody input.text,
+  .formbody textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: var(--border-radius-default);
+    border: 1px solid var(--border-color-light);
+    background: var(--form-field-background-color-default);
+    padding-inline: var(--form-field-padding-inline);
+    padding-block: var(--form-field-padding-block);
+    font-size: 1rem;
+    line-height: 1.4;
+    outline: none;
+  }
+  .formbody textarea {
+    min-height: 16rem;
+    resize: vertical;
+  }
+  .formbody span.mandatory {
+    color: var(--form-mandatory-color);
+  }
+  .formbody input.text:focus,
+  .formbody textarea:focus {
+    border-color: var(--focus-color-default);
+  }
+  .formbody label,
+  .formbody legend span:not(.invisible) {
+    display: inline-block;
+  }
+  .formbody .checkbox_container legend,
+  .formbody label {
+    font-weight: var(--fw-500);
+  }
+  .formbody .checkbox_container label {
+    font-weight: inherit;
+  }
+  .formbody .checkbox_container span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .formbody .radio_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1em;
+  }
+  .formbody .radio_container span {
+    flex: 0 0 auto;
+  }
+  .formbody .radio_container label {
+    font-weight: inherit;
+  }
+  .formbody {
+    /* & > .widget-submit {
+        margin-block-start: var(--elements-gap-block);
+    } */
+  }
+  .form--legend-invisible .formbody > fieldset > legend {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  /* AJAX-Bestaetigungsmeldung */
+  .form-confirmation p {
+    font-size: var(--font-size-md);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Table Adjustments
+   Beschreibung: Angepasste Styles fuer Contao-Tabellen zur Verbesserung von Layout und Lesbarkeit.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+@layer extensions {
+  .wrapper--width-standard > .content-table {
+    max-width: 65ch;
+    margin-inline: auto;
+  }
+  .content-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: var(--flow-grid-spacing-block, 1.25rem);
+    text-align: left;
+  }
+  .content-table table th,
+  .content-table table td {
+    border: 1px solid var(--table-border-color);
+    padding: var(--table-cell-padding-block-default, 0.5rem) var(--table-cell-padding-inline-default, 0.75rem);
+  }
+  .content-table table th {
+    background-color: var(--table-header-background-color);
+    font-weight: var(--font-weight-medium);
+  }
+  .content-table table tbody tr:nth-child(odd) {
+    background-color: var(--table-row-odd-background-color);
+  }
+  .content-table table caption {
+    color: var(--text-color-light);
+    font-size: var(--font-size-sm);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao gallery styles
+   Beschreibung: Angepasste Styles fuer Contao-Gallery-Content-Elemente.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+@layer extensions {
+  .content-gallery ul {
+    --equal-columns-gap-columns: var(--equal-columns-gap-default);
+    --equal-columns-gap-rows: var(--equal-columns-gap-default);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--equal-columns-gap-rows, 1rem) var(--equal-columns-gap-columns, 1rem);
+    align-items: var(--column-layout-alignment, start);
+  }
+  @container article-wrapper (width > 46rem) {
+    .content-gallery ul {
+      grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-auto-fit-column-size-min, 250px), 100%), 1fr));
+    }
+  }
+  /* ================
+  Equal Columns mit fester Anzahl von 4 Spalten
+  ================ */
+  @container article-wrapper (width > 46rem) {
+    .content-gallery--cols-4 ul {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center > * {
+      grid-column: span 2;
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center {
+      /* Letzte Reihe hat nur 1 Item -> zentrieren */
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center > *:nth-child(2n+1):nth-last-child(1) {
+      grid-column: 2/span 2;
+    }
+  }
+  @container article-wrapper (width > 70rem) {
+    .content-gallery--cols-4 ul {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center {
+      grid-template-columns: repeat(8, 1fr);
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center > * {
+      grid-column: span 2;
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center {
+      /* Fall 1: Letzte Reihe hat nur 1 Item -> in die Mitte */
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center > *:nth-child(4n+1):nth-last-child(1) {
+      grid-column: 4/span 2;
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center {
+      /* Fall 2: Letzte Reihe hat 2 Items -> mittig */
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center > *:nth-child(4n+1):nth-last-child(2) {
+      grid-column: 3/span 2;
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center > *:nth-child(4n+2):nth-last-child(1) {
+      grid-column: 5/span 2;
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center {
+      /* Fall 3: Letzte Reihe hat 3 Items -> ebenfalls mittig */
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center > *:nth-child(4n+1):nth-last-child(3) {
+      grid-column: 2/span 2;
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center > *:nth-child(4n+2):nth-last-child(2) {
+      grid-column: 4/span 2;
+    }
+    .content-gallery--cols-4 ul.content-gallery--columns-center > *:nth-child(4n+3):nth-last-child(1) {
+      grid-column: 6/span 2;
+    }
+  }
+  /* ================
+  Equal Columns mit fester Anzahl von 3 Spalten
+  ================ */
+  @container article-wrapper (width > 46rem) {
+    .content-gallery--cols-3 ul {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .content-gallery--cols-3 ul.content-gallery--columns-center {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .content-gallery--cols-3 ul.content-gallery--columns-center > * {
+      grid-column: span 2;
+    }
+    .content-gallery--cols-3 ul.content-gallery--columns-center {
+      /* Letzte Reihe mit weniger als 3 Items behandeln und zentrieren */
+    }
+    .content-gallery--cols-3 ul.content-gallery--columns-center > *:nth-child(2n+1):nth-last-child(1) {
+      grid-column: 2/span 2;
+    }
+  }
+  @container article-wrapper (width > 70rem) {
+    .content-gallery--cols-3 ul {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .content-gallery--cols-3 ul.content-gallery--columns-center {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    .content-gallery--cols-3 ul.content-gallery--columns-center > * {
+      grid-column: span 2;
+    }
+    .content-gallery--cols-3 ul.content-gallery--columns-center > *:nth-child(3n+1):nth-last-child(1) {
+      grid-column: 3/span 2;
+    }
+    .content-gallery--cols-3 ul.content-gallery--columns-center {
+      /* Letzte Reihe mit weniger als 3 Items behandeln und zentrieren */
+    }
+    .content-gallery--cols-3 ul.content-gallery--columns-center > *:nth-child(3n+1):nth-last-child(2) {
+      grid-column: 2/span 2;
+    }
+    .content-gallery--cols-3 ul.content-gallery--columns-center > *:nth-child(3n+2):nth-last-child(1) {
+      grid-column: 4/span 2;
+    }
+  }
+  /* ================
+  Equal Columns mit fester Anzahl von 2 Spalten
+  ================ */
+  @container article-wrapper (width > 46rem) {
+    .content-gallery--cols-2 ul {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .content-gallery--cols-2 ul.content-gallery--columns-center {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .content-gallery--cols-2 ul.content-gallery--columns-center > * {
+      grid-column: span 2;
+    }
+    .content-gallery--cols-2 ul.content-gallery--columns-center {
+      /* Letzte Reihe mit weniger als 2 Items behandeln und zentrieren */
+    }
+    .content-gallery--cols-2 ul.content-gallery--columns-center > *:nth-child(2n+1):nth-last-child(1) {
+      grid-column: 2/span 2;
+    }
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Download Module Styles
+   Beschreibung: Angepasste Styles fuer das Contao-Download-Module passend zum Layout.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+@layer extensions {
+  .content-block .content-download + .content-download {
+    margin-block-start: var(--flow-grid-spacing-block, 1.5rem);
+  }
+  .content-block .equal-columns .content-download + .content-download {
+    margin-block-start: 0;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Search Module Styles
+   Beschreibung: Angepasste Styles fuer das Contao-Search-Module passend zum Layout.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+@layer extensions {
+  .mod_search > *:first-child {
+    margin-block-end: var(--elements-gap-block);
+  }
+  .search_default:not(:first-child) {
+    margin-block-start: var(--elements-gap-block);
+  }
+  .search_default .context {
+    color: var(--text-color-light);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Pagination
+   Beschreibung: Angepasste Styles fuer die Contao-Pagination passend zum Layout.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+@layer extensions {
+  .pagination {
+    margin-block-start: var(--elements-gap-block);
+  }
+  .pagination p:first-child {
+    margin-block-end: var(--flow-spacing-block-sm);
+    text-align: center;
+  }
+  .pagination ul {
+    justify-content: center;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Navigation
+   Beschreibung: Styles fuer die Hauptnavigation und Footer-Navigation-Komponenten.
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Verwendete Custom Properties aus: _c-link-with-icon--vars.scss - --link-text-icon-color-hover, --link-text-icon-color
+   ========================================================================== */
+@layer extensions {
+  .skip-link {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skip-link:focus, .skip-link:focus-visible {
+    position: fixed !important;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
+    padding: 0.75rem 1.5rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: nowrap;
+    z-index: 10000;
+    background-color: var(--skip-link-background) !important;
+    color: var(--skip-link-color) !important;
+    font-size: 1rem;
+    font-weight: var(--skip-link-font-weight) !important;
+    line-height: 1;
+    text-decoration: none;
+    outline: 3px solid var(--skip-link-focus-border-color);
+    animation: skip-nav-appear 0.15s ease-out;
+  }
+  @keyframes skip-nav-appear {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  @media (forced-colors: active) {
+    .skip-link:focus {
+      outline: 3px solid ButtonText;
+      background-color: ButtonFace;
+      color: ButtonText;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .skip-link:focus {
+      animation: none;
+    }
+  }
+  .navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--navigation-gap-inline-default);
+  }
+  .navigation strong,
+  .navigation a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: var(--navigation-font-family-default);
+    font-size: var(--navigation-font-size-default);
+    font-weight: var(--navigation-font-weight-default);
+    line-height: var(--navigation-line-height-item);
+    /* Wenn aus link-text-icon kein --link-text-icon-color gesetzt ist,
+       auf die Navigation-Farben zurueckfallen */
+    color: var(--link-text-icon-color, var(--navigation-color-default));
+  }
+  .navigation strong:hover,
+  .navigation a:hover {
+    /* Wenn aus link-text-icon kein --link-text-icon-color gesetzt ist,
+       auf die Navigation-Farben zurueckfallen */
+    color: var(--link-text-icon-color-hover, var(--navigation-color-default-hover));
+  }
+  .navigation strong.active,
+  .navigation a.active {
+    /* Wenn aus link-text-icon kein --link-text-icon-color gesetzt ist,
+       auf die Navigation-Farben zurueckfallen */
+    color: var(--link-text-icon-color-hover, var(--navigation-color-default-hover));
+  }
+  /* Temporarer Fix fuer News-Kategorien in der Navigation */
+  .navigation.mod_newscategories span {
+    line-height: var(--navigation-line-height-item);
+  }
+  .navigation--centered ul {
+    justify-content: center;
+  }
+  /* Navigation im Layout und erstes Kind von main */
+  main > .navigation:first-child {
+    margin-block-start: var(--elements-gap-block);
+  }
+  @media (width < 48rem) {
+    .navigation ul {
+      flex-direction: column;
+      row-gap: var(--navigation-gap-block-default);
+    }
+    .navigation-footer ul {
+      align-items: center;
+    }
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao mobile navigation
+   Beschreibung: Angepasste Styles fuer die Contao-Mobile-Navigation.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+@layer extensions {
+  :root {
+    --nav-breakpoint: 1200px; /* Gleichen breakpoint wie $breakpoint-main-nav-mobile setzen */
+    --nav-color: var(--clr-black);
+    --nav-active-color: var(--clr-violett-500);
+    --nav-item-line-height: var(--lh-m);
+    --nav-font-size: var(--fs-650);
+    --nav-font-weight: var(--fw-300);
+    --nav-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M9 18l6-6-6-6"/></svg>');
+    --nav-icon-background: transparent;
+    /* Mobile Navigation */
+    --nav-mobile-background: var(--clr-grey-600);
+    --nav-mobile-color: var(--clr-black);
+    --nav-mobile-active-background: var(--clr-grey-600);
+    --nav-mobile-active-color: var(--clr-violett-500);
+    --nav-mobile-active-border-color: var(--clr-violett-500);
+    --nav-mobile-btn-clr: var(--clr-violett-500);
+    --nav-mobile-separator-color: var(--clr-grey-500);
+    --nav-mobile-padding: 5rem 2rem 2rem;
+    --nav-mobile-font-size: var(--fs-650);
+    --nav-mobile-backdrop-height: 80px;
+    --nav-mobile-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>');
+    --nav-submenu-background: #fff;
+    --nav-burger-line-color: var(--clr-black);
+    /* Hinzugefuegt */
+    --nav-burger-line-color-active: var(--clr-black);
+    --nav-mobile-font-weight: var(--fw-400);
+    /* Skip-Link */
+    /* --skip-background: var(--clr-grey-500);
+    --skip-color: var(--clr-red-500);
+    --skip-focus-border-color: var(--clr-red-500); */
+  }
+  body:not(.navigation-open, .nav-is-desktop) .navigation-main {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  body.navigation-open {
+    overflow: hidden;
+  }
+  body.navigation-open header .logo {
+    position: relative;
+    z-index: 7;
+  }
+  .nav-wrapper * {
+    box-sizing: border-box;
+  }
+  .navigation-main :is(a, strong) {
+    line-height: var(--nav-item-line-height);
+  }
+  .navigation-main {
+    /* Wird in _e-contao-navigation.scss gesetzt */
+    /* .skip-link {
+        visibility: hidden;
+    } */
+  }
+  .btn-toggle-submenu {
+    all: revert;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: var(--nav-icon-background) !important;
+    cursor: pointer;
+    z-index: 1;
+  }
+  .btn-toggle-submenu::after {
+    content: "";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: var(--nav-mobile-icon) no-repeat center;
+    transition: transform 0.3s cubic-bezier(0.2, 0.6, 0.3, 1.1);
+  }
+  .nav-burger {
+    padding: 0;
+    border: none;
+    background: transparent;
+    line-height: 1.5;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    z-index: 7;
+    height: 100%;
+    top: 0;
+    right: 0;
+    transition: height 0.3s ease-in-out;
+    transition: top 0.3s ease, right 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  }
+  .nav-burger .icon-line {
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%);
+    transition: background-color 0.2s ease-in-out;
+  }
+  .nav-burger .icon-line::before {
+    top: -0.625rem;
+  }
+  .nav-burger .icon-line::after {
+    bottom: -0.625rem;
+  }
+  .nav-burger .icon-line,
+  .nav-burger .icon-line::before,
+  .nav-burger .icon-line::after {
+    position: absolute;
+    left: 50%;
+    height: 0.2rem;
+    width: 2.25rem;
+    background: var(--nav-burger-line-color);
+    border-radius: var(--border-radius-default);
+    transform: translateX(-50%);
+  }
+  .nav-burger .icon-line::before,
+  .nav-burger .icon-line::after {
+    z-index: 6;
+    transition: transform 0.2s ease-in-out, top 0.2s ease-in-out, bottom 0.2s ease-in-out;
+    content: "";
+  }
+  .nav-burger.is-active .icon-line {
+    background: transparent;
+  }
+  .nav-burger.is-active .icon-line::before {
+    top: 0;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  .nav-burger.is-active .icon-line::after {
+    bottom: 0;
+    transform: translateX(-50%) rotate(-45deg);
+  }
+  .nav-burger:hover {
+    cursor: pointer;
+  }
+  /* Burger-Navigation: Position und Animation */
+  body.nav-is-mobile.navigation-open .nav-burger {
+    height: auto;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    transform: scale(1.05);
+    /* change nav icon color */
+  }
+  body.nav-is-mobile.navigation-open .nav-burger .icon-line::before,
+  body.nav-is-mobile.navigation-open .nav-burger .icon-line::after {
+    background: var(--nav-burger-line-color-active);
+  }
+  .nav-burger__inner {
+    position: relative;
+    width: 44px;
+    height: 44px;
+  }
+  /* Hinzugefuegt */
+  @media (width < 75rem) {
+    .nav-burger {
+      padding-inline: 3rem; /* Button-Breite */
+      background-color: var(--nav-mobile-btn-clr);
+    }
+    body.nav-is-mobile.navigation-open .nav-burger {
+      background-color: var(--nav-mobile-background);
+      padding-inline: 0; /* Button-Breite zuruecksetzen */
+    }
+  }
+  @media (width < 46rem) {
+    .nav-burger {
+      padding-inline: 1.5rem; /* Kleinere Button-Breite */
+    }
+  }
+  body.nav-is-mobile .nav-wrapper {
+    position: relative;
+    z-index: 5;
+  }
+  body.nav-is-mobile .navigation-main {
+    position: fixed;
+    inset: 0;
+    overflow: hidden auto;
+    z-index: 6;
+    padding: var(--nav-mobile-padding);
+    background: var(--nav-mobile-background);
+    color: var(--nav-mobile-color);
+    line-height: 1.5;
+    font-size: var(--nav-mobile-font-size);
+    font-weight: var(--nav-mobile-font-weight);
+    transition: opacity 0.15s ease-in-out, visibility 0.1s;
+  }
+  body.nav-is-mobile .navigation-main.is-active::before {
+    display: block;
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: var(--nav-mobile-backdrop-height);
+    backdrop-filter: blur(1px);
+    z-index: 1;
+  }
+  body.nav-is-mobile .navigation-main :is(a, strong) {
+    display: inline-block;
+    color: var(--nav-mobile-color);
+    text-decoration: unset;
+    padding: 12px 10px;
+    width: calc(100% - 44px);
+  }
+  body.nav-is-mobile .navigation-main :is(a, strong):is(.active) {
+    --nav-mobile-color: var(--nav-mobile-active-color);
+  }
+  body.nav-is-mobile .navigation-main .level_1 ul {
+    display: none;
+    flex-direction: column;
+  }
+  body.nav-is-mobile .navigation-main .level_2 li {
+    padding: 0 0 0 20px;
+  }
+  body.nav-is-mobile .navigation-main ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+  body.nav-is-mobile .navigation-main li {
+    position: relative;
+    padding: 0;
+  }
+  body.nav-is-mobile .navigation-main li:not(:last-child) {
+    border-bottom: 1px solid var(--nav-mobile-separator-color);
+  }
+  body.nav-is-mobile .navigation-main li.submenu li {
+    border: none;
+  }
+  body.nav-is-mobile .navigation-main li.submenu li:first-child {
+    border-top: 1px solid var(--nav-mobile-separator-color);
+  }
+  body.nav-is-mobile .navigation-main li > .btn-toggle-submenu::after {
+    transform: rotateX(180deg) rotateZ(-90deg);
+  }
+  body.nav-is-mobile .navigation-main li.active,
+  body.nav-is-mobile .navigation-main li a.trail {
+    background: var(--nav-mobile-active-background);
+    color: var(--nav-mobile-active-color);
+  }
+  body.nav-is-mobile .navigation-main li.nav-expanded > ul {
+    display: flex;
+  }
+  body.nav-is-mobile .navigation-main li.nav-expanded > .btn-toggle-submenu::after {
+    transform: rotateX(0deg) rotateZ(-90deg);
+  }
+  body.nav-is-desktop .nav-wrapper {
+    display: flex;
+    align-items: center;
+    overflow: visible;
+  }
+  body.nav-is-desktop .navigation-main :is(a, strong) {
+    line-height: 1;
+  }
+  body.nav-is-desktop .navigation-main a {
+    text-decoration: unset;
+  }
+  body.nav-is-desktop .navigation-main :is(a, strong) {
+    display: block;
+    position: relative;
+    color: var(--nav-color);
+    font-size: var(--nav-font-size);
+    font-weight: var(--nav-font-weight);
+  }
+  body.nav-is-desktop .navigation-main :is(a:hover, a:focus-visible, a.trail, strong) {
+    color: var(--nav-active-color);
+  }
+  body.nav-is-desktop .navigation-main ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  body.nav-is-desktop .navigation-main ul li.submenu {
+    position: relative;
+  }
+  body.nav-is-desktop .navigation-main ul ul {
+    position: absolute;
+    top: 100%;
+    min-width: 270px;
+    background: var(--nav-submenu-background);
+    box-shadow: 1px 2px 15px 8px rgba(0, 0, 0, 0.1);
+    gap: 0;
+    z-index: 999;
+  }
+  body.nav-is-desktop .navigation-main ul ul li {
+    padding: 0;
+  }
+  body.nav-is-desktop .navigation-main ul ul li.submenu {
+    padding-right: 40px;
+  }
+  body.nav-is-desktop .navigation-main ul ul li:not(:last-of-type) {
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  }
+  body.nav-is-desktop .navigation-main ul ul .btn-toggle-submenu {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 40px;
+  }
+  body.nav-is-desktop .navigation-main li.nav-expanded > ul {
+    display: flex;
+  }
+  body.nav-is-desktop .navigation-main li.nav-expanded .level_2 ul {
+    top: 0;
+    left: 100%;
+    min-width: 200px;
+  }
+  body.nav-is-desktop .navigation-main li.nav-expanded .level_2 ul.bounds-right {
+    left: auto;
+    right: 100%;
+    /* Inherit the position down to all submenus */
+  }
+  body.nav-is-desktop .navigation-main li.nav-expanded .level_2 ul.bounds-right ul {
+    left: auto;
+    right: 100%;
+  }
+  body.nav-is-desktop .navigation-main .level_1 {
+    gap: 0 var(--navigation-gap-inline-default);
+    justify-content: flex-end;
+    align-items: center;
+  }
+  body.nav-is-desktop .navigation-main .level_1 ul {
+    padding: 0;
+    display: none;
+    flex-direction: column;
+    border-radius: 4px;
+  }
+  body.nav-is-desktop .navigation-main .level_1 ul :is(a, strong) {
+    font-size: calc(var(--nav-font-size) / 1.2);
+    line-height: 1.2;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    width: 100%;
+  }
+  body.nav-is-desktop .navigation-main .level_1 > li {
+    padding: 5px 0;
+  }
+  body.nav-is-desktop .navigation-main .level_1 > li > .btn-toggle-submenu::after {
+    transform: rotateX(180deg) rotateZ(-90deg);
+  }
+  body.nav-is-desktop .navigation-main .level_1 > li.submenu {
+    padding-right: 20px;
+  }
+  body.nav-is-desktop .navigation-main .level_1 > li.nav-expanded > .btn-toggle-submenu::after {
+    transform: rotateX(0deg) rotateZ(-90deg);
+  }
+  body.nav-is-desktop .navigation-main .level_2::before {
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 16px;
+    margin-left: -8px;
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border: 8px solid rgba(255, 255, 255, 0);
+    border-bottom-color: var(--nav-submenu-background);
+  }
+  body.nav-is-desktop .navigation-main .level_2.bounds-right {
+    right: 0;
+  }
+  body.nav-is-desktop .navigation-main .level_2.bounds-right::before {
+    left: auto;
+    right: 16px;
+  }
+  body.nav-is-desktop .navigation-main .level_2:not(.bounds-left, .bounds-right) {
+    transform: translateX(-50%);
+    left: 50%;
+  }
+  body.nav-is-desktop .navigation-main .level_2:not(.bounds-left, .bounds-right)::before {
+    left: 50%;
+  }
+  body.nav-is-desktop .navigation-main {
+    /* Wird in _e-contao-navigation.scss gesetzt */
+    /* .skip-link {
+        visibility: visible;
+        // opacity: 0;
+        // position: absolute;
+        // left: 50%;
+        // transform: translateX(-50%);
+        clip: revert;
+        clip-path: revert;
+        // top: -100px;
+        text-align: center;
+        overflow: hidden;
+        // background: var(--skip-background);
+        // color: var(--skip-color);
+        transition: top 0.15s ease-in-out;
+        z-index: 6;
+        text-decoration: none;
+
+        &:focus-visible {
+            color: var(--button-color-primary); // Hinzugefuegt
+            width: auto;
+            height: auto;
+            outline-offset: 0;
+            outline: 2px solid var(--skip-focus-border-color);
+            padding: 6px 12px;
+            top: 0;
+            opacity: 1;
+        }
+    } */
+  }
+  body.nav-is-desktop .btn-toggle-submenu {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    top: 0;
+    right: -6px;
+  }
+  body.nav-is-desktop .btn-toggle-submenu::after {
+    background: var(--nav-icon) no-repeat center;
+  }
+  body.nav-is-desktop .nav-burger {
+    display: none;
+  }
+  @media (forced-colors) {
+    .nav-burger .icon-line,
+    .nav-burger .icon-line::before,
+    .nav-burger .icon-line::after {
+      height: 0;
+      border: 1px transparent solid;
+    }
+    .nav-burger.is-active .icon-line {
+      border: 0 none;
+    }
+    .nav-burger.is-active .icon-line::after {
+      bottom: -1px;
+    }
+    .nav-burger__inner {
+      color: currentcolor;
+    }
+  }
+  /* Kontaktblock unter der Navigation aktivieren */
+  body:not(.navigation-open, .nav-is-desktop) .navigation-main {
+    display: none; /* Vollstaendig ausblenden, wenn Navigation im Mobile-Modus geschlossen ist */
+  }
+  body.nav-is-desktop .nav-mobile-content {
+    display: none;
+  }
+  body.nav-is-mobile .navigation-main {
+    /* position: fixed deaktivieren */
+    position: static;
+    inset: auto;
+  }
+  body.nav-is-mobile .nav-mobile-content {
+    display: none; /* Standard: im Mobile-Modus ausgeblendet */
+  }
+  body.nav-is-mobile.navigation-open .navigation-accessible {
+    background-color: var(--nav-mobile-background);
+  }
+  body.nav-is-mobile.navigation-open .nav-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  body.nav-is-mobile.navigation-open .navigation-main {
+    flex: 0 0 auto;
+  }
+  body.nav-is-mobile.navigation-open .nav-mobile-content {
+    display: block;
+    flex-shrink: 0;
+    padding: 2rem;
+    background: var(--nav-mobile-background);
+  }
+}
+/* 50) components */
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Site Header
+   Beschreibung: Styles fuer die Site-Header-Komponente.
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .site-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--border-color-light);
+    padding-block: var(--header-padding-block-default);
+  }
+  .site-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .site-header__logo-link {
+    margin-inline-end: auto;
+  }
+  .site-header__logo-image {
+    width: var(--logo-width-default);
+  }
+  @media (width < 75rem) {
+    .site-header {
+      background-color: var(--background-color-extra-light);
+      border: none;
+      padding-block: 0; /* Padding fuer Mobile entfernen, damit der Button gestreckt werden kann */
+    }
+    .site-header__inner {
+      align-items: stretch;
+      flex-wrap: nowrap;
+      column-gap: var(--elements-gap-inline);
+    }
+    .site-header__logo-link {
+      margin-block: var(--header-padding-block-default); /* Margin fuer Mobile, damit der Button gestreckt werden kann */
+    }
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Site Header Top Section
+   Beschreibung: Styles fuer den oberen Bereich der Site-Header-Komponente.
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .site-header__inner {
+    padding-block-start: calc(var(--elements-gap-block) / 2);
+  }
+  .site-header__top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--navigation-gap-inline-default) var(--navigation-gap-block-default); /* row-gap und column gap */
+    padding-block: calc(var(--elements-gap-block) / 6);
+  }
+  .site-header:has(.site-header__top) {
+    padding-block-start: 0; /* Top-Padding entfernen, wenn top section vorhanden ist */
+  }
+  @media (width < 75rem) {
+    .site-header__top {
+      justify-content: center;
+    }
+    .site-header > :first-child {
+      background-color: var(--background-color-default);
+    }
+    /* Padding fuer kleinere Viewports anpassen, damit kein Background ueber dem Mobile-Menu-Button liegt */
+    .site-header__inner {
+      padding-block-start: 0;
+    }
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Hero Section
+   Beschreibung: Styles fuer die Hero-Section-Komponente mit Bildern und Text.
+   Ebene (Layer): Components
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .hero .wrapper {
+    display: grid;
+    gap: var(--flow-grid-spacing-block) var(--elements-gap-inline);
+  }
+  .hero__column:first-child {
+    grid-row: 2/3;
+  }
+  .hero__column:last-child {
+    grid-row: 1/2;
+  }
+  .hero-images {
+    display: grid;
+  }
+  .hero-images .content-image:last-child {
+    display: none;
+  }
+  @media (width > 600px) {
+    .hero-images {
+      grid-template-columns: 1fr 0.7fr;
+      gap: var(--elements-gap-block) var(--elements-gap-inline);
+    }
+    .hero-images .content-image {
+      align-self: end;
+    }
+    .hero-images .content-image:last-child {
+      display: block;
+    }
+  }
+  @media (width > 1400px) {
+    .hero .wrapper {
+      grid-template-columns: 0.8fr 1fr;
+      grid-template-rows: auto;
+    }
+    .hero__column:first-child {
+      grid-row: 1/2;
+      grid-column: 1/2;
+      align-self: center;
+    }
+    .hero__column:last-child {
+      grid-row: 1/2;
+      grid-column: 2/3;
+    }
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Search Icon in Navigation
+   Beschreibung: Styles fuer das Search-Icon in der Hauptnavigation.
+   Ebene (Layer): Components
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .nav-search-icon.text-icon {
+    padding-inline-start: 3rem;
+    margin-inline-start: 3rem;
+    border-left: 1px solid var(--border-color-light);
+  }
+  .nav-search-icon.text-icon .svg_icon_search__path {
+    fill: var(--navigation-color-default);
+  }
+  .nav-search-icon.text-icon:hover .svg_icon_search__path {
+    fill: var(--navigation-color-default-hover);
+  }
+  @media (width < 75rem) {
+    .nav-search-icon.text-icon {
+      margin-inline-start: 0;
+      border-left: none;
+      padding-inline: 3rem;
+      display: flex;
+      align-items: center;
+      block-size: auto; /* Reset von svg-icon */
+    }
+  }
+  @media (width < 768px) {
+    .nav-search-icon.text-icon {
+      display: none;
+    }
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Scroll to Top Button
+   Beschreibung: Styles fuer die Scroll-to-Top-Button-Komponente.
+   Ebene (Layer): Components
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .back-to-top {
+    position: fixed;
+    inset-block-end: 1rem; /* unten */
+    inset-inline-end: 1rem; /* rechts */
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    /* min-width: 44px; */
+    /* WCAG-Zielflaeche */
+    /* min-height: 44px; */
+    /* WCAG-Zielflaeche */
+    min-width: 2.5em;
+    min-height: 2.5em;
+    /* padding: 0.75rem 1rem; */
+    text-decoration: none;
+    font: inherit;
+    background: var(--button-background-reduced, #eee);
+    color: var(--button-color-reduced, #000);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    border-radius: var(--border-radius-default, 0);
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .back-to-top .back-to-top__path {
+    fill: var(--button-color-reduced, #000);
+  }
+  .back-to-top[data-visible=true] {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Button with Icon (accessible)
+   Beschreibung: Styles fuer Icon-with-Text-Komponenten in verschiedenen Bereichen der Site.
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: _c-icon-with-text--vars.css, a11y-font-size.js
+   ========================================================================== */
+@layer components {
+  .a11y {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--navigation-gap-inline-default) var(--navigation-gap-block-default); /* row-gap und column gap */
+  }
+  .button--a11y {
+    /* Mit icon-with-text-Variablen ueberschreiben */
+    --icon-with-text-gap: var(--icon-padding-inline-regular);
+    padding-inline: var(--button-padding-inline-sm);
+    padding-block: var(--button-padding-block-sm);
+    color: var(--navigation-color-default);
+    font-size: var(--font-size-xs);
+    background: none;
+    border: none;
+  }
+  .button--a11y .text-icon__text {
+    font-weight: var(--font-weight-light);
+    text-transform: uppercase;
+  }
+  .button--a11y .text-icon__icon {
+    /* Mit icon-with-text-Variablen ueberschreiben */
+    --icon-with-text-inline-size: var(--icon-size-regular);
+    --icon-with-text-block-size: var(--icon-size-regular);
+  }
+  .button--a11y[aria-pressed=true] {
+    color: var(--navigation-color-default-hover);
+  }
+  .button--a11y:not(.is-disabled):hover {
+    color: var(--navigation-color-default-hover);
+  }
+  @media (width < 75rem) {
+    .a11y .text-icon__text {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+    .button--a11y {
+      font-size: var(--font-size-sm);
+    }
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Link with Icons
+   Beschreibung: Styles fuer Link-Komponenten mit Icons, z. B. Link mit Arrow-Icon bei News-Read-More-Links.
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Ja
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .text-icon {
+    --icon-with-text-gap: var(--icon-padding-inline-regular, 0.5rem);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--icon-with-text-gap);
+    min-height: 1.5rem;
+  }
+  .text-icon__icon {
+    --icon-with-text-inline-size: 1em; /* skaliert mit font-size */
+    --icon-with-text-block-size: 1em; /* skaliert mit font-size */
+    inline-size: var(--icon-with-text-inline-size);
+    block-size: var(--icon-with-text-block-size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    /* Fix zum Zentrieren des Icons */
+    transform: translateY(-2px);
+  }
+  .text-icon__icon.svg-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentcolor; /* Textfarbe vererben */
+  }
+  .text-icon__text {
+    line-height: 1; /* Text vertikal zentrieren */
+    word-break: break-word; /* Lange Woerter umbrechen, um Overflow zu vermeiden - Fix fuer unterschiedliche Bildhoehen im Grid */
+  }
+  /* text-icon mit Link */
+  .text-icon--link {
+    /* Anpassbare Design-Tokens */
+    --link-text-icon-color: var(--link-color-default); /* Text + svg funktioniert ueber currentcolor */
+    --link-text-icon-color-hover: var(--link-color-default-hover); /* Text + svg funktioniert ueber currentcolor */
+    --link-text-icon-icon-icon: #fff; /* Arrow-Farbe */
+    color: var(--link-text-icon-color);
+    /* In text-icon__text verwendet - ist das noetig? */
+    line-height: 1; /* Text vertikal zentrieren */
+    /* Animation */
+    transition: color 0.3s ease;
+  }
+  .text-icon--link .text-icon__icon {
+    display: inline-grid;
+    /* Animation */
+    transition: transform 0.3s ease;
+  }
+  .text-icon--link {
+    /* Circle-Background */
+  }
+  .text-icon--link .text-icon__icon-bg {
+    /* Animation */
+    transition: fill 0.3s ease;
+  }
+  .text-icon--link {
+    /* Arrow im Circle als path mit stroke */
+  }
+  .text-icon--link .text-icon__icon-arrow {
+    stroke: var(--link-text-icon-icon-icon);
+  }
+  .text-icon--link {
+    /* Hover */
+  }
+  .text-icon--link:hover, .text-icon--link:active {
+    color: var(--link-text-icon-color-hover);
+  }
+  .text-icon--link:hover .text-icon__icon, .text-icon--link:active .text-icon__icon {
+    transform: translateX(4px) translateY(-2px); /* Fix zum Zentrieren des Icons bei Hover */
+    transition: transform 0.3s ease;
+  }
+  /* Hervorgehobene Variante fuer Link in News Read More */
+  .text-icon--link-highlighted {
+    font-weight: 400;
+    --link-text-icon-color: var(--link-color-default-hover);
+    --link-text-icon-color-hover: var(--link-color-default);
+  }
+  /* Aktiver Link in Contao-Navigation */
+  .active .text-icon .text-icon__icon {
+    transform: translateX(4px) translateY(-2px); /* Fix zum Zentrieren des Icons bei Hover */
+    transition: transform 0.3s ease;
+  }
+  /* Custom Property nicht definiert */
+  /* .active .text-icon .text-icon__icon-bg {
+      fill: var(--link-text-icon-icon-background-hover);
+  } */
+  strong.active .text-icon__text {
+    color: var(--link-text-icon-color-hover);
+  }
+  /* ================
+      Accessible
+      ================ */
+  /* Accessible-Variante fuer Nutzer mit reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .text-icon,
+    .text-icon__icon,
+    .text-icon__icon-bg,
+    .text-icon__icon-arrow {
+      transition: none !important;
+    }
+  }
+  /* Accessible-Variante fuer manuelle Nutzung */
+  .is-reduce-motion .text-icon,
+  .is-reduce-motion .text-icon__icon,
+  .is-reduce-motion .text-icon__icon-bg,
+  .is-reduce-motion .text-icon__icon-arrow {
+    transition: none !important;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Site Footer
+   Beschreibung: Styles fuer die Site-Footer-Komponente mit Footer-Bottom.
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .site-footer h2 {
+    /* Fluide Typografie-Parameter */
+    --min-font-size: var(--font-size-heading-lg-min);
+    --max-font-size: var(--font-size-heading-lg-max);
+    --min-font-size-no-unit: var(--font-size-heading-lg-min-no-unit);
+    --max-font-size-no-unit: var(--font-size-heading-lg-max-no-unit);
+    /* Fluide Typografie */
+    --slope: calc(
+        (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+            (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit))
+    );
+    --intercept: calc(
+        var(--min-font-size) - (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+            (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit)) *
+            var(--fluid-breakpoint-min)
+    ); /* Fallback */
+    font-size: clamp(var(--min-font-size), var(--intercept) + var(--slope) * 100vw, var(--max-font-size));
+    font-weight: var(--font-weight-bold);
+  }
+  .site-footer__inner {
+    background-color: var(--background-color-light);
+    border: 1px solid var(--border-color-extra-light);
+  }
+  .site-footer__bottom {
+    background-color: var(--background-color-light);
+  }
+  @media (width < 75rem) {
+    .site-footer__bottom .flex-group {
+      flex-direction: column;
+      align-items: center;
+    }
+    .site-footer__bottom p {
+      text-align: center;
+    }
+  }
+  /* ================
+  Equal Columns Subgrid mit 2 Zeilen
+  ================ */
+  .site-footer .equal-columns {
+    grid-template-rows: auto 1fr;
+  }
+  .site-footer .equal-columns > * {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 2;
+    gap: 0; /* Gap aus equal-columns zuruecksetzen und .flow verwenden */
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Image hover effect
+   Beschreibung: Klasse fuer Bilder mit Hover-Effekt (dark overlay + magnifying glass + zoom).
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .image--hover {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    border-radius: var(--border-radius-default); /* Abgerundete Ecken, wenn das Bild ebenfalls abgerundet ist */
+  }
+  .image--hover img {
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  /* Dark overlay ueber dem Bild */
+  .image--hover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none; /* Link bleibt klickbar */
+    z-index: 1;
+  }
+  /* Magnifying glass als SVG (weiss, zentriert) */
+  .image--hover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' class='svg_icon_search__path' d='M15.4663 8.69959C15.4663 9.5882 15.2912 10.4681 14.9512 11.2891C14.6111 12.11 14.1127 12.856 13.4843 13.4843C12.856 14.1127 12.11 14.6111 11.2891 14.9512C10.4681 15.2912 9.5882 15.4663 8.69959 15.4663C7.81097 15.4663 6.93106 15.2912 6.11009 14.9512C5.28912 14.6111 4.54317 14.1127 3.91483 13.4843C3.28649 12.856 2.78806 12.11 2.448 11.2891C2.10794 10.4681 1.93292 9.5882 1.93292 8.69959C1.93292 6.90495 2.64583 5.18383 3.91483 3.91483C5.18383 2.64583 6.90495 1.93292 8.69959 1.93292C10.4942 1.93292 12.2153 2.64583 13.4843 3.91483C14.7533 5.18383 15.4663 6.90495 15.4663 8.69959ZM14.1303 15.4972C12.3931 16.8851 10.1903 17.5551 7.97446 17.3697C5.75861 17.1843 3.69787 16.1574 2.21545 14.5001C0.733044 12.8427 -0.0585044 10.6806 0.00337254 8.4579C0.0652495 6.23517 0.975855 4.12049 2.54817 2.54817C4.12049 0.975855 6.23517 0.0652495 8.4579 0.00337254C10.6806 -0.0585044 12.8427 0.733044 14.5001 2.21545C16.1574 3.69787 17.1843 5.75861 17.3697 7.97446C17.5551 10.1903 16.8851 12.3931 15.4972 14.1303L20.984 19.6152C21.0739 19.7051 21.1452 19.8118 21.1938 19.9292C21.2424 20.0466 21.2675 20.1725 21.2675 20.2996C21.2675 20.4267 21.2424 20.5526 21.1938 20.67C21.1452 20.7874 21.0739 20.8941 20.984 20.984C20.8941 21.0739 20.7874 21.1452 20.67 21.1938C20.5526 21.2424 20.4267 21.2675 20.2996 21.2675C20.1725 21.2675 20.0466 21.2424 19.9292 21.1938C19.8118 21.1452 19.7051 21.0739 19.6152 20.984L14.1303 15.4972Z' fill='%23f1f1f1'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: var(--icon-size-lg);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  /* Hover-Effekt */
+  .image--hover:hover::before {
+    opacity: 1;
+  }
+  .image--hover:hover::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .image--hover:hover img {
+    transform: scale(1.05);
+  }
+  /* ================
+      Accessible
+      ================ */
+  /* Accessible-Variante fuer Nutzer mit reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .image--hover img,
+    .image--hover::before,
+    .image--hover::after {
+      transition: none;
+      transform: none;
+    }
+  }
+  /* Accessible-Variante fuer manuelle Nutzung */
+  .is-reduce-motion .image--hover img,
+  .is-reduce-motion .image--hover::before,
+  .is-reduce-motion .image--hover::after {
+    transition: none;
+    transform: none;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Komponente: RSCE Icon Text Badge
+   Beschreibung: Styles fuer die Badge-Komponente, verwendet im RSCE Icon-Text-Element.
+   Ebene (Layer): components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Ja
+   Abhaengigkeiten: _c-icon-with-text--vars.css, rsce_icon_text.html.twig, rsce_icon_text_config.php, tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .badge {
+    --badge-background: var(--button-background-reduced, #f5f5f5);
+    --badge-color: var(--button-color-reduced, #111);
+    --badge-radius: var(--border-radius-default, 12px);
+    --badge-gap: var(--icon-padding-inline-lg, 0.5rem);
+    --badge-padding-inline: var(--button-padding-inline, 1.25rem);
+    --badge-padding-block: var(--button-padding-block, 1rem);
+    /* Variablen fuer Icon-with-text ueberschreiben */
+    --icon-with-text-gap: var(--badge-gap);
+    padding-block: var(--badge-padding-block);
+    padding-inline: var(--badge-padding-inline);
+    border-radius: var(--badge-radius);
+    background: var(--badge-background);
+    color: var(--badge-color);
+    font: inherit;
+    line-height: 1;
+    white-space: nowrap; /* verhindert unschoene Zeilenumbrueche */
+  }
+  .badge strong {
+    font-weight: 800;
+  }
+  .badge.badge--primary {
+    --badge-background: var(--button-background-reduced);
+    --badge-color: var(--button-color-reduced);
+  }
+  .badge.badge--accent {
+    --badge-background: var(--button-background-accent);
+    --badge-color: var(--button-color-accent);
+  }
+  .badge.badge--only-text-icon {
+    --badge-background: transparent;
+    --badge-color: var(--navigation-color-default);
+  }
+  .badge.badge--center {
+    display: flex; /* display:flex wegen Modifikator center mit margin-inline: auto */
+    width: fit-content;
+    margin-inline: auto;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Button with Icon
+   Beschreibung: Styles fuer die Button-Komponente in RSCE.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: _b-button.css, _c-icon-with-text--vars.css, rsce_button.html.twig, rsce_button_config.php, tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  /* Button mit Icon */
+  .button:has(.button__icon) {
+    /* Mit icon-with-text-Variablen ueberschreiben */
+    --icon-with-text-gap: var(--icon-padding-inline-regular);
+    display: flex; /* display:flex wegen Modifikator center mit margin-inline: auto */
+    width: fit-content;
+    align-items: center;
+  }
+  .button:has(.button__icon) strong {
+    font-weight: 800;
+  }
+  /* Gemeinsame Transition fuer alle Icon-Elemente */
+  .button__icon-arrow,
+  .button__icon-bg {
+    transition: stroke 0.3s ease, fill 0.3s ease;
+  }
+  /* Primaere Button-Farben ueber CSS-Variablen */
+  .button--primary {
+    --icon-arrow-stroke: var(--button-background-primary);
+    --icon-bg-fill: var(--button-color-primary);
+  }
+  .button--primary:hover {
+    --icon-arrow-stroke: var(--button-color-primary);
+    --icon-bg-fill: var(--button-background-primary);
+  }
+  /* Sekundaere Button-Farben ueber CSS-Variablen */
+  .button--secondary {
+    --icon-arrow-stroke: var(--button-background-secondary);
+    --icon-bg-fill: var(--button-color-secondary);
+  }
+  .button--secondary:hover {
+    --icon-arrow-stroke: var(--button-color-secondary);
+    --icon-bg-fill: var(--button-background-secondary);
+  }
+  /* Reduced-Button-Farben ueber CSS-Variablen */
+  .button--reduced {
+    --icon-arrow-stroke: var(--button-background-reduced);
+    --icon-bg-fill: var(--button-color-reduced);
+  }
+  .button--reduced:hover {
+    --icon-arrow-stroke: var(--button-color-reduced);
+    --icon-bg-fill: var(--button-background-reduced);
+  }
+  /* only-text-icon-Button-Farben ueber CSS-Variablen */
+  .button--only-text-icon {
+    --icon-arrow-stroke: var(--button-background-reduced);
+    --icon-bg-fill: var(--button-color-reduced);
+  }
+  .button--only-text-icon:hover {
+    --icon-arrow-stroke: var(#fff);
+    --icon-bg-fill: var(--navigation-color-default-hover);
+  }
+  /* Zuweisung an die Icons */
+  .button__icon-arrow {
+    stroke: var(--icon-arrow-stroke);
+  }
+  .button__icon-bg {
+    fill: var(--icon-bg-fill);
+  }
+  /* ================
+      Accessible
+      ================ */
+  /* Accessible-Variante fuer Nutzer mit reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .button__icon-arrow,
+    .button__icon-bg {
+      transition: none !important;
+    }
+  }
+  /* Accessible-Variante fuer manuelle Nutzung */
+  .is-reduce-motion .button__icon-arrow,
+  .is-reduce-motion .button__icon-bg {
+    transition: none !important;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Headline Subheadline
+   Beschreibung: Styles fuer das RSCE-Headline-Subheadline-Element.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_headline_subheadline.html.twig, rsce_headline_subheadline_config.php, tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .headline-subheadline .headline-top,
+  .headline-subheadline .headline-bottom {
+    display: block;
+    font-size: 0.5em; /* 1/2 der Headline-Groesse */
+    font-weight: var(--font-weight-book);
+  }
+  .headline-subheadline .headline-top {
+    margin-bottom: 0.25em;
+  }
+  .headline-subheadline .headline-bottom {
+    margin-top: 0.25em;
+  }
+  h1.headline-subheadline .headline-top,
+  h1.headline-subheadline .headline-bottom {
+    font-size: 0.4em; /* 1/3 der h1-Groesse */
+  }
+  h3.headline-subheadline .headline-top,
+  h3.headline-subheadline .headline-bottom {
+    font-size: 0.6em;
+  }
+  h4.headline-subheadline .headline-top,
+  h4.headline-subheadline .headline-bottom {
+    font-size: 0.7em;
+  }
+  h5.headline-subheadline .headline-top,
+  h5.headline-subheadline .headline-bottom {
+    font-size: 0.8em;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Section Parallax Images
+   Beschreibung: Styles fuer Parallax-Bilder.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Ja
+   Abhaengigkeiten: parallax-image.js, rsce_parallax_image_config.php, rsce_parallax_image.html.twig, tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  section:has(.parallax-container) {
+    padding-block: 0;
+  }
+  section:has(.parallax-container) .wrapper {
+    padding-inline: 0;
+  }
+  .parallax-container {
+    --parallax-section-height: clamp(200px, 70vh, 400px);
+    position: relative;
+    height: var(--parallax-section-height);
+    overflow: hidden;
+    contain: layout paint; /* Kleine Performance-Optimierung */
+  }
+  .parallax-image {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+  }
+  .parallax-image > img {
+    position: absolute;
+    left: 0;
+    top: 50%; /* Vertikal zentrieren */
+    width: 100%;
+    height: auto; /* Tatsaechliche Bildhoehe beibehalten */
+    min-height: 100%; /* Falls das Bild kleiner ist */
+    object-fit: cover; /* Flaeche sauber fuellen */
+    display: block;
+    /* Basis-Zentrierung (-50%) + dynamischer parallax shift */
+    --parallax-shift: 0px;
+    transform: translateY(calc(-50% + var(--parallax-shift)));
+    will-change: transform;
+  }
+  /* ================
+      Accessible
+      ================ */
+  /* Accessible-Variante fuer Nutzer mit reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .parallax-image > img {
+      transform: translateY(-50%) !important; /* Nur Basisposition */
+    }
+  }
+  /* Accessible-Variante fuer manuelle Nutzung */
+  .is-reduce-motion .parallax-image > img {
+    transform: translateY(-50%) !important; /* Nur Basisposition */
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Page Teaser Standard
+   Beschreibung: Styles fuer die Standard-Page-Teaser-Komponente in RSCE.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_page_teaser_standard.html.twig, rsce_page_teaser_standard_config.php, tokens.semantic.css, _b-cards.css
+   ========================================================================== */
+@layer components {
+  /* breakpoint ist identisch mit equal-columns */
+  .page-teaser {
+    --equal-columns-gap-rows: 0; /* row-gap ist in diesem Grid 0, margin-block-end wird fuer den Abstand zwischen Cards verwendet */
+  }
+  @media (width > 46rem) {
+    .page-teaser {
+      grid-template-rows: repeat(4, auto); /* maximal 4 Zeilen fuer den Standard-Teaser, damit subgrid funktioniert */
+    }
+  }
+  .page-teaser__card {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 4; /* maximal 4 Zeilen fuer den Standard-Teaser, damit subgrid funktioniert */
+    gap: 0;
+    margin-block-end: var(--equal-columns-gap-columns, 1rem); /* margin-block-end fuer horizontalen Abstand zwischen Cards im subgrid verwenden */
+    /* Card-Styles ueberschreiben */
+  }
+  .page-teaser__card.card--border, .page-teaser__card.card--background {
+    padding-inline: 0;
+    padding-block: 0;
+  }
+  .page-teaser__card.card--border .image--hover,
+  .page-teaser__card.card--border img, .page-teaser__card.card--background .image--hover,
+  .page-teaser__card.card--background img {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  /* margin-block-end abhaengig von breakpoints auf 0 setzen */
+  .page-teaser.equal-columns--columns-3 .page-teaser__card:last-child {
+    margin-block-end: 0;
+  }
+  @container article-wrapper (46rem <= width <= 70rem) {
+    .page-teaser.equal-columns--columns-3 .page-teaser__card:nth-child(2n+1):nth-last-child(-n+2),
+    .page-teaser.equal-columns--columns-3 .page-teaser__card:nth-child(2n+1):nth-last-child(-n+2) ~ .page-teaser__card {
+      margin-block-end: 0;
+    }
+  }
+  @container article-wrapper (width > 70rem) {
+    .page-teaser.equal-columns--columns-3 .page-teaser__card:nth-child(3n+1):nth-last-child(-n+3),
+    .page-teaser.equal-columns--columns-3 .page-teaser__card:nth-child(3n+1):nth-last-child(-n+3) ~ .page-teaser__card {
+      margin-block-end: 0;
+    }
+  }
+  a.page-teaser__card {
+    text-decoration: none;
+    color: var(--text-color-default);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Team
+   Beschreibung: Styles fuer die Team-Komponente in RSCE.
+   Ebene (Layer): Components/rsce
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_team_config.php, rsce_team.html.twig, _c-icon-with-text--vars.css, tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .team_headline span {
+    display: block;
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-book);
+    font-size: var(--font-size-sm);
+  }
+  .team__contact-info ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .team__contact-info li {
+    display: flex;
+  }
+  .team__list {
+    --flow-spacing-block: var(--flow-spacing-block-sm);
+    list-style: none;
+    margin: 0;
+    padding-block: 0;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE element with text and optional icon and/or headline
+   Beschreibung: Styles fuer die RSCE-Block-Icon-Text-Komponente.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_block_icon_text.html.twig, rsce_block_icon_text_config.php, tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .block-text-icon__card .block-text-icon__icon {
+    margin-block-end: var(--flow-grid-spacing-block);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Block Image Slider Text
+   Beschreibung: Styles fuer die Image-Slider-Text-Komponente in RSCE.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_image_slider_text.html.twig, rsce_image_slider_text_config.php, tokens.semantic.css, _b-cards.css
+   ========================================================================== */
+@layer components {
+  .equal-columns:has(.image-slider-text__card) .card,
+  .equal-columns:has(.image-slider-text__card) {
+    display: block; /* Fix fuer Swiper, funktioniert nicht mit Grid */
+  }
+  .equal-columns:has(.image-slider-text__card) .card {
+    margin-block-end: var(--equal-columns-gap-rows); /* margin-block-end verwenden, da kein Grid */
+  }
+  /* breakpoint ist identisch mit equal-columns */
+  @container article-wrapper (width > 46rem) {
+    .equal-columns:has(.image-slider-text__card) {
+      display: grid; /* Fix fuer Swiper, funktioniert nicht mit Grid - Grid wieder aktivieren */
+    }
+    .equal-columns:has(.image-slider-text__card) .card {
+      margin-block-end: 0; /* margin-block-end zuruecksetzen, weil Grid wieder aktiv ist */
+    }
+  }
+  .image-slider-text__card {
+    /* Card-Styles ueberschreiben */
+  }
+  .image-slider-text__card.card--border, .image-slider-text__card.card--background {
+    padding-inline: 0;
+    padding-block: 0;
+  }
+  .image-slider-text__card.card--border .image--hover,
+  .image-slider-text__card.card--border img, .image-slider-text__card.card--background .image--hover,
+  .image-slider-text__card.card--background img {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE element for testimonial block
+   Beschreibung: Styles fuer die RSCE-Block-Testimonial-Komponente.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_block_testimonial.html.twig, rsce_block_testimonial_config.php, tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  .testimonial {
+    overflow: hidden; /* Verhindert, dass dekorative Quotes ueberlaufen */
+  }
+  .testimonial__figure {
+    position: relative;
+    margin-block-start: 3rem;
+  }
+  .testimonial:not(:has(.testimonial__quote--two-columns)) {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+  @media (width >= 48rem) {
+    .testimonial__quote--two-columns {
+      column-count: 2;
+      column-gap: var(--equal-columns-gap-default);
+    }
+  }
+  /* Name unten links */
+  .testimonial__author {
+    margin-block-start: var(--flow-spacing-block-lg);
+    font-size: var(--font-size-sm);
+    color: var(--text-color-light);
+  }
+  /* Dekorative Anfuehrungszeichen */
+  .testimonial__figure::before,
+  .testimonial__figure::after {
+    position: absolute;
+    font-size: var(--font-size-heading-xxl-max);
+    line-height: 1;
+    color: var(--text-color-default);
+    content: "";
+  }
+  /* Oeffnendes Anfuehrungszeichen oben links */
+  .testimonial__figure::before {
+    content: "“";
+    top: -3rem;
+    left: 0;
+  }
+  /* Schliessendes Anfuehrungszeichen unten rechts */
+  .testimonial__figure::after {
+    content: "”";
+    right: 0;
+    bottom: -2.5rem;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Block Table Link
+   Beschreibung: Styles fuer das RSCE-Block-Table-Link-Element.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_block-table-link.html.twig, rsce_block-table-link_config.php, tokens.semantic.css, _b-cards.css
+   ========================================================================== */
+@layer components {
+  a.block-table-link__card {
+    text-decoration: none;
+    color: var(--text-color-default);
+  }
+  a.block-table-link__card:hover .content-headline {
+    color: var(--text-color-default-hover);
+  }
+  .block-table-link__card table {
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .block-table-link__card table th,
+  .block-table-link__card table td {
+    padding: var(--table-cell-padding-block-sm, 0.25rem) var(--table-cell-padding-inline-default, 0.75rem);
+  }
+  .block-table-link__card table th {
+    font-weight: var(--font-size-regular);
+  }
+  .block-table-link__card table tr > :first-child {
+    padding-inline-start: 0;
+  }
+  .block-table-link__card table tr > :last-child {
+    padding-inline-end: 0;
+  }
+  .block-table-link__card table caption {
+    color: var(--text-color-light);
+    font-size: var(--font-size-sm);
+  }
+  .block-table-link__card .text-icon {
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+  }
+  .block-table-link__card:has(.card-bg-icon) {
+    position: relative;
+    overflow: hidden;
+  }
+  .card-bg-icon {
+    position: absolute;
+    top: -6.5rem;
+    right: 3%;
+    width: 4.68rem;
+    height: auto;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Link List
+   Beschreibung: Styles fuer Link List.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css, _b-icon.css, _b-lists.css
+   ========================================================================== */
+@layer components {
+  .link-list {
+    /* Nur wenn keine headline vorhanden ist */
+  }
+  .link-list li:first-child:not(:has(.link-list__headline)) .text-icon--link {
+    padding-block-start: 0;
+  }
+  .link-list:has(.link-list__headline) li + li {
+    margin-block-start: var(--flow-spacing-block-default);
+  }
+  .link-list__headline {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: var(--font-weight-medium);
+  }
+}
+/* 60) utilities */
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Utility: Accessibility Utilities
+   Beschreibung: Utility-Klassen zur Verbesserung der Accessibility.
+   Ebene (Layer): Utilities
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+@layer utilities {
+  /* .sr-only ist ein gaengiger Klassenname fuer screen-reader-only Content,
+     aber .visually-hidden beschreibt besser, was es tut, statt fuer wen es ist. */
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  /* Utility-Klassen aus semantischen Custom Properties */
+  [hidden] {
+    display: none;
+  }
+  /* Accessible-Variante fuer Nutzer mit reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  .is-reduce-motion * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Utility: Text Utilities
+   Beschreibung: Utility-Klassen fuer Textausrichtung und Lesebreite.
+   Ebene (Layer): Utilities
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+@layer utilities {
+  .u-text-narrow {
+    max-width: 65ch;
+  }
+  .u-text-narrow--center {
+    max-width: 65ch;
+    margin-inline: auto;
+  }
+  .u-text-left {
+    text-align: left;
+  }
+  .u-text-center {
+    text-align: center;
+  }
+  .u-text-right {
+    text-align: right;
+  }
+  .u-text-justify {
+    text-align: justify;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Utility: Image Utilities
+   Beschreibung: Utility-Klassen fuer Bilder.
+   Ebene (Layer): Utilities
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+@layer utilities {
+  .content-image--center {
+    display: block;
+    width: fit-content;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+  }
+  .content-image--center figure {
+    width: fit-content;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Utility: Table Utilities
+   Beschreibung: Utility-Klassen fuer Tabellen.
+   Ebene (Layer): Utilities
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+@layer utilities {
+  .u-table-50-50 table tr > :first-child {
+    width: 50%;
+  }
+}
+/* 70) overrides */
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao addon Handorgel
+   Beschreibung: Angepasste Styles fuer die Contao-Handorgel-Accordion-Extension.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+/* Ohne layer, um Standard-Handorgel-Styles zu ueberschreiben */
+.handorgel__header .handorgel__header__button {
+  box-sizing: border-box;
+  padding: 1rem;
+}
+.handorgel__header .handorgel__header__button:hover {
+  color: var(--text-color-default-hover);
+}
+.handorgel__header.handorgel__header--opened .handorgel__header__button {
+  color: var(--text-color-default-hover);
+}
+
+.handorgel__headline {
+  line-height: 1;
+}
+
+.handorgel__header .handorgel__header__button {
+  display: flex;
+  justify-content: space-between;
+}
+.handorgel__header .handorgel__icon {
+  position: relative;
+  width: 1em;
+}
+.handorgel__header .handorgel__icon::before,
+.handorgel__header .handorgel__icon::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 4px;
+  background-color: var(--text-color-default);
+  transform-origin: 50% 50%;
+  transition: all 0.25s ease;
+}
+.handorgel__header .handorgel__icon::before {
+  transform: rotate(0deg);
+  opacity: 1;
+}
+.handorgel__header .handorgel__icon::after {
+  transform: rotate(-90deg);
+}
+.handorgel__header.handorgel__header--opened .handorgel__icon::before {
+  transform: rotate(0deg);
+  opacity: 1;
+  background-color: var(--text-color-default-hover);
+}
+.handorgel__header.handorgel__header--opened .handorgel__icon::after {
+  transform: rotate(0deg);
+  background-color: var(--text-color-default-hover);
+}
+
+/* 80) projects */
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Page Teaser Standard - Friedrich-Engls-Schule
+   Beschreibung: Styles fuer die Friedrich-Engls-Schule-Page-Teaser-Komponente in RSCE.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_page_teaser_standard.html.twig, rsce_page_teaser_standard_config.php
+   ========================================================================== */
+@layer projects {
+  .page-teaser__card > *:not(:first-child) {
+    text-align: center;
+  }
+  .page-teaser__card .text-icon__text {
+    display: none;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Hero dots Section
+   Beschreibung: Styles fuer die Hero-Section mit Dots.
+   Ebene (Layer): Components
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer projects {
+  /* Dekorative Dots */
+  .hero__column:last-child {
+    position: relative;
+    z-index: 2;
+    border-radius: var(--border-radius-default);
+    overflow: hidden;
+  }
+  .hero-form {
+    position: absolute;
+    width: clamp(60px, 18vw, 200px);
+    height: clamp(60px, 18vw, 200px);
+    z-index: 1;
+    border-radius: 50%;
+    pointer-events: none;
+    /* Fuer performante Animationen in der Dot-Animation */
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+  .hero-form--triangle {
+    left: -20px;
+    top: -20px;
+    z-index: 3;
+  }
+  .hero-form--square {
+    right: 14%;
+    bottom: 8%;
+    z-index: 3;
+  }
+  .hero-form--circle {
+    display: none;
+    z-index: 3;
+  }
+  @media (width > 600px) {
+    .hero-form--square {
+      left: 52%;
+      bottom: 8%;
+    }
+    .hero-form--circle {
+      display: block;
+      right: 10%;
+      top: 8%;
+    }
+  }
+  @media (width > 1400px) {
+    .hero-images {
+      position: relative;
+      z-index: 2;
+    }
+    .hero__column:last-child {
+      overflow: inherit;
+    }
+    .hero-form--triangle {
+      left: -100px;
+      top: 10%;
+      z-index: 3;
+    }
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Section Background Decorations
+   Beschreibung: Styles fuer dekorative Background-Elemente in Sections (circles, crosses).
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer components {
+  /* Standard/Fallback (optional) */
+  :root {
+    --decor-color-element: var(--background-color-extra-light);
+    --decor-color-background: var(--background-color-light);
+  }
+  /* Standard in main */
+  main {
+    --decor-color-element: var(--background-color-light, hsl(0deg 0% 95%));
+    --decor-color-background: var(--background-color-extra-light);
+  }
+  /* Footer */
+  .site-footer {
+    --decor-color-element: var(--background-color-extra-light, hsl(0deg 0% 95%));
+    --decor-color-background: var(--background-color-light);
+  }
+  .decor-section {
+    --shape-size: 200px;
+    position: relative;
+    overflow: clip; /* Schneidet die Shapes sauber an den Kanten */
+    background-color: var(--decor-color-background);
+  }
+  .decor-section__inner {
+    position: relative;
+    z-index: 1; /* Ueber den Shapes */
+  }
+  .decor {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .shape {
+    position: absolute;
+    display: block;
+    will-change: transform;
+  }
+  .shape--square {
+    --shape-size: clamp(10rem, 28vw, 20rem);
+  }
+  .shape--square svg {
+    width: var(--shape-size);
+    height: var(--shape-size);
+  }
+  .shape--circle {
+    --shape-size: clamp(10rem, 28vw, 20rem);
+  }
+  .shape--circle svg {
+    width: var(--shape-size);
+    height: var(--shape-size);
+  }
+  .shape--triangle {
+    --shape-size: clamp(9rem, 28vw, 18rem);
+  }
+  .shape--triangle svg {
+    width: var(--shape-size);
+    height: var(--shape-size);
+  }
+  /* Element-Positionen */
+  /* Oben links */
+  .shape--tl {
+    top: max(-12%, -5rem); /* Verschiebt die Shape leicht ueber die Section; nutzt den groesseren Wert, damit sie mit dem Viewport skaliert, aber -13rem nicht ueberschreitet */
+    left: max(-10%, -13rem);
+  }
+  /* Unten rechts */
+  .shape--br {
+    right: max(-10%, -5rem);
+    bottom: max(-4%, -3rem);
+  }
+  @media (width >= 64rem) {
+    .shape--tl {
+      top: max(-4%, -15rem);
+      left: -6rem;
+    }
+    .shape--br {
+      right: max(-20%, -7rem);
+      bottom: max(-8%, -16rem);
+    }
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Table Adjustments
+   Beschreibung: Angepasste Styles fuer Contao-Tabellen zur Verbesserung von Layout und Lesbarkeit.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+@layer projects {
+  .content-table table caption {
+    color: #fff;
+  }
+  .content-table table th {
+    background-color: var(--brand-color-tertiary);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Block Table Link
+   Beschreibung: Styles fuer das RSCE-Block-Table-Link-Element.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_block-table-link.html.twig, rsce_block-table-link_config.php, tokens.semantic.css, _b-cards.css
+   ========================================================================== */
+@layer projects {
+  .wrapper-monday .block-table-link__card {
+    background-color: #f2fbff;
+  }
+  .wrapper-tuesday .block-table-link__card {
+    background-color: #fffced;
+  }
+  .wrapper-wednesday .block-table-link__card {
+    background-color: #fef1f3;
+  }
+  .wrapper-thursday .block-table-link__card {
+    background-color: #faf9f3;
+  }
+  a.block-table-link__card:hover {
+    background-color: var(--background-color-light);
+  }
+  /* Nur die erste Spalte erhaelt eine feste Breite */
+  table tr > *:first-child:nth-last-child(2) {
+    width: 30%;
+  }
+  .u-table-50-50 table tr > :first-child {
+    width: 50%;
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Site Header Top Section
+   Beschreibung: Styles fuer den oberen Bereich der Site-Header-Komponente.
+   Ebene (Layer): Projects
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer projects {
+  .site-header > :first-child {
+    background-color: var(--background-color-light);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Utility: Style Guide Content Element Utilities
+   Beschreibung: Style-Guide-Content-Element fuer die Demo-Seite.
+   Ebene (Layer): Utilities
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+@layer utilities {
+  .ce-guide__background-grid-cell--color1 {
+    background-color: hsl(0, 0%, 70%);
+  }
+  .ce-guide__background-grid-cell--color2 {
+    background-color: hsl(0, 0%, 60%);
+  }
+  .ce-guide__background-grid-cell--color3 {
+    background-color: hsl(0, 0%, 50%);
+  }
+  .ce-guide__background-grid-cell--color4 {
+    background-color: hsl(0, 0%, 40%);
+  }
+}
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Accessible navigation
+   Beschreibung: Styles fuer Accessible-Navigation.
+   Ebene (Layer): Projects/fe-schule
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer projects {
+  @media (width < 75rem) {
+    .navigation-accessible {
+      order: 3;
+    }
+  }
+}
+/* 85) themes */
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Theme: High Contrast Mode
+   Beschreibung: Benutzerdefinierte Styles fuer den High Contrast Mode zur
+   Verbesserung der Accessibility und Lesbarkeit fuer Benutzer mit Sehbeeintraechtigungen.
+   Ebene (Layer): Themes
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: _s-tokens-semantic.scss
+   ========================================================================== */
+/* Aenderungsstrategie:
+   - Nur Farb- und Kontrast-Tokens werden ueberschrieben
+   - Spacing, Sizing, Typography-Skalen bleiben unveraendert
+   - Zielvorgabe: WCAG AA (4.5:1 fuer normalen Text, 3:1 fuer grosse Texte)
+   - "light"-Varianten werden durch dunklere Alternativen ersetzt
+   - "extra-light"-Borders/Farben werden sichtbar gemacht
+*/
+@layer themes {
+  html.is-high-contrast {
+    /* ================
+    Focus
+    ================ */
+    /* Schwarz statt Blau - universell sichtbar auf allen Hintergruenden */
+    --focus-color-default: var(--clr-black);
+    /* ================
+    Navigation
+    ================ */
+    /* Hover/Active in Schwarz statt Rot - hoeherer Kontrast */
+    --navigation-color-default-hover: var(--clr-black);
+    --navigation-color-active: var(--clr-black);
+    /* ================
+    Button
+    ================ */
+    /* Secondary/Reduced: Von hellem Grau (clr-grey-600 = 90%) auf Dunkelgrau (clr-grey-200 = 20%) */
+    --button-background-secondary: var(--clr-grey-200);
+    --button-background-reduced: var(--clr-grey-200);
+    /* Textfarbe anpassen: Weiss auf Dunkelgrau statt Rot auf Hellgrau */
+    --button-color-secondary: var(--clr-white);
+    --button-color-reduced: var(--clr-white);
+    /* Hover-Zustaende: Kontrastreicher */
+    --button-background-primary-hover: var(--clr-black);
+    --button-background-secondary-hover: var(--clr-black);
+    --button-background-reduced-hover: var(--clr-black);
+    --button-color-primary-hover: var(--clr-white);
+    --button-color-secondary-hover: var(--clr-white);
+    --button-color-reduced-hover: var(--clr-white);
+    /* ================
+    Link
+    ================ */
+    /* Hover: Schwarz statt Rot */
+    --link-color-default-hover: var(--clr-black);
+    /* ================
+    Text
+    ================ */
+    /* clr-grey-500 = 49% Helligkeit -> ~3.5:1 Kontrast (verfehlt WCAG AA) */
+    /* clr-grey-200 = 20% Helligkeit -> ~9:1 Kontrast (besteht WCAG AA) */
+    --text-color-light: var(--clr-grey-200);
+    /* Hover: Schwarz statt Rot */
+    --text-color-default-hover: var(--clr-black);
+    /* ================
+    Form
+    ================ */
+    /* Pflichtfeld-Markierung: Schwarz statt Rot (Rot kann farbblind-problematisch sein) */
+    --form-mandatory-color: var(--clr-black);
+    /* ================
+    Table
+    ================ */
+    /* Header: Dunkelgrau mit weissem Text statt hellem Grau mit schwarzem Text */
+    --table-header-background-color: var(--clr-grey-200);
+    --table-header-color: var(--clr-white);
+    /* Zeilenstreifen: clr-grey-900 (97%) -> clr-grey-600 (90%) - sichtbarer Unterschied */
+    --table-row-odd-background-color: var(--clr-grey-600);
+    /* Rahmen: Klar sichtbar in Schwarz statt hellem Grau */
+    --table-border-color: var(--clr-black);
+    /* ================
+    Border
+    ================ */
+    /* Light: clr-grey-600 (90%) -> clr-grey-500 (49%) - sichtbarer */
+    --border-color-light: var(--clr-grey-500);
+    /* Extra-Light: clr-white -> clr-grey-600 - war unsichtbar auf weissem Hintergrund */
+    --border-color-extra-light: var(--clr-grey-600);
+    /* ================
+    Style Overrides
+    ================ */
+  }
+  html.is-high-contrast button.is-disabled {
+    opacity: 0.8;
+  }
+}
+/* define layer stack */
+@layer settings, generic, base, layout, extensions, components, utilities, overrides, projects, themes;
+
+/*# sourceMappingURL=main.css.map */

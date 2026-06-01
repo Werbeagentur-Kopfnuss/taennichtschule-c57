@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Block Image Slider Text
+   Beschreibung: Styles fuer die Image-Slider-Text-Komponente in RSCE.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_image_slider_text.html.twig, rsce_image_slider_text_config.php, tokens.semantic.css, _b-cards.css
+   ========================================================================== */
+
+@use "../../00-settings/s-tokens-semantic" as *;
+
+@layer components {
+    .equal-columns:has(.image-slider-text__card) .card,
+    .equal-columns:has(.image-slider-text__card) {
+        display: block; /* Fix fuer Swiper, funktioniert nicht mit Grid */
+    }
+    .equal-columns:has(.image-slider-text__card) .card {
+        margin-block-end: var(--equal-columns-gap-rows); /* margin-block-end verwenden, da kein Grid */
+    }
+
+    /* breakpoint ist identisch mit equal-columns */
+    @container article-wrapper (width > #{$breakpoint-container-grid-1}) {
+        .equal-columns:has(.image-slider-text__card) {
+            display: grid; /* Fix fuer Swiper, funktioniert nicht mit Grid - Grid wieder aktivieren */
+        }
+        .equal-columns:has(.image-slider-text__card) .card {
+            margin-block-end: 0; /* margin-block-end zuruecksetzen, weil Grid wieder aktiv ist */
+        }
+    }
+
+    .image-slider-text__card {
+        /* Card-Styles ueberschreiben */
+        &.card--border,
+        &.card--background {
+            padding-inline: 0;
+            padding-block: 0;
+            .image--hover,
+            img {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
+}

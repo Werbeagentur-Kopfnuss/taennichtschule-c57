@@ -1,0 +1,32 @@
+{% block be_icon_label_badge %}
+    <div class="{{ class }} backend_rsce_icon_label_badge"{% if cssID %} id="{{ cssID }}"{% endif %}>
+
+        {# Text vorhanden? (Checkbox oder bool) #}
+        {% set hasText = iconHasText|default(true) %}
+
+        {% if hasText and text is defined and text %}
+            <span>{{ text|raw }}</span>
+        {% endif %}
+
+        {% if iconArt == 'isIconFileSvg' %}
+            <span class="badge__icon" aria-hidden="true">
+            {{ svg|insert_tag|raw }}
+        </span>
+        {% endif %}
+        {% if iconArt == 'isIconImage' %}
+            {% if hasImageMetadata == true %}
+                {% set metadataImage = { alt: imageAlt|default, title: imageTitle|default } %}
+            {% else %}
+                {% set metadataImage = { alt: figure(image, {}).metadata.alt|insert_tag, title: figure(image, {}).metadata.title|insert_tag } %}
+            {% endif %}
+            <span class="badge__icon" aria-hidden="true">
+            {% include "@Contao/component/_figure.html.twig" with {
+                figure: figure(image, imageSize, {
+                    metadata: metadataImage,
+                }),
+            } %}
+        </span>
+        {% endif %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+
+<ul class="<?= $this->level ?><?php if ($this->isActiveCategories): ?> active-categories<?php endif; ?>">
+    <?php foreach ($this->items as $item): ?>
+        <?php if ($item['isActive']): ?>
+            <li class="<?= $item['class'] ?>">
+                <span class="text-icon text-icon--link">
+                    <?php if ($item['image']): ?>
+                        <?php $this->insert('picture_default', $item['image']['picture']) ?>
+                    <?php endif; ?>
+
+                    <strong class="<?= $item['class'] ?>"<?php if ($item['subitems']): ?> aria-haspopup="true"<?php endif; ?>>
+                        <span class="name text-icon__text" itemprop="name"><?= $item['link'] ?></span>
+
+                        <?php if ($this->showQuantity): ?>
+                            <span class="quantity text-icon__text">(<?= $item['quantity'] ?>)</span>
+                        <?php endif; ?>
+                    </strong>
+
+                    <span class="text-icon__icon svg-icon svg-icon--size-sm" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                            <circle cx="12" cy="12" r="11.5" class="text-icon__icon-bg"></circle>
+                            <path d="M10 7l5 5-5 5" class="text-icon__icon-arrow" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                    </span>
+                </span>
+
+                <?= $item['subitems'] ?>
+            </li>
+        <?php else: ?>
+            <li class="<?= $item['class'] ?>">
+                <a href="<?= $item['href'] ?>" class="<?= $item['class'] ?> text-icon text-icon--link" title="<?= $item['linkTitle'] ?>" itemprop="url"<?php if ($item['subitems']): ?> aria-haspopup="true"<?php endif; ?>>
+                    <?php if ($item['image']): ?>
+                        <?php $this->insert('picture_default', $item['image']['picture']) ?>
+                    <?php endif; ?>
+
+                    <span class="name text-icon__text" itemprop="name"><?= $item['link'] ?></span>
+
+                    <?php if ($this->showQuantity): ?>
+                        <span class="quantity text-icon__text">(<?= $item['quantity'] ?>)</span>
+                    <?php endif; ?>
+
+                    <span class="text-icon__icon svg-icon svg-icon--size-sm" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                            <circle cx="12" cy="12" r="11.5" class="text-icon__icon-bg"></circle>
+                            <path d="M10 7l5 5-5 5" class="text-icon__icon-arrow" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                    </span>
+
+                    <span class="visually-hidden">Nachrichten Filtern nach: <?= $item['link'] ?></span>
+                </a>
+
+                <?= $item['subitems'] ?>
+            </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</ul>

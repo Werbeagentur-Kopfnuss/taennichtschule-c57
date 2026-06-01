@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Author: Agentur KOPFNUSS - Marco Schädlich
+   Main CSS File
+   Description: This is the main CSS file that imports all other CSS files in a structured manner using CSS layers.
+   ========================================================================== */
+
+/* layer-stack */
+@layer settings, generic, base, layout, extensions, components, utilities;
+
+/* imports */
+
+/* 1 settings */
+@import url("./00-settings/_s-tokens-primitives.css") layer(settings);
+@import url("./00-settings/_s-tokens-semantic.css") layer(settings);
+@import url("./00-settings/_s-tokens-project.css") layer(settings);
+
+/* 2 generic */
+@import url("./10-generic/_g-reset.css") layer(generic);
+@import url("./10-generic/_g-fonts.css") layer(generic);
+
+/* 3 base */
+@import url("./20-base/_b-root.css") layer(base);
+@import url("./20-base/_b-typography.css") layer(base);
+@import url("./20-base/_b-buttons.css") layer(base);
+@import url("./20-base/_b-images.css") layer(base);
+@import url("./20-base/_b-videos.css") layer(base);
+@import url("./20-base/_b-icons.css") layer(base);
+
+/* 4 layout */
+@import url("./30-layout/_l-layout.css") layer(layout);
+@import url("./30-layout/_l-flow.css") layer(layout);
+@import url("./30-layout/_l-grid.css") layer(layout);
+@import url("./30-layout/_l-flex.css") layer(layout);
+
+/* 5 extensions */
+@import url("./40-extensions/contao/_e-contao-flow.css") layer(extensions);
+@import url("./40-extensions/contao/_e-contao-news.css") layer(extensions);
+@import url("./40-extensions/contao/_e-contao-typography.css") layer(extensions);
+@import url("./40-extensions/contao/_e-contao-swiper.css") layer(extensions);
+@import url("./40-extensions/contao/_e-contao-form.css") layer(extensions);
+@import url("./40-extensions/contao/_e-contao-table.css") layer(extensions);
+@import url("./40-extensions/contao/_e-contao-gallery.css") layer(extensions);
+@import url("./40-extensions/contao/_e-contao-navigation-accessible.css");
+
+/* 6 components */
+@import url("./50-components/_c-background-elements.css") layer(components);
+@import url("./50-components/_c-header.css") layer(components);
+@import url("./50-components/_c-header-top.css") layer(components);
+@import url("./50-components/_c-navigation.css") layer(components);
+@import url("./50-components/_c-hero.css") layer(components);
+@import url("./50-components/_c-search.css") layer(components);
+@import url("./50-components/_c-scrolltotop.css") layer(components);
+@import url("./50-components/_c-icon-with-text--vars.css") layer(components);
+@import url("./50-components/_c-buttons-a11y.css") layer(components); /* depends on _c-icon-with-text--vars.css */
+@import url("./50-components/_c-link-with-icon--vars.css") layer(components);
+@import url("./50-components/_c-footer.css") layer(components);
+@import url("./50-components/_c-image-hover.css") layer(components);
+@import url("./50-components/_c-link-list.css") layer(components);
+@import url("./50-components/rsce/_c-rsce-icon-text--vars.css") layer(components); /* depends on _c-icon-with-text--vars.css */
+@import url("./50-components/rsce/_c-rsce-button--vars.css") layer(components); /* depends on _c-button.css, _c-icon-with-text--vars.css */
+@import url("./50-components/rsce/_c-rsce-headline-subheadline.css") layer(components);
+@import url("./50-components/rsce/_c-rsce-parallax-image--vars.css") layer(components);
+@import url("./50-components/rsce/_c-rsce-page-teaser-standard.css") layer(components);
+@import url("./50-components/rsce/_c-rsce-team.css") layer(components); /* depends on _c-icon-with-text--vars.css */
+@import url("./50-components/rsce/_c-rsce-block-icon-text.css") layer(components);
+@import url("./50-components/rsce/_c-rsce-block-image-slider-text.css") layer(components);
+@import url("./50-components/rsce/_c-rsce-block_testimonial.css") layer(components);
+
+/* 7 utilities */
+@import url("./60-utilities/_u-a11y.css") layer(utilities);
+@import url("./60-utilities/_u-text.css") layer(utilities);

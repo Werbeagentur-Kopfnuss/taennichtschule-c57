@@ -1,0 +1,57 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Komponente: RSCE Icon Text Badge
+   Beschreibung: Styles fuer die Badge-Komponente, verwendet im RSCE Icon-Text-Element.
+   Ebene (Layer): components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Ja
+   Abhaengigkeiten: _c-icon-with-text--vars.css, rsce_icon_text.html.twig, rsce_icon_text_config.php, tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    .badge {
+        --badge-background: var(--button-background-reduced, #f5f5f5);
+        --badge-color: var(--button-color-reduced, #111);
+        --badge-radius: var(--border-radius-default, 12px);
+        --badge-gap: var(--icon-padding-inline-lg, 0.5rem);
+        --badge-padding-inline: var(--button-padding-inline, 1.25rem);
+        --badge-padding-block: var(--button-padding-block, 1rem);
+        
+        /* Variablen fuer Icon-with-text ueberschreiben */
+        --icon-with-text-gap: var(--badge-gap);
+
+        padding-block: var(--badge-padding-block);
+        padding-inline: var(--badge-padding-inline);
+        border-radius: var(--badge-radius);
+        background: var(--badge-background);
+        color: var(--badge-color);
+        font: inherit;
+        line-height: 1;
+        white-space: nowrap; /* verhindert unschoene Zeilenumbrueche */
+
+        strong {
+            font-weight: 800;
+        }
+
+        &.badge--primary {
+            --badge-background: var(--button-background-reduced);
+            --badge-color: var(--button-color-reduced);
+        }
+
+        &.badge--accent {
+            --badge-background: var(--button-background-accent);
+            --badge-color: var(--button-color-accent);
+        }
+
+        &.badge--only-text-icon {
+            --badge-background: transparent;
+            --badge-color: var(--navigation-color-default);
+        }
+
+        &.badge--center {
+            display: flex; /* display:flex wegen Modifikator center mit margin-inline: auto */
+            width: fit-content;
+            margin-inline: auto;
+        }
+    }
+}

@@ -1,0 +1,24 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Utility: Style Guide Content Element Utilities
+   Beschreibung: Style-Guide-Content-Element fuer die Demo-Seite.
+   Ebene (Layer): Utilities
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+
+@layer utilities {
+    .ce-guide__background-grid-cell--color1 {
+        background-color: hsl(0deg 0% 70%);
+    }
+    .ce-guide__background-grid-cell--color2 {
+        background-color: hsl(0deg 0% 60%);
+    }
+    .ce-guide__background-grid-cell--color3 {
+        background-color: hsl(0deg 0% 50%);
+    }
+    .ce-guide__background-grid-cell--color4 {
+        background-color: hsl(0deg 0% 40%);
+    }
+}

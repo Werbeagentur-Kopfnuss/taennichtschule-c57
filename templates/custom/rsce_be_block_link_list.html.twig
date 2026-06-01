@@ -1,0 +1,15 @@
+{% block be_block_link_list %}
+    <div class="{{ class }} backend-rsce-block-link-list"{% if cssID %} id="{{ cssID }}"{% endif %}>
+
+        {% if links|default %}
+            <ul class="rsce-link-list">
+                {% for uuid in links %}
+                    <li>
+                        <a href="{{ uuid.linkUrl }}">{{ uuid.linkName }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    </div>
+{% endblock %}

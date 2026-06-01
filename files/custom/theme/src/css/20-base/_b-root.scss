@@ -1,0 +1,24 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Root Element
+   Beschreibung: Basis fuer Root-Elemente wie html und body.
+   Ebene (Layer): Base
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer base {
+    /* Diese CSS prueft die Motion-Praeferenz des Systems.
+       Bei prefers-reduced-motion: no-preference wird smooth scroll auf html gesetzt.
+       Fuer Abstaende scroll-margin oder scroll-padding verwenden. */
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
+
+    body {
+        background-color: var(--background-color-default);
+    }
+}

@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Utility: Text Utilities
+   Beschreibung: Utility-Klassen fuer Textausrichtung und Lesebreite.
+   Ebene (Layer): Utilities
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten:
+   ========================================================================== */
+
+@layer utilities {
+    .u-text-narrow {
+        max-width: 65ch;
+    }
+
+    .u-text-narrow--center {
+        max-width: 65ch;
+        margin-inline: auto;
+    }
+
+    .u-text-left {
+        text-align: left;
+    }
+
+    .u-text-center {
+        text-align: center;
+    }
+
+    .u-text-right {
+        text-align: right;
+    }
+
+    .u-text-justify {
+        text-align: justify;
+    }
+}

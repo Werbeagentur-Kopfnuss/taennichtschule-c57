@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Section Parallax Images
+   Beschreibung: Styles fuer Parallax-Bilder.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Ja
+   Abhaengigkeiten: parallax-image.js, rsce_parallax_image_config.php, rsce_parallax_image.html.twig, tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    section:has(.parallax-container) {
+        padding-block: 0;
+    }
+
+    section:has(.parallax-container) .wrapper {
+        padding-inline: 0;
+    }
+
+    .parallax-container {
+        --parallax-section-height: clamp(200px, 70vh, 400px);
+
+        position: relative;
+        height: var(--parallax-section-height);
+        overflow: hidden;
+        contain: layout paint; /* Kleine Performance-Optimierung */
+    }
+
+    .parallax-image {
+        position: absolute;
+        inset: 0;
+        will-change: transform;
+    }
+
+    .parallax-image > img {
+        position: absolute;
+        left: 0;
+        top: 50%; /* Vertikal zentrieren */
+        width: 100%;
+        height: auto; /* Tatsaechliche Bildhoehe beibehalten */
+        min-height: 100%; /* Falls das Bild kleiner ist */
+        object-fit: cover; /* Flaeche sauber fuellen */
+        display: block;
+
+        /* Basis-Zentrierung (-50%) + dynamischer parallax shift */
+        --parallax-shift: 0px;
+
+        transform: translateY(calc(-50% + var(--parallax-shift)));
+        will-change: transform;
+    }
+
+    /* ================
+        Accessible
+        ================ */
+
+    /* Accessible-Variante fuer Nutzer mit reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        .parallax-image > img {
+            transform: translateY(-50%) !important; /* Nur Basisposition */
+        }
+    }
+
+    /* Accessible-Variante fuer manuelle Nutzung */
+    .is-reduce-motion {
+        .parallax-image > img {
+            transform: translateY(-50%) !important; /* Nur Basisposition */
+        }
+    }
+}

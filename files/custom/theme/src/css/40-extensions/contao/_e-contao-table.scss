@@ -1,0 +1,46 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Table Adjustments
+   Beschreibung: Angepasste Styles fuer Contao-Tabellen zur Verbesserung von Layout und Lesbarkeit.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+
+@layer extensions {
+    .wrapper--width-standard > .content-table {
+        max-width: 65ch;
+        margin-inline: auto;
+    }
+
+    .content-table {
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-block: var(--flow-grid-spacing-block, 1.25rem);
+            text-align: left;
+
+            th,
+            td {
+                border: 1px solid var(--table-border-color);
+                padding: var(--table-cell-padding-block-default, 0.5rem)
+                    var(--table-cell-padding-inline-default, 0.75rem);
+            }
+
+            th {
+                background-color: var(--table-header-background-color);
+                font-weight: var(--font-weight-medium);
+            }
+
+            tbody tr:nth-child(odd) {
+                background-color: var(--table-row-odd-background-color);
+            }
+            caption {
+                color: var(--text-color-light);
+                font-size: var(--font-size-sm);
+            }
+        }
+    }
+}

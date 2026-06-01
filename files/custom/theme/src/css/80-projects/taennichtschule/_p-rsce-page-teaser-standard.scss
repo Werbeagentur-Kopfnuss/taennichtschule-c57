@@ -1,0 +1,19 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Page Teaser Standard - Friedrich-Engls-Schule
+   Beschreibung: Styles fuer die Friedrich-Engls-Schule-Page-Teaser-Komponente in RSCE.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_page_teaser_standard.html.twig, rsce_page_teaser_standard_config.php
+   ========================================================================== */
+
+@layer projects {
+    .page-teaser__card > *:not(:first-child) {
+        text-align: center;
+    }
+
+    .page-teaser__card .text-icon__text {
+        display: none;
+    }
+}

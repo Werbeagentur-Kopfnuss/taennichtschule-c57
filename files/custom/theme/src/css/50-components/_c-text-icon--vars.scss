@@ -1,0 +1,136 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Link with Icons
+   Beschreibung: Styles fuer Link-Komponenten mit Icons, z. B. Link mit Arrow-Icon bei News-Read-More-Links.
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Ja
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    .text-icon {
+        --icon-with-text-gap: var(--icon-padding-inline-regular, 0.5rem);
+
+        display: inline-flex;
+        align-items: center;
+        gap: var(--icon-with-text-gap);
+        min-height: 1.5rem;
+    }
+
+    .text-icon__icon {
+        --icon-with-text-inline-size: 1em; /* skaliert mit font-size */
+        --icon-with-text-block-size: 1em; /* skaliert mit font-size */
+
+        inline-size: var(--icon-with-text-inline-size);
+        block-size: var(--icon-with-text-block-size);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+
+        /* Fix zum Zentrieren des Icons */
+        transform: translateY(-2px);
+    }
+
+    .text-icon__icon.svg-icon svg {
+        width: 100%;
+        height: 100%;
+        fill: currentcolor; /* Textfarbe vererben */
+    }
+
+    .text-icon__text {
+        line-height: 1; /* Text vertikal zentrieren */
+        word-break: break-word; /* Lange Woerter umbrechen, um Overflow zu vermeiden - Fix fuer unterschiedliche Bildhoehen im Grid */
+    }
+
+    /* text-icon mit Link */
+    .text-icon--link {
+        /* Anpassbare Design-Tokens */
+        --link-text-icon-color: var(--link-color-default); /* Text + svg funktioniert ueber currentcolor */
+        --link-text-icon-color-hover: var(--link-color-default-hover); /* Text + svg funktioniert ueber currentcolor */
+        --link-text-icon-icon-icon: #fff; /* Arrow-Farbe */
+
+        color: var(--link-text-icon-color);
+
+        /* In text-icon__text verwendet - ist das noetig? */
+        line-height: 1; /* Text vertikal zentrieren */
+
+        /* Animation */
+        transition: color 0.3s ease;
+
+        .text-icon__icon {
+            display: inline-grid;
+
+            /* Animation */
+            transition: transform 0.3s ease;
+        }
+
+        /* Circle-Background */
+        .text-icon__icon-bg {
+            /* Animation */
+            transition: fill 0.3s ease;
+        }
+
+        /* Arrow im Circle als path mit stroke */
+        .text-icon__icon-arrow {
+            stroke: var(--link-text-icon-icon-icon);
+        }
+
+        /* Hover */
+        &:hover,
+        &:active {
+            color: var(--link-text-icon-color-hover);
+        }
+
+        &:hover .text-icon__icon,
+        &:active .text-icon__icon {
+            transform: translateX(4px) translateY(-2px); /* Fix zum Zentrieren des Icons bei Hover */
+            transition: transform 0.3s ease;
+        }
+    }
+
+    /* Hervorgehobene Variante fuer Link in News Read More */
+    .text-icon--link-highlighted {
+        font-weight: 400;
+        --link-text-icon-color: var(--link-color-default-hover);
+        --link-text-icon-color-hover: var(--link-color-default);
+    }
+
+    /* Aktiver Link in Contao-Navigation */
+    .active .text-icon .text-icon__icon {
+        transform: translateX(4px) translateY(-2px); /* Fix zum Zentrieren des Icons bei Hover */
+        transition: transform 0.3s ease;
+    }
+
+    /* Custom Property nicht definiert */
+    /* .active .text-icon .text-icon__icon-bg {
+        fill: var(--link-text-icon-icon-background-hover);
+    } */
+    strong.active .text-icon__text {
+        color: var(--link-text-icon-color-hover);
+    }
+
+    /* ================
+        Accessible
+        ================ */
+    /* Accessible-Variante fuer Nutzer mit reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        .text-icon,
+        .text-icon__icon,
+        .text-icon__icon-bg,
+        .text-icon__icon-arrow {
+            transition: none !important;
+        }
+    }
+
+    /* Accessible-Variante fuer manuelle Nutzung */
+    .is-reduce-motion {
+        .text-icon,
+        .text-icon__icon,
+        .text-icon__icon-bg,
+        .text-icon__icon-arrow {
+            transition: none !important;
+        }
+    }
+}

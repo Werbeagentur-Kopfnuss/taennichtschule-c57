@@ -1,0 +1,196 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Typography Styles
+   Beschreibung: Basis-Typografie-Styles fuer das Theme.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer base {
+    html {
+        font-family: var(--font-family-base);
+        line-height: var(--line-height-body);
+    }
+
+    body {
+        font-size: var(--font-size-regular);
+        font-weight: var(--font-weight-book);
+        color: var(--text-color-default);
+    }
+
+    /* Formel fuer den preferred value in clamp() */
+
+    /*
+    slope = (maxFontSize - minFontSize) / (maxWidth - minWidth)
+    yAxisIntersection = -minWidth * slope + minFontSize
+    preferredValue = yAxisIntersection[rem] + (slope * 100)[vw]
+    */
+
+    /*
+    --slope: calc((var(--max-font-size) - var(--min-font-size)) / (var(--max-width) - var(--min-width)));
+    --intercept: calc(var(--min-font-size) - var(--slope) * var(--min-width));
+    --fluid-font-size: calc(var(--slope) * 100vw + var(--intercept));
+    */
+
+    /* Headings (clamp + fallback) */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family: var(--font-family-heading);
+        line-height: var(--line-height-heading);
+        color: var(--text-color-default);
+        text-wrap: balance;
+        hyphens: auto; /* Silbentrennung fuer Headings aktivieren, um Overflow in kleinen Viewports zu vermeiden */
+    }
+
+    h1 {
+        /* Fluide Typografie-Parameter */
+        --min-font-size: var(--font-size-heading-xxl-min);
+        --max-font-size: var(--font-size-heading-xxl-max);
+        --min-font-size-no-unit: var(--font-size-heading-xxl-min-no-unit);
+        --max-font-size-no-unit: var(--font-size-heading-xxl-max-no-unit);
+
+        /* Fluide Typografie */
+        --slope: calc(
+            (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+                (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit))
+        );
+        --intercept: calc(
+            var(--min-font-size) - (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+                (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit)) *
+                var(--fluid-breakpoint-min)
+        );
+
+        /* Fallback */
+
+        /* Fluide Typografie */
+        font-size: clamp(var(--min-font-size), calc(var(--intercept) + var(--slope) * 100vw), var(--max-font-size));
+        font-weight: var(--font-weight-heavy);
+        text-align: center;
+        margin-block-end: var(--flow-spacing-block-sm);
+    }
+
+    h2 {
+        /* Fluide Typografie-Parameter */
+        --min-font-size: var(--font-size-heading-xl-min);
+        --max-font-size: var(--font-size-heading-xl-max);
+        --min-font-size-no-unit: var(--font-size-heading-xl-min-no-unit);
+        --max-font-size-no-unit: var(--font-size-heading-xl-max-no-unit);
+
+        /* Fluide Typografie */
+        --slope: calc(
+            (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+                (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit))
+        );
+        --intercept: calc(
+            var(--min-font-size) - (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+                (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit)) *
+                var(--fluid-breakpoint-min)
+        );
+
+        /* Fallback */
+
+        /* Fluide Typografie */
+        font-size: clamp(var(--min-font-size), calc(var(--intercept) + var(--slope) * 100vw), var(--max-font-size));
+        font-weight: var(--font-weight-heavy);
+        text-align: center;
+    }
+
+    h3 {
+        /* Fluide Typografie-Parameter */
+        --min-font-size: var(--font-size-heading-lg-min);
+        --max-font-size: var(--font-size-heading-lg-max);
+        --min-font-size-no-unit: var(--font-size-heading-lg-min-no-unit);
+        --max-font-size-no-unit: var(--font-size-heading-lg-max-no-unit);
+
+        /* Fluide Typografie */
+        --slope: calc(
+            (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+                (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit))
+        );
+        --intercept: calc(
+            var(--min-font-size) - (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+                (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit)) *
+                var(--fluid-breakpoint-min)
+        );
+
+        /* Fallback */
+
+        /* Fluide Typografie */
+        font-size: clamp(var(--min-font-size), calc(var(--intercept) + var(--slope) * 100vw), var(--max-font-size));
+        font-weight: var(--font-weight-bold);
+    }
+
+    /* h4-h5 (Fix) */
+    h4 {
+        font-size: var(--font-size-heading-regular);
+        font-weight: var(--font-weight-semi-bold);
+    }
+
+    h5 {
+        font-size: var(--font-size-heading-sm);
+        font-weight: var(--font-weight-medium);
+    }
+
+    .headline--left {
+        text-align: left;
+    }
+
+    .headline--center {
+        text-align: center;
+    }
+
+    /* Text-Elemente */
+    th,
+    td,
+    caption,
+    p {
+        /* Fluide Typografie-Parameter */
+        --min-font-size: var(--font-size-regular-min);
+        --max-font-size: var(--font-size-regular-max);
+        --min-font-size-no-unit: var(--font-size-regular-min-no-unit);
+        --max-font-size-no-unit: var(--font-size-regular-max-no-unit);
+
+        /* Fluide Typografie */
+        --slope: calc(
+            (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+                (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit))
+        );
+        --intercept: calc(
+            var(--min-font-size) - (var(--max-font-size-no-unit) - var(--min-font-size-no-unit)) /
+                (var(--fluid-breakpoint-max-no-unit) - var(--fluid-breakpoint-min-no-unit)) *
+                var(--fluid-breakpoint-min)
+        );
+
+        /* Fallback */
+
+        /* Fluide Typografie */
+        font-size: clamp(var(--min-font-size), calc(var(--intercept) + var(--slope) * 100vw), var(--max-font-size));
+    }
+
+    strong,
+    b {
+        font-weight: var(--font-weight-medium);
+    }
+
+    a {
+        color: var(--text-color-default);
+        transition: color 0.3s ease;
+    }
+
+    /* focus-visible statt focus verwenden, damit ein Button nach Klick nicht sichtbar im Fokus bleibt */
+    a:hover,
+    a:focus-visible {
+        color: var(--text-color-default-hover);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        a {
+            transition: none !important;
+        }
+    }
+}

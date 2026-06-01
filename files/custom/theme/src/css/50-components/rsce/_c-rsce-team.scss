@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Team
+   Beschreibung: Styles fuer die Team-Komponente in RSCE.
+   Ebene (Layer): Components/rsce
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_team_config.php, rsce_team.html.twig, _c-icon-with-text--vars.css, tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    .team_headline {
+        span {
+            display: block;
+            font-family: var(--font-family-base);
+            font-weight: var(--font-weight-book);
+            font-size: var(--font-size-sm);
+        }
+    }
+
+    .team__contact-info {
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            display: flex;
+        }
+    }
+
+    .team__list {
+        --flow-spacing-block: var(--flow-spacing-block-sm);
+
+        list-style: none;
+        margin: 0;
+        padding-block: 0;
+    }
+}

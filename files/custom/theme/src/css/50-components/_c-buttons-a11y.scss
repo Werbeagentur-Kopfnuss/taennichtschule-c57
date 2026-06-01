@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Button with Icon (accessible)
+   Beschreibung: Styles fuer Icon-with-Text-Komponenten in verschiedenen Bereichen der Site.
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: _c-icon-with-text--vars.css, a11y-font-size.js
+   ========================================================================== */
+
+@use "../00-settings/s-tokens-semantic" as *;
+
+@layer components {
+    .a11y {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: var(--navigation-gap-inline-default) var(--navigation-gap-block-default); /* row-gap und column gap */
+    }
+
+    .button--a11y {
+        /* Mit icon-with-text-Variablen ueberschreiben */
+        --icon-with-text-gap: var(--icon-padding-inline-regular);
+
+        padding-inline: var(--button-padding-inline-sm);
+        padding-block: var(--button-padding-block-sm);
+        color: var(--navigation-color-default);
+        font-size: var(--font-size-xs);
+        background: none;
+        border: none;
+        .text-icon__text {
+            font-weight: var(--font-weight-light);
+            text-transform: uppercase;
+        }
+        .text-icon__icon {
+            /* Mit icon-with-text-Variablen ueberschreiben */
+            --icon-with-text-inline-size: var(--icon-size-regular);
+            --icon-with-text-block-size: var(--icon-size-regular);
+        }
+    }
+
+    .button--a11y[aria-pressed="true"] {
+        color: var(--navigation-color-default-hover);
+    }
+
+    .button--a11y:not(.is-disabled):hover {
+        color: var(--navigation-color-default-hover);
+    }
+
+    @media (width < $breakpoint-desktop) {
+        .a11y .text-icon__text {
+            clip: rect(0 0 0 0);
+            clip-path: inset(50%);
+            height: 1px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+        }
+        .button--a11y {
+            font-size: var(--font-size-sm);
+        }
+    }
+}

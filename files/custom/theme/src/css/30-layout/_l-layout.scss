@@ -1,0 +1,88 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Layout: Wrapper and Section Layout
+   Beschreibung: Styles fuer den Haupt-Layout-Wrapper und Section-Abstaende.
+   Ebene (Layer): Layout
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer layout {
+    .wrapper {
+        --wrapper-max-width: var(--section-width-default);
+        --wrapper-padding: var(--wrapper-padding-inline);
+
+        /* width: min(100% - 2rem, 70rem); */
+        max-width: var(--wrapper-max-width); /* Als Fallback, falls min() nicht unterstuetzt wird - 1130px */
+        margin-inline: auto;
+
+        /* Achtung: padding-inline vergroessert die Box.
+           Dadurch ist max-width nicht die reale Maximalbreite und der Inhalt wird kleiner.
+           Loesung: calc(var(--wrapper-max-width) + 2rem) fuer max-width. */
+        padding-inline: var(--wrapper-padding);
+
+        /* Modifier-Klassen fuer unterschiedliche Breiten.
+           Alternativ waeren BEM-Modifier wie .wrapper--wide moeglich.
+           data-Attribute sind fuer JavaScript oft einfacher und in nesting nutzbar. */
+        &.wrapper--width-full {
+            /* Es muss nur die Custom Property geaendert werden */
+            --wrapper-max-width: var(--section-width-full);
+        }
+
+        &.wrapper--width-standard {
+            --wrapper-max-width: var(--section-width-default);
+        }
+
+        &.wrapper--width-medium {
+            --wrapper-max-width: var(--section-width-sm);
+        }
+
+        &.wrapper--width-narrow {
+            --wrapper-max-width: var(--section-width-sm);
+        }
+    }
+
+    section:not(.hero, .site-footer__inner, .site-footer__bottom) {
+        /* content-block setzt Abstaende zwischen Content-Elementen innerhalb von Sections */
+        .content-block > * + * {
+            margin-block-start: var(--elements-gap-block, 1.25rem);
+        }
+
+        /* Sonderfall fuer Headings direkt im Wrapper (ohne h1) fuer Element-Abstaende */
+        .content-block > .content-headline:not(h1) + * {
+            margin-block-start: var(--flow-spacing-block-default);
+        }
+
+        /* Sonderfall, wenn Content-Elemente direkt aufeinander folgen */
+        .content-block > :is(.content-text, .content-table) + :is(.content-text, .content-table) {
+            margin-block-start: var(--flow-spacing-block-default);
+        }
+
+        /* Bessere Loesung fuer alle Content-Elemente:
+           Klasse .content-element auf allen Content-Elementen verwenden */
+
+        /* .content-block > .content-element + .content-element {
+            margin-block-start: var(--flow-spacing-block-default);
+        } */
+
+        /* Benoetigt ce_rsce_headline_subheadline */
+
+        /* Sonderfall fuer rsce_two_columns_text nach ce_rsce_headline_subheadline,
+           ausser bei h1 - kleineren Abstand definieren */
+        .content-block > .ce_rsce_headline_subheadline:not(h1) + .content-collection:has(.ce_rsce_two_columns_text) {
+            margin-block-start: var(--flow-spacing-block-default);
+        }
+    }
+
+    section {
+        padding-block: var(--section-padding-block);
+        section {
+            padding-block: 0; /* Padding fuer verschachtelte Sections entfernen */
+        }
+    }
+
+    .element--center {
+        margin-inline: auto;
+    }
+}

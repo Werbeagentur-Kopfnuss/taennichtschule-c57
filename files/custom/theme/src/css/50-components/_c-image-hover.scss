@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Image hover effect
+   Beschreibung: Klasse fuer Bilder mit Hover-Effekt (dark overlay + magnifying glass + zoom).
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    .image--hover {
+        position: relative;
+        overflow: hidden;
+        display: block;
+        border-radius: var(--border-radius-default); /* Abgerundete Ecken, wenn das Bild ebenfalls abgerundet ist */
+    }
+
+    .image--hover img {
+        display: block;
+        transition: transform 0.6s ease;
+    }
+
+    /* Dark overlay ueber dem Bild */
+    .image--hover::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgb(0 0 0 / 40%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none; /* Link bleibt klickbar */
+        z-index: 1;
+    }
+
+    /* Magnifying glass als SVG (weiss, zentriert) */
+    .image--hover::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' class='svg_icon_search__path' d='M15.4663 8.69959C15.4663 9.5882 15.2912 10.4681 14.9512 11.2891C14.6111 12.11 14.1127 12.856 13.4843 13.4843C12.856 14.1127 12.11 14.6111 11.2891 14.9512C10.4681 15.2912 9.5882 15.4663 8.69959 15.4663C7.81097 15.4663 6.93106 15.2912 6.11009 14.9512C5.28912 14.6111 4.54317 14.1127 3.91483 13.4843C3.28649 12.856 2.78806 12.11 2.448 11.2891C2.10794 10.4681 1.93292 9.5882 1.93292 8.69959C1.93292 6.90495 2.64583 5.18383 3.91483 3.91483C5.18383 2.64583 6.90495 1.93292 8.69959 1.93292C10.4942 1.93292 12.2153 2.64583 13.4843 3.91483C14.7533 5.18383 15.4663 6.90495 15.4663 8.69959ZM14.1303 15.4972C12.3931 16.8851 10.1903 17.5551 7.97446 17.3697C5.75861 17.1843 3.69787 16.1574 2.21545 14.5001C0.733044 12.8427 -0.0585044 10.6806 0.00337254 8.4579C0.0652495 6.23517 0.975855 4.12049 2.54817 2.54817C4.12049 0.975855 6.23517 0.0652495 8.4579 0.00337254C10.6806 -0.0585044 12.8427 0.733044 14.5001 2.21545C16.1574 3.69787 17.1843 5.75861 17.3697 7.97446C17.5551 10.1903 16.8851 12.3931 15.4972 14.1303L20.984 19.6152C21.0739 19.7051 21.1452 19.8118 21.1938 19.9292C21.2424 20.0466 21.2675 20.1725 21.2675 20.2996C21.2675 20.4267 21.2424 20.5526 21.1938 20.67C21.1452 20.7874 21.0739 20.8941 20.984 20.984C20.8941 21.0739 20.7874 21.1452 20.67 21.1938C20.5526 21.2424 20.4267 21.2675 20.2996 21.2675C20.1725 21.2675 20.0466 21.2424 19.9292 21.1938C19.8118 21.1452 19.7051 21.0739 19.6152 20.984L14.1303 15.4972Z' fill='%23f1f1f1'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: var(--icon-size-lg);
+        opacity: 0;
+        transform: scale(0.8);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    /* Hover-Effekt */
+    .image--hover:hover::before {
+        opacity: 1;
+    }
+
+    .image--hover:hover::after {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .image--hover:hover img {
+        transform: scale(1.05);
+    }
+
+    /* ================
+        Accessible
+        ================ */
+
+    /* Accessible-Variante fuer Nutzer mit reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        .image--hover img,
+        .image--hover::before,
+        .image--hover::after {
+            transition: none;
+            transform: none;
+        }
+    }
+
+    /* Accessible-Variante fuer manuelle Nutzung */
+    .is-reduce-motion {
+        .image--hover img,
+        .image--hover::before,
+        .image--hover::after {
+            transition: none;
+            transform: none;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Image Styles
+   Beschreibung: Basis-Styles fuer Bilder.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer base {
+    img {
+        border-radius: var(--border-radius-default);
+    }
+}

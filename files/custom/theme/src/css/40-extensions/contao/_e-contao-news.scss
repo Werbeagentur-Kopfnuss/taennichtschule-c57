@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao News Module Styles
+   Beschreibung: Angepasste Styles fuer das Contao-News-Module passend zum Layout.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension: codefog/contao-news_categories
+   ========================================================================== */
+
+@use "../../00-settings/s-tokens-semantic" as *;
+
+@layer extensions {
+    /* breakpoint ist identisch mit equal-columns */
+    .newslist {
+        @media (width > $breakpoint-container-grid-1) {
+            grid-template-rows: auto auto auto;
+        }
+
+        p.empty {
+            margin-inline: auto;
+        }
+    }
+
+    .newslist__card {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 3;
+        gap: 0;
+    }
+
+    a.newslist__link {
+        text-decoration: none;
+        color: var(--text-color-default);
+    }
+
+    .newslist__card {
+        & > *:not(:first-child) {
+            padding-inline: var(--card-padding-inline, 1rem);
+        }
+
+        & > *:nth-child(2) {
+            padding-block-start: var(--card-padding-block, 1.5rem);
+        }
+
+        & > *:last-child {
+            padding-block-end: var(--card-padding-block, 1.5rem);
+        }
+
+        & > :nth-child(n + 3) {
+            margin-block-start: var(--flow-grid-spacing-block, 1.5rem);
+        }
+    }
+
+    .newslist__card.newslist__card--no-image {
+        border-radius: var(--border-radius-default);
+        padding-inline: var(--elements-gap-inline);
+        padding-block: var(--elements-gap-block);
+        border: var(--border-width-default) solid var(--border-color-default);
+        background-color: var(--background-color-light);
+
+        & > *:not(:first-child) {
+            padding-inline: 0;
+        }
+
+        & > *:last-child {
+            padding-block-end: 0;
+        }
+    }
+
+    .newslist__info {
+        .newslist__meta {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            display: flex;
+            font-weight: var(--font-weight-light);
+            font-size: var(--font-size-sm);
+            color: var(--text-color-default);
+            gap: 0.25em 2em;
+            flex-flow: wrap;
+        }
+
+        .newslist__divider {
+            padding-inline-end: 0.5rem;
+        }
+    }
+
+    .layout_full {
+        margin-block-end: var(--section-padding-block);
+        /* Info unter Headline ausblenden */
+        .info {
+            display: none;
+        }
+    }
+
+    /* max-width fuer Inhalt im Newsreader begrenzen, ausser bei Galleries */
+    .wrapper--width-standard .content-block > *:not(.content-gallery) {
+        max-width: var(--section-width-sm);
+        margin-inline: auto;
+    }
+}

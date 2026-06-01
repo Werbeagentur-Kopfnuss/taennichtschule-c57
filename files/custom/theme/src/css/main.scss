@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Author: Agentur KOPFNUSS - Marco Schädlich
+   Main SCSS File
+   Description: Structured imports using SCSS modules + CSS layers
+   ========================================================================== */
+
+/* 00) settings */
+@use "./00-settings" as *;
+
+/* 10) generic */
+@use "./10-generic" as *;
+
+/* 20) base */
+@use "./20-base" as *;
+
+/* 30) layout */
+@use "./30-layout" as *;
+
+/* 40) extensions (contao) */
+@use "./40-extensions/contao" as *;
+
+/* 50) components */
+@use "./50-components" as *;
+
+/* 60) utilities */
+@use "./60-utilities" as *;
+
+/* 70) overrides */
+@use "./70-overrides/contao" as *;
+
+/* 80) projects */
+@use "./80-projects/taennichtschule" as *;
+
+/* 85) themes */
+@use "./85-themes" as *;
+
+/* define layer stack */
+@layer settings, generic, base, layout, extensions, components, utilities, overrides, projects, themes;

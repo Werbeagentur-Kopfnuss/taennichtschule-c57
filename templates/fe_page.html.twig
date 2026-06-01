@@ -1,0 +1,76 @@
+{% extends "@Contao/fe_page.html.twig" %}
+
+{% block body %}
+
+    <div id="wrapper">
+
+        {% block header %}
+            {% if header %}
+                <header class="site-header">
+                  <div class="wrapper wrapper--width-full">
+                    <div class="site-header__top">
+                      {{ contao_sections('top') }}
+                    </div>
+                  </div>
+                  <div class="wrapper  wrapper--width-full">
+                    <div class="site-header__inner">
+                      {{ header|raw }}
+                    </div>
+                  </div>
+              </header>
+            {% endif %}
+        {% endblock %}
+
+        {{ contao_sections('before') }}
+
+        {% block container %}
+            <div id="container">
+
+                {% block main %}
+                    <main id="main">
+                        
+                            {{ main|raw }}
+                        
+                        {{ contao_sections('main') }}
+                    </main>
+                {% endblock %}
+
+                {% block left %}
+                    {% if left %}
+                        <aside id="left">
+                            
+                                {{ left|raw }}
+                           
+                        </aside>
+                    {% endif %}
+                {% endblock %}
+
+                {% block right %}
+                    {% if right %}
+                        <aside id="right">
+                            
+                                {{ right|raw }}
+                            
+                        </aside>
+                    {% endif %}
+                {% endblock %}
+
+            </div>
+        {% endblock %}
+
+        {{ contao_sections('after') }}
+
+        {% block footer %}
+            {% if footer %}
+                <footer id="footer" class="site-footer">
+                    
+                        {{ footer|raw }}
+                    
+                </footer>
+            {% endif %}
+        {% endblock %}
+
+    </div>
+
+    {{ contao_sections('bottom') }}
+{% endblock %}

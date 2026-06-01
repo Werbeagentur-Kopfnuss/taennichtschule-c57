@@ -1,0 +1,623 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao mobile navigation
+   Beschreibung: Angepasste Styles fuer die Contao-Mobile-Navigation.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+
+@use "../../00-settings/s-tokens-semantic" as *;
+
+@layer extensions {
+    :root {
+        --nav-breakpoint: 1200px; /* Gleichen breakpoint wie $breakpoint-main-nav-mobile setzen */
+        --nav-color: var(--clr-black);
+        --nav-active-color: var(--clr-violett-500);
+        --nav-item-line-height: var(--lh-m);
+        --nav-font-size: var(--fs-650);
+        --nav-font-weight: var(--fw-300);
+        --nav-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M9 18l6-6-6-6"/></svg>');
+        --nav-icon-background: transparent;
+
+        /* Mobile Navigation */
+        --nav-mobile-background: var(--clr-grey-600);
+        --nav-mobile-color: var(--clr-black);
+        --nav-mobile-active-background: var(--clr-grey-600);
+        --nav-mobile-active-color: var(--clr-violett-500);
+        --nav-mobile-active-border-color: var(--clr-violett-500);
+        --nav-mobile-btn-clr: var(--clr-violett-500);
+        --nav-mobile-separator-color: var(--clr-grey-500);
+        --nav-mobile-padding: 5rem 2rem 2rem;
+        --nav-mobile-font-size: var(--fs-650);
+        --nav-mobile-backdrop-height: 80px;
+        --nav-mobile-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>');
+        --nav-submenu-background: #fff;
+        --nav-burger-line-color: var(--clr-black);
+        /* Hinzugefuegt */
+        --nav-burger-line-color-active: var(--clr-black);
+        --nav-mobile-font-weight: var(--fw-400);
+
+        /* Skip-Link */
+        /* --skip-background: var(--clr-grey-500);
+        --skip-color: var(--clr-red-500);
+        --skip-focus-border-color: var(--clr-red-500); */
+    }
+
+    body {
+        &:not(.navigation-open, .nav-is-desktop) .navigation-main {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        &.navigation-open {
+            overflow: hidden;
+
+            header .logo {
+                position: relative;
+                z-index: 7;
+            }
+        }
+    }
+
+    .nav-wrapper {
+        * {
+            box-sizing: border-box;
+        }
+    }
+
+    .navigation-main {
+        :is(a, strong) {
+            line-height: var(--nav-item-line-height);
+        }
+
+        /* Wird in _e-contao-navigation.scss gesetzt */
+        /* .skip-link {
+            visibility: hidden;
+        } */
+    }
+
+    .btn-toggle-submenu {
+        all: revert;
+        position: absolute;
+        top: 5px;
+        right: 0;
+        width: 44px;
+        height: 44px;
+        border: none;
+        background: var(--nav-icon-background) !important;
+        cursor: pointer;
+        z-index: 1;
+
+        &::after {
+            content: "";
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background: var(--nav-mobile-icon) no-repeat center;
+            transition: transform 0.3s cubic-bezier(0.2, 0.6, 0.3, 1.1);
+        }
+    }
+
+    .nav-burger {
+        padding: 0;
+        border: none;
+        background: transparent;
+        line-height: 1.5;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+        z-index: 7;
+
+        // Hinzugefuegt fuer Navigation-Position und Animation
+        height: 100%;
+        top: 0;
+        right: 0;
+        transition: height 0.3s ease-in-out;
+        transition: top 0.3s ease,
+        right 0.3s ease,
+        transform 0.3s ease,
+        opacity 0.3s ease;
+
+        .icon-line {
+            top: 50%;
+            z-index: 1;
+            transform: translateY(-50%);
+            transition: background-color 0.2s ease-in-out;
+
+            &::before {
+                top: calc(-1 * (0.25rem + 0.375rem));
+            }
+
+            &::after {
+                bottom: calc(-1 * (0.25rem + 0.375rem));
+            }
+        }
+
+        .icon-line,
+        .icon-line::before,
+        .icon-line::after {
+            position: absolute;
+            left: 50%;
+            height: 0.2rem;
+            width: 2.25rem;
+            background: var(--nav-burger-line-color); // --nav-burger-line-color-active
+            border-radius: var(--border-radius-default); // Geaendert
+            transform: translateX(-50%);
+        }
+
+        .icon-line::before,
+        .icon-line::after {
+            z-index: 6;
+            transition: transform 0.2s ease-in-out, top 0.2s ease-in-out, bottom 0.2s ease-in-out;
+            content: "";
+        }
+
+        &.is-active {
+            .icon-line {
+                background: transparent;
+
+                &::before {
+                    top: 0;
+                    transform: translateX(-50%) rotate(45deg);
+                }
+
+                &::after {
+                    bottom: 0;
+                    transform: translateX(-50%) rotate(-45deg);
+                }
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    /* Burger-Navigation: Position und Animation */
+    body.nav-is-mobile.navigation-open {
+        .nav-burger {
+            height: auto;
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            transform: scale(1.05);
+            /* change nav icon color */
+            .icon-line::before,
+            .icon-line::after {
+                background: var(--nav-burger-line-color-active);
+            }
+        }
+    }
+
+    .nav-burger__inner {
+        position: relative;
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Hinzugefuegt */
+    @media (width < $breakpoint-main-nav-mobile) {
+        .nav-burger {
+            padding-inline: 3rem; /* Button-Breite */
+            background-color: var(--nav-mobile-btn-clr);
+        }
+        body.nav-is-mobile.navigation-open {
+            .nav-burger {
+                background-color: var(--nav-mobile-background);
+                padding-inline: 0; /* Button-Breite zuruecksetzen */
+            }
+        }
+    }
+
+    @media (width < $breakpoint-nav-mobile-small) {
+        .nav-burger {
+            padding-inline: 1.5rem; /* Kleinere Button-Breite */
+        }
+    }
+
+    body.nav-is-mobile {
+        .nav-wrapper {
+            position: relative;
+            z-index: 5;
+        }
+
+        .navigation-main {
+            position: fixed;
+            inset: 0;
+            overflow: hidden auto;
+            z-index: 6;
+            padding: var(--nav-mobile-padding);
+            background: var(--nav-mobile-background);
+            color: var(--nav-mobile-color);
+            line-height: 1.5;
+            font-size: var(--nav-mobile-font-size);
+            font-weight: var(--nav-mobile-font-weight); // Hinzugefuegt
+            transition: opacity 0.15s ease-in-out, visibility 0.1s;
+
+            &.is-active {
+                &::before {
+                    display: block;
+                    content: "";
+                    position: fixed;
+                    inset: 0 0 auto;
+                    height: var(--nav-mobile-backdrop-height);
+                    backdrop-filter: blur(1px);
+                    z-index: 1;
+                }
+            }
+
+            :is(a, strong) {
+                display: inline-block;
+                color: var(--nav-mobile-color);
+                text-decoration: unset;
+                padding: 12px 10px;
+                width: calc(100% - 44px);
+
+                &:is(.active) {
+                    --nav-mobile-color: var(--nav-mobile-active-color);
+                }
+            }
+
+            .level_1 {
+                ul {
+                    display: none;
+                    flex-direction: column;
+                }
+            }
+
+            .level_2 {
+                li {
+                    padding: 0 0 0 20px;
+                }
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+            }
+
+            li {
+                position: relative;
+                padding: 0;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid var(--nav-mobile-separator-color);
+                }
+
+                &.submenu {
+                    li {
+                        border: none;
+
+                        &:first-child {
+                            border-top: 1px solid var(--nav-mobile-separator-color);
+                        }
+                    }
+                }
+
+                > .btn-toggle-submenu::after {
+                    transform: rotateX(180deg) rotateZ(-90deg);
+                }
+
+                &.active,
+                a.trail {
+                    background: var(--nav-mobile-active-background);
+                    color: var(--nav-mobile-active-color);
+                }
+
+                &.nav-expanded {
+                    > ul {
+                        display: flex;
+                    }
+
+                    > .btn-toggle-submenu::after {
+                        transform: rotateX(0deg) rotateZ(-90deg);
+                    }
+                }
+            }
+        }
+    }
+
+    body.nav-is-desktop {
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            overflow: visible;
+        }
+
+        .navigation-main {
+            :is(a, strong) {
+                line-height: 1; // Hinzugefuegt
+            }
+
+            a {
+                text-decoration: unset;
+            }
+
+            :is(a, strong) {
+                display: block;
+                position: relative;
+                color: var(--nav-color);
+                font-size: var(--nav-font-size);
+                font-weight: var(--nav-font-weight);
+            }
+
+            :is(a:hover, a:focus-visible, a.trail, strong) {
+                color: var(--nav-active-color);
+            }
+
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    &.submenu {
+                        position: relative;
+                    }
+                }
+
+                ul {
+                    position: absolute;
+                    top: 100%;
+                    min-width: 270px;
+                    background: var(--nav-submenu-background);
+                    box-shadow: 1px 2px 15px 8px rgb(0 0 0 / 10%);
+                    gap: 0;
+                    z-index: 999; // Hinzugefuegt
+
+                    li {
+                        padding: 0;
+
+                        &.submenu {
+                            padding-right: 40px;
+                        }
+
+                        &:not(:last-of-type) {
+                            border-bottom: solid 1px rgb(0 0 0 / 10%);
+                        }
+                    }
+
+                    .btn-toggle-submenu {
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        height: 100%;
+                        width: 40px;
+                    }
+                }
+            }
+
+            li {
+                &.nav-expanded {
+                    > ul {
+                        display: flex;
+                    }
+
+                    .level_2 {
+                        ul {
+                            top: 0;
+                            left: 100%;
+                            min-width: 200px;
+
+                            &.bounds-right {
+                                left: auto;
+                                right: 100%;
+
+                                /* Inherit the position down to all submenus */
+                                ul {
+                                    left: auto;
+                                    right: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .level_1 {
+                gap: 0 var(--navigation-gap-inline-default); // Geaendert
+                justify-content: flex-end;
+                align-items: center;
+
+                ul {
+                    padding: 0; // Hinzugefuegt
+                    display: none;
+                    flex-direction: column;
+                    border-radius: 4px;
+
+                    :is(a, strong) {
+                        font-size: calc(var(--nav-font-size) / 1.2); // Geaendert
+                        line-height: 1.2;
+                        padding: 0.75rem 1rem;
+                        text-decoration: none;
+                        width: 100%;
+                    }
+                }
+
+                > li {
+                    padding: 5px 0;
+
+                    > .btn-toggle-submenu::after {
+                        transform: rotateX(180deg) rotateZ(-90deg);
+                    }
+
+                    &.submenu {
+                        padding-right: 20px;
+                    }
+
+                    &.nav-expanded {
+                        > .btn-toggle-submenu::after {
+                            transform: rotateX(0deg) rotateZ(-90deg);
+                        }
+                    }
+                }
+            }
+
+            .level_2 {
+                &::before {
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    bottom: 100%;
+                    left: 16px;
+                    margin-left: -8px;
+                    height: 0;
+                    width: 0;
+                    pointer-events: none;
+                    border: 8px solid rgb(255 255 255 / 0%);
+                    border-bottom-color: var(--nav-submenu-background);
+                }
+
+                &.bounds-right {
+                    right: 0;
+
+                    &::before {
+                        left: auto;
+                        right: 16px;
+                    }
+                }
+
+                &:not(.bounds-left, .bounds-right) {
+                    transform: translateX(-50%);
+                    left: 50%;
+
+                    &::before {
+                        left: 50%;
+                    }
+                }
+            }
+
+            /* Wird in _e-contao-navigation.scss gesetzt */
+            /* .skip-link {
+                visibility: visible;
+                // opacity: 0;
+                // position: absolute;
+                // left: 50%;
+                // transform: translateX(-50%);
+                clip: revert;
+                clip-path: revert;
+                // top: -100px;
+                text-align: center;
+                overflow: hidden;
+                // background: var(--skip-background);
+                // color: var(--skip-color);
+                transition: top 0.15s ease-in-out;
+                z-index: 6;
+                text-decoration: none;
+
+                &:focus-visible {
+                    color: var(--button-color-primary); // Hinzugefuegt
+                    width: auto;
+                    height: auto;
+                    outline-offset: 0;
+                    outline: 2px solid var(--skip-focus-border-color);
+                    padding: 6px 12px;
+                    top: 0;
+                    opacity: 1;
+                }
+            } */
+        }
+
+        .btn-toggle-submenu {
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            top: 0; // Geaendert
+            right: -6px;
+
+            &::after {
+                background: var(--nav-icon) no-repeat center;
+            }
+        }
+
+        .nav-burger {
+            display: none;
+        }
+    }
+
+    @media (forced-colors) {
+        .nav-burger {
+            .icon-line,
+            .icon-line::before,
+            .icon-line::after {
+                height: 0;
+                border: 1px transparent solid;
+            }
+
+            &.is-active {
+                .icon-line {
+                    border: 0 none;
+
+                    &::after {
+                        bottom: -1px;
+                    }
+                }
+            }
+        }
+
+        .nav-burger__inner {
+            color: currentcolor;
+        }
+    }
+
+    /* Kontaktblock unter der Navigation aktivieren */
+    body:not(.navigation-open, .nav-is-desktop) .navigation-main {
+        display: none; /* Vollstaendig ausblenden, wenn Navigation im Mobile-Modus geschlossen ist */
+    }
+
+    body.nav-is-desktop .nav-mobile-content {
+        display: none;
+    }
+
+    body.nav-is-mobile {
+        .navigation-main {
+            /* position: fixed deaktivieren */
+            position: static;
+            inset: auto;
+        }
+
+        .nav-mobile-content {
+            display: none; /* Standard: im Mobile-Modus ausgeblendet */
+        }
+    }
+
+    body.nav-is-mobile.navigation-open {
+        .navigation-accessible {
+            background-color: var(--nav-mobile-background);
+        }
+
+        .nav-wrapper {
+            position: fixed;
+            inset: 0;
+            z-index: 6;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; // Scrollen aktivieren
+        }
+
+        .navigation-main {
+            flex: 0 0 auto;
+        }
+
+        .nav-mobile-content {
+            display: block;
+            flex-shrink: 0;
+            padding: 2rem; // var(--nav-mobile-padding); // padding-block-start Hoehe ist zu gross, bessere Loesung: Custom Property fuer padding-inline
+            background: var(--nav-mobile-background);
+
+            // border-top: 1px solid var(--nav-mobile-separator-color);
+        }
+    }
+}

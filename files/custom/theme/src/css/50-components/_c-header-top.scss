@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Site Header Top Section
+   Beschreibung: Styles fuer den oberen Bereich der Site-Header-Komponente.
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@use "../00-settings/s-tokens-semantic" as *;
+
+@layer components {
+    .site-header__inner {
+        padding-block-start: calc(var(--elements-gap-block) / 2);
+    }
+
+    .site-header__top {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: var(--navigation-gap-inline-default) var(--navigation-gap-block-default); /* row-gap und column gap */
+        padding-block: calc(var(--elements-gap-block) / 6);
+    }
+
+    .site-header:has(.site-header__top) {
+        padding-block-start: 0; /* Top-Padding entfernen, wenn top section vorhanden ist */
+    }
+
+    @media (width < $breakpoint-desktop) {
+        .site-header__top {
+            justify-content: center;
+        }
+        .site-header > :first-child {
+            background-color: var(--background-color-default);
+        }
+
+        /* Padding fuer kleinere Viewports anpassen, damit kein Background ueber dem Mobile-Menu-Button liegt */
+        .site-header__inner {
+            padding-block-start: 0;
+        }
+    }
+}

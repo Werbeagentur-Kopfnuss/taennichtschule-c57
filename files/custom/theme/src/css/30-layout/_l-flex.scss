@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Layout: Flex Group
+   Beschreibung: Utility-Klasse fuer flexible Gruppen von Elementen mit konsistentem Spacing und Alignment.
+   Ebene (Layer): Layout
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+@layer layout {
+    .flex-group {
+        display: flex;
+        gap: var(--flex-group-gap-default, 0.5rem);
+        flex-wrap: wrap;
+
+        /* align-items steuert die cross axis:
+           vertikal bei flex-direction: row, horizontal bei flex-direction: column */
+        align-items: var(--flex-group-alignment, center);
+
+        /* justify-content steuert die main axis:
+           horizontal bei flex-direction: row, vertikal bei flex-direction: column */
+        justify-content: var(--flex-group-justification, flex-start);
+
+        &.flex-group--align-start {
+            --flex-group-alignment: start;
+        }
+
+        &.flex-group--align-center {
+            --flex-group-alignment: center;
+        }
+
+        &.flex-group--align-end {
+            --flex-group-alignment: end;
+        }
+
+        &.flex-group--justify-center {
+            --flex-group-justification: center;
+        }
+
+        &.flex-group--justify-space-between {
+            --flex-group-justification: space-between;
+        }
+
+        &.flex-group--justify-end {
+            --flex-group-justification: flex-end;
+        }
+
+        &.flex-group--justify-start {
+            --flex-group-justification: flex-start;
+        }
+    }
+}

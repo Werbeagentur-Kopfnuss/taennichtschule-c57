@@ -1,0 +1,50 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Block Table Link
+   Beschreibung: Styles fuer das RSCE-Block-Table-Link-Element.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_block-table-link.html.twig, rsce_block-table-link_config.php, tokens.semantic.css, _b-cards.css
+   ========================================================================== */
+
+@layer projects {
+    .wrapper-monday {
+        .block-table-link__card {
+            background-color: #f2fbff;
+        }
+    }
+
+    .wrapper-tuesday {
+        .block-table-link__card {
+            background-color: #fffced;
+        }
+    }
+
+    .wrapper-wednesday {
+        .block-table-link__card {
+            background-color: #fef1f3;
+        }
+    }
+
+    .wrapper-thursday {
+        .block-table-link__card {
+            background-color: #faf9f3;
+        }
+    }
+
+    a.block-table-link__card:hover {
+        background-color: var(--background-color-light);
+    }
+
+    /* Nur die erste Spalte erhaelt eine feste Breite */
+    table tr > *:first-child:nth-last-child(2) {
+        width: 30%;
+    }
+
+    .u-table-50-50 {
+        table tr > :first-child {
+            width: 50%;
+        }
+    }
+}

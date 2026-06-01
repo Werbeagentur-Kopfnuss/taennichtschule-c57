@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: SVG Icon Base
+   Beschreibung: Basis fuer SVG-Icons mit Groessen-Modifikatoren.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer base {
+    .svg-icon {
+        --svg-icon-width: var(--icon-size-regular);
+        --svg-icon-height: var(--icon-size-regular);
+
+        display: inline-flex;
+        inline-size: var(--svg-icon-width);
+        block-size: var(--svg-icon-width);
+    }
+
+    /* Groessen-Modifikatoren */
+    .svg-icon--size-sm {
+        --svg-icon-width: var(--icon-size-sm);
+        --svg-icon-height: var(--icon-size-sm);
+    }
+
+    .svg-icon--size-lg {
+        --svg-icon-width: var(--icon-size-lg);
+        --svg-icon-height: var(--icon-size-lg);
+    }
+
+    .svg-icon--size-xl {
+        --svg-icon-width: var(--icon-size-xl);
+        --svg-icon-height: var(--icon-size-xl);
+    }
+
+    .svg-icon--size-font {
+        --svg-icon-width: 1em;
+        --svg-icon-height: 1em;
+    }
+}

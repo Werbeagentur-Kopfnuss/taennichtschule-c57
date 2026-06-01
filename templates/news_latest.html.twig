@@ -1,0 +1,146 @@
+{% use "@Contao/component/_figure.html.twig" %}
+
+{% set label_button_details_readmore = 'CUSTOM.news_readmore'|trans({}, 'contao_default') %}
+{% set linkTitle = newsHeadline|default('') %}
+
+{# @formatter:off #}
+{% if hasText ~ '' %}
+    <a class="newslist__link layout_latest newslist__card arc_{{ archive.id }} block{{ class }}{% if not addImage %} newslist__card--no-image{% endif %}" href="{{ link }}"
+   title="{{ linkTitle }}" itemprop="url">
+{% else %}
+    <article class="layout_latest newslist__card arc_{{ archive.id }} block{{ class }}{% if not addImage %} newslist__card--no-image{% endif %}">
+{% endif %}
+
+    {% if addImage %}
+        {% with { figure: figure(singleSRC, size)} %}
+            {% block figure_component %}
+                {% set figure_attributes = attrs()
+                    .addClass('image--hover', hasText ~ '')
+                    .mergeWith(figure_attributes|default) %}
+                {% set img_attributes = attrs()
+                    .set('alt', linkTitle)
+                    .set('title', '')
+                    .mergeWith(img_attributes|default) %}
+                {{ parent() }}
+            {% endblock %}
+        {% endwith %}
+    {% endif %}
+
+    {% block info %}
+        <div class="newslist__headline">
+            <h3 itemprop="name">{{ newsHeadline }}</h3>
+
+            <div class="newslist__info">
+
+                <ul class="newslist__meta">
+
+                    <li class="newslist__meta-item">
+                        <span class="text-icon">
+                          <span class="text-icon__icon svg-icon svg-icon--size-font" aria-hidden="true">
+                            <svg viewBox="0 0 9 10" fill="none" focusable="false" aria-hidden="true">
+                              <path d="M1.5 0V1H1C0.45 1 0 1.45 0 2V9C0 9.55 0.45 10 1 10H8C8.55 10 9 9.55 9 9V2C9 1.45 8.55 1 8 1H7.5V0H6.5V1H2.5V0H1.5ZM1 3.5H8V9H1V3.5Z"
+                                    fill="currentcolor"/>
+                            </svg>
+                          </span>
+                          <time class="text-icon__text" datetime="{{ datetime|date('c') }}">
+                            {{ datetime|date('d') }}. {{ {
+                                  1:'Januar',2:'Februar',3:'März',4:'April',5:'Mai',6:'Juni',
+                                  7:'Juli',8:'August',9:'September',10:'Oktober',11:'November',12:'Dezember'
+                              }[datetime|date('n')] }} {{ datetime|date('Y') }}
+                          </time>
+                        </span>
+                    </li>
+
+                    {% if categories is defined and categories|length %}
+                        <li class="newslist__meta-item">
+                            <span class="text-icon">
+                            <span class="text-icon__icon svg-icon svg-icon--size-font" aria-hidden="true">
+                            <svg viewBox="0 0 15 15" fill="none" focusable="false" aria-hidden="true">
+                              <path d="M0.5 7.5L0.146447 7.14645C-0.0488155 7.34171 -0.0488155 7.65829 0.146447 7.85355L0.5 7.5ZM7.5 14.5L7.14645 14.8536C7.34171 15.0488 7.65829 15.0488 7.85355 14.8536L7.5 14.5ZM14.5 7.5L14.8536 7.85355C14.9473 7.75979 15 7.63261 15 7.5H14.5ZM7.5 0.5V0C7.36739 0 7.24021 0.0526784 7.14645 0.146447L7.5 0.5ZM0.146447 7.85355L7.14645 14.8536L7.85355 14.1464L0.853553 7.14645L0.146447 7.85355ZM7.85355 14.8536L14.8536 7.85355L14.1464 7.14645L7.14645 14.1464L7.85355 14.8536ZM15 7.5V1.5H14V7.5H15ZM13.5 0H7.5V1H13.5V0ZM7.14645 0.146447L0.146447 7.14645L0.853553 7.85355L7.85355 0.853553L7.14645 0.146447ZM15 1.5C15 0.671573 14.3284 0 13.5 0V1C13.7761 1 14 1.22386 14 1.5H15ZM10.5 5C10.2239 5 10 4.77614 10 4.5H9C9 5.32843 9.67157 6 10.5 6V5ZM11 4.5C11 4.77614 10.7761 5 10.5 5V6C11.3284 6 12 5.32843 12 4.5H11ZM10.5 4C10.7761 4 11 4.22386 11 4.5H12C12 3.67157 11.3284 3 10.5 3V4ZM10.5 3C9.67157 3 9 3.67157 9 4.5H10C10 4.22386 10.2239 4 10.5 4V3Z"
+                                    fill="currentcolor"/>
+                            </svg>
+                            </span>
+
+                            <span class="text-icon__text visually-hidden">
+                            {% if categories|length == 1 %}
+                                Kategorie:
+                            {% else %}
+                                Kategorien:
+                            {% endif %}
+                            </span>
+
+                            <span class="text-icon__text">
+                            {% for category in categories %}
+                                {% if category.image is defined and category.image and category.image.picture is defined %}
+                                    <figure class="image_container" aria-hidden="true">
+                                  {{ include('picture_default.html.twig', { picture: category.image.picture }) }}
+                                </figure>
+                                {% endif %}
+
+                              {% if category.href %}
+                                <a href="{{ category.href }}"
+                                   class="newslist__category {{ category.class|default('') }}"
+                                   title="{{ category.linkTitle }}">
+                                  {{ category.name }}
+                                </a>
+                              {% else %}
+                                <span class="newslist__category {{ category.class|default('') }}">
+                                  {{ category.name }}
+                                </span>
+                            {% endif %}
+
+                              {% if not loop.last %}
+                                <span aria-hidden="true">, </span>
+                            {% endif %}
+                            {% endfor %}
+                            </span>
+                            </span>
+                        </li>
+                    {% endif %}
+
+                </ul>
+
+            </div>
+
+        </div>
+    {% endblock %}
+
+    {% if teaser|default or hasText ~ '' %}
+        <div class="content-text block">
+    {% endif %}
+
+        {% if teaser|default %}
+            {{ teaser|csp_inline_styles|raw }}
+        {% endif %}
+
+        {% if hasText ~ '' %}
+            <div class="text-icon text-icon--link text-icon--link-highlighted">
+                <span class="text-icon__text">{{ label_button_details_readmore }}</span>
+                <span class="text-icon__icon svg-icon svg-icon--size-sm" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                        <circle cx="12" cy="12" r="11.5" fill="currentcolor"/>
+                        <path d="M10 7l5 5-5 5" class="text-icon__icon-arrow" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                    </svg>
+                </span>
+                <span class="visually-hidden">{{ linkTitle }}</span>
+            </div>
+        {% endif %}
+
+    {% if teaser|default or hasText ~ '' %}
+        </div>
+    {% endif %}
+
+{% if hasText ~ '' %}
+    </a>
+{% else %}
+    </article>
+{% endif %}
+{# @formatter:on #}
+
+{#
+Dieses Template wird standardmäßig als News-Listen-Template verwendet, daher fügen wir
+JSON-LD-Daten nur dann hinzu, wenn es sich um einen News-Beitrag ohne Reader handelt.
+#}
+{% if not hasReader %}
+    {% do add_schema_org(getSchemaOrgData.invoke()) %}
+{% endif %}

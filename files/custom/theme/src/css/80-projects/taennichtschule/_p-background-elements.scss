@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: Section Background Decorations
+   Beschreibung: Styles fuer dekorative Background-Elemente in Sections (circles, crosses).
+   Ebene (Layer): Components
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    /* Standard/Fallback (optional) */
+    :root {
+        --decor-color-element: var(--background-color-extra-light);
+        --decor-color-background: var(--background-color-light);
+    }
+
+    /* Standard in main */
+    main {
+        --decor-color-element: var(--background-color-light, hsl(0deg 0% 95%));
+        --decor-color-background: var(--background-color-extra-light);
+    }
+
+    /* Footer */
+    .site-footer {
+        --decor-color-element: var(--background-color-extra-light, hsl(0deg 0% 95%));
+        --decor-color-background: var(--background-color-light);
+    }
+
+    .decor-section {
+        --shape-size: 200px;
+
+        position: relative;
+        overflow: clip; /* Schneidet die Shapes sauber an den Kanten */
+        background-color: var(--decor-color-background);
+    }
+
+    .decor-section__inner {
+        position: relative;
+        z-index: 1; /* Ueber den Shapes */
+    }
+
+    .decor {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .shape {
+        position: absolute;
+        display: block;
+        will-change: transform;
+    }
+
+    .shape--square {
+        --shape-size: clamp(10rem, 28vw, 20rem);
+
+        svg {
+            width: var(--shape-size);
+            height: var(--shape-size);
+        }
+    }
+
+    .shape--circle {
+        --shape-size: clamp(10rem, 28vw, 20rem);
+
+        svg {
+            width: var(--shape-size);
+            height: var(--shape-size);
+        }
+    }
+
+    .shape--triangle {
+        --shape-size: clamp(9rem, 28vw, 18rem);
+
+        svg {
+            width: var(--shape-size);
+            height: var(--shape-size);
+        }
+    }
+
+    /* Element-Positionen */
+    /* Oben links */
+    .shape--tl {
+        top: max(
+            -12%,
+            -5rem
+        ); /* Verschiebt die Shape leicht ueber die Section; nutzt den groesseren Wert, damit sie mit dem Viewport skaliert, aber -13rem nicht ueberschreitet */
+
+        left: max(-10%, -13rem);
+    }
+
+    /* Unten rechts */
+    .shape--br {
+        right: max(-10%, -5rem);
+        bottom: max(-4%, -3rem);
+    }
+
+    @media (width >= 64rem) {
+        .shape--tl {
+            top: max(-4%, -15rem);
+            left: -6rem;
+        }
+
+        .shape--br {
+            right: max(-20%, -7rem);
+            bottom: max(-8%, -16rem);
+        }
+    }
+}

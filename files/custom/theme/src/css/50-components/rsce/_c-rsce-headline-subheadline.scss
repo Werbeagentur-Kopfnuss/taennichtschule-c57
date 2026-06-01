@@ -1,0 +1,46 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE Headline Subheadline
+   Beschreibung: Styles fuer das RSCE-Headline-Subheadline-Element.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_headline_subheadline.html.twig, rsce_headline_subheadline_config.php, tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    .headline-subheadline .headline-top,
+    .headline-subheadline .headline-bottom {
+        display: block;
+        font-size: 0.5em; /* 1/2 der Headline-Groesse */
+        font-weight: var(--font-weight-book);
+    }
+
+    .headline-subheadline .headline-top {
+        margin-bottom: 0.25em;
+    }
+
+    .headline-subheadline .headline-bottom {
+        margin-top: 0.25em;
+    }
+
+    h1.headline-subheadline .headline-top,
+    h1.headline-subheadline .headline-bottom {
+        font-size: 0.4em; /* 1/3 der h1-Groesse */
+    }
+
+    h3.headline-subheadline .headline-top,
+    h3.headline-subheadline .headline-bottom {
+        font-size: 0.6em;
+    }
+
+    h4.headline-subheadline .headline-top,
+    h4.headline-subheadline .headline-bottom {
+        font-size: 0.7em;
+    }
+
+    h5.headline-subheadline .headline-top,
+    h5.headline-subheadline .headline-bottom {
+        font-size: 0.8em;
+    }
+}

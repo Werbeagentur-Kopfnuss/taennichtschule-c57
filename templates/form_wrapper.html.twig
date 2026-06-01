@@ -1,0 +1,6 @@
+{% extends "@Contao/form_wrapper.html.twig" %}
+
+{% set wrapperAttributes = attrs(cssID|default)
+    .addClass([class, 'content-collection'])
+    .mergeWith(wrapperAttributes|default)
+%}

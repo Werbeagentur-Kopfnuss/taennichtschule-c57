@@ -1,0 +1,23 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Extension: Contao Download Module Styles
+   Beschreibung: Angepasste Styles fuer das Contao-Download-Module passend zum Layout.
+   Ebene (Layer): Extensions/contao
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   Extension:
+   ========================================================================== */
+
+@layer extensions {
+    .content-block {
+        .content-download + .content-download {
+            margin-block-start: var(--flow-grid-spacing-block, 1.5rem);
+        }
+        .equal-columns {
+            .content-download + .content-download {
+                margin-block-start: 0; // Margin fuer equal columns zuruecksetzen - wird ueber grid gap in _l-grid behandelt
+            }
+        }
+    }
+}

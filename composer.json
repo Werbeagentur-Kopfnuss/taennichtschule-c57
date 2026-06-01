@@ -1,0 +1,49 @@
+{
+  "type": "project",
+  "require": {
+    "agenturkopfnuss/contao-element-group-flex": "dev-main",
+    "agenturkopfnuss/contao-element-group-grid": "dev-main",
+    "bugbuster/contao-visitors-bundle": "^1.18",
+    "codefog/contao-news_categories": "^4.1",
+    "contao/calendar-bundle": "5.7.*",
+    "contao/comments-bundle": "5.7.*",
+    "contao/conflicts": "*@dev",
+    "contao/faq-bundle": "5.7.*",
+    "contao/listing-bundle": "5.7.*",
+    "contao/manager-bundle": "5.7.*",
+    "contao/news-bundle": "5.7.*",
+    "contao/newsletter-bundle": "5.7.*",
+    "inspiredminds/contao-glightbox": "^1.0",
+    "madeyourday/contao-rocksolid-custom-elements": "^2.4",
+    "oveleon/contao-cookiebar": "^2.3",
+    "trilobit-gmbh/contao-tiles-bundle": "^3.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "contao-components/installer": true,
+      "contao/manager-plugin": true
+    }
+  },
+  "extra": {
+    "public-dir": "public",
+    "contao-component-dir": "assets"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "@php vendor/bin/contao-setup"
+    ],
+    "post-update-cmd": [
+      "@php vendor/bin/contao-setup"
+    ]
+  },
+  "repositories": {
+    "agenturkopfnuss/contao-element-group-flex": {
+      "type": "vcs",
+      "url": "https://github.com/Werbeagentur-Kopfnuss/contao-element-group-flex.git"
+    },
+    "agenturkopfnuss/contao-element-group-grid": {
+      "type": "vcs",
+      "url": "https://github.com/Werbeagentur-Kopfnuss/contao-element-group-grid.git"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Theme: High Contrast Mode
+   Beschreibung: Benutzerdefinierte Styles fuer den High Contrast Mode zur
+   Verbesserung der Accessibility und Lesbarkeit fuer Benutzer mit Sehbeeintraechtigungen.
+   Ebene (Layer): Themes
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: _s-tokens-semantic.scss
+   ========================================================================== */
+
+/* Aenderungsstrategie:
+   - Nur Farb- und Kontrast-Tokens werden ueberschrieben
+   - Spacing, Sizing, Typography-Skalen bleiben unveraendert
+   - Zielvorgabe: WCAG AA (4.5:1 fuer normalen Text, 3:1 fuer grosse Texte)
+   - "light"-Varianten werden durch dunklere Alternativen ersetzt
+   - "extra-light"-Borders/Farben werden sichtbar gemacht
+*/
+
+@layer themes {
+    html.is-high-contrast {
+        /* ================
+        Focus
+        ================ */
+        /* Schwarz statt Blau - universell sichtbar auf allen Hintergruenden */
+        --focus-color-default: var(--clr-black);
+
+        /* ================
+        Navigation
+        ================ */
+        /* Hover/Active in Schwarz statt Rot - hoeherer Kontrast */
+        --navigation-color-default-hover: var(--clr-black);
+        --navigation-color-active: var(--clr-black);
+
+        /* ================
+        Button
+        ================ */
+        /* Secondary/Reduced: Von hellem Grau (clr-grey-600 = 90%) auf Dunkelgrau (clr-grey-200 = 20%) */
+        --button-background-secondary: var(--clr-grey-200);
+        --button-background-reduced: var(--clr-grey-200);
+        /* Textfarbe anpassen: Weiss auf Dunkelgrau statt Rot auf Hellgrau */
+        --button-color-secondary: var(--clr-white);
+        --button-color-reduced: var(--clr-white);
+        /* Hover-Zustaende: Kontrastreicher */
+        --button-background-primary-hover: var(--clr-black);
+        --button-background-secondary-hover: var(--clr-black);
+        --button-background-reduced-hover: var(--clr-black);
+        --button-color-primary-hover: var(--clr-white);
+        --button-color-secondary-hover: var(--clr-white);
+        --button-color-reduced-hover: var(--clr-white);
+
+        /* ================
+        Link
+        ================ */
+        /* Hover: Schwarz statt Rot */
+        --link-color-default-hover: var(--clr-black);
+
+        /* ================
+        Text
+        ================ */
+        /* clr-grey-500 = 49% Helligkeit -> ~3.5:1 Kontrast (verfehlt WCAG AA) */
+        /* clr-grey-200 = 20% Helligkeit -> ~9:1 Kontrast (besteht WCAG AA) */
+        --text-color-light: var(--clr-grey-200);
+        /* Hover: Schwarz statt Rot */
+        --text-color-default-hover: var(--clr-black);
+
+        /* ================
+        Form
+        ================ */
+        /* Pflichtfeld-Markierung: Schwarz statt Rot (Rot kann farbblind-problematisch sein) */
+        --form-mandatory-color: var(--clr-black);
+
+        /* ================
+        Table
+        ================ */
+        /* Header: Dunkelgrau mit weissem Text statt hellem Grau mit schwarzem Text */
+        --table-header-background-color: var(--clr-grey-200);
+        --table-header-color: var(--clr-white);
+        /* Zeilenstreifen: clr-grey-900 (97%) -> clr-grey-600 (90%) - sichtbarer Unterschied */
+        --table-row-odd-background-color: var(--clr-grey-600);
+        /* Rahmen: Klar sichtbar in Schwarz statt hellem Grau */
+        --table-border-color: var(--clr-black);
+
+        /* ================
+        Border
+        ================ */
+        /* Light: clr-grey-600 (90%) -> clr-grey-500 (49%) - sichtbarer */
+        --border-color-light: var(--clr-grey-500);
+        /* Extra-Light: clr-white -> clr-grey-600 - war unsichtbar auf weissem Hintergrund */
+        --border-color-extra-light: var(--clr-grey-600);
+
+        /* ================
+        Style Overrides
+        ================ */
+        button.is-disabled {
+            opacity: 0.8;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Base: Video Styles
+   Beschreibung: Basis-Styles fuer Videos.
+   Ebene (Layer): Base
+   Wiederverwendbar: Ja
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: tokens.semantic.css
+   ========================================================================== */
+
+@layer base {
+    video {
+        border-radius: var(--border-radius-default);
+    }
+}

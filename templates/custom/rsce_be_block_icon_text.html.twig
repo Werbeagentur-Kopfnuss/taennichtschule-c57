@@ -1,0 +1,10 @@
+{% block be_block_icon_text %}
+    <div class="{{ class }} backend_rsce_block_icon_text"{% if cssID %} id="{{ cssID }}"{% endif %}>
+
+        {% if hasHeadline %}
+            <{{ headlineOrder }} itemprop="name">{{ headline }}</{{ headlineOrder }}>
+        {% endif %}
+        {{ text|raw }}
+
+    </div>
+{% endblock %}

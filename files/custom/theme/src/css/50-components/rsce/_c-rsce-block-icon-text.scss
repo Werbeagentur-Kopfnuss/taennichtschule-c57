@@ -1,0 +1,17 @@
+/* ==========================================================================
+   Autor: Agentur KOPFNUSS - Marco Schaedlich
+   Component: RSCE element with text and optional icon and/or headline
+   Beschreibung: Styles fuer die RSCE-Block-Icon-Text-Komponente.
+   Ebene (Layer): Components/rsce
+   Wiederverwendbar: Nein
+   Custom-Property-Definitionen: Nein
+   Abhaengigkeiten: rsce_block_icon_text.html.twig, rsce_block_icon_text_config.php, tokens.semantic.css
+   ========================================================================== */
+
+@layer components {
+    .block-text-icon__card {
+        .block-text-icon__icon {
+            margin-block-end: var(--flow-grid-spacing-block);
+        }
+    }
+}
