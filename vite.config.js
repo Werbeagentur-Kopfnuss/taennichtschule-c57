@@ -40,7 +40,7 @@ export default defineConfig({
         },
 
         cssMinify: true,
-        minify: 'esbuild',
+        minify: 'oxc',
     },
 
     css: {
