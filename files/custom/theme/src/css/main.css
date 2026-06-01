@@ -3237,7 +3237,7 @@ Breakpoints
     --icon-bg-fill: var(--button-color-reduced);
   }
   .button--only-text-icon:hover {
-    --icon-arrow-stroke: var(#fff);
+    --icon-arrow-stroke: var(--navigation-color-default-hover);
     --icon-bg-fill: var(--navigation-color-default-hover);
   }
   /* Zuweisung an die Icons */

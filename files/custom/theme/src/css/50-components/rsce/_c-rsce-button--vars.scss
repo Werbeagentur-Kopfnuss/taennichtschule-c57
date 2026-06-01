@@ -70,7 +70,7 @@
     }
 
     .button--only-text-icon:hover {
-        --icon-arrow-stroke: var(#fff);
+        --icon-arrow-stroke: var(--navigation-color-default-hover);
         --icon-bg-fill: var(--navigation-color-default-hover);
     }
 
@@ -86,7 +86,6 @@
     /* ================
         Accessible
         ================ */
-
     /* Accessible-Variante fuer Nutzer mit reduced motion */
     @media (prefers-reduced-motion: reduce) {
         .button__icon-arrow,
