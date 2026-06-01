@@ -11,6 +11,8 @@ var/
 vendor/
 .vscode/
 .idea/
+.ddev/
+.claude/
 
 #ignore files
 .env
@@ -19,4 +21,5 @@ vendor/
 .htpasswd
 package-lock.json
 package.json
-.prettierignore
+.editorconfig
+Claude.md
